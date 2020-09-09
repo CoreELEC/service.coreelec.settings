@@ -11,6 +11,12 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: N\n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.4.1\n"
 
 msgctxt "#600"
 msgid "@DISTRONAME@ Settings"
@@ -30,7 +36,7 @@ msgstr "Тип"
 
 msgctxt "#604"
 msgid "State"
-msgstr "Область"
+msgstr "Состояние"
 
 msgctxt "#605"
 msgid "Address"
@@ -38,15 +44,15 @@ msgstr "Адрес"
 
 msgctxt "#606"
 msgid "Distribution: "
-msgstr "Дистрибутив:"
+msgstr "Дистрибутив: "
 
 msgctxt "#607"
 msgid "Version: "
-msgstr "Версия:"
+msgstr "Версия: "
 
 msgctxt "#608"
 msgid "Architecture: "
-msgstr "Архитектура:"
+msgstr "Архитектура: "
 
 msgctxt "#609"
 msgid ""
@@ -173,15 +179,14 @@ msgid ""
 "URL"
 msgstr ""
 
-#, fuzzy
 msgctxt "#722"
 msgid ""
 "Create a tar archive containing all @DISTRONAME@ and Kodi configuration "
 "settings, databases and thumbnail content. Backup files will be stored in /"
 "storage/backup/"
 msgstr ""
-"Создание tar-архива со всеми настройками @DISTRONAME@ и Kodi, всеми базами "
-"данных и миниатюрами. Резервные копии будут сохранены в /storage/backups"
+"Создать tar-архива со всеми настройками @DISTRONAME@ и Kodi, базами данных и "
+"миниатюрами. Резервные копии будут сохранены в /storage/backups"
 
 msgctxt "#723"
 msgid ""
@@ -228,7 +233,7 @@ msgstr ""
 
 msgctxt "#728"
 msgid "Configure the Access Point SSID"
-msgstr "Настройка имени SSID точки доступа"
+msgstr "Настроить SSID точки доступа"
 
 msgctxt "#729"
 msgid "Configure the Access Point Passphrase"
@@ -240,15 +245,15 @@ msgstr "Включение или отключение поддержки про
 
 msgctxt "#732"
 msgid "Configure the 1st time (NTP) server"
-msgstr "Настройка 1го сервера (NTP) времени"
+msgstr "Задать 1-й NTP-сервер времени"
 
 msgctxt "#733"
 msgid "Configure the 2nd time (NTP) server"
-msgstr "Настройка 2го сервера (NTP) времени"
+msgstr "Задать 2-й NTP-сервер времени"
 
 msgctxt "#734"
 msgid "Configure the 3rd time (NTP) server"
-msgstr "Настройка 3го сервера (NTP) времени"
+msgstr "Задать 3-й NTP-сервер времени"
 
 msgctxt "#736"
 msgid ""
@@ -266,7 +271,7 @@ msgstr "Время в секундах для ожидания установл�
 
 msgctxt "#738"
 msgid "Set to ON to enable the embedded Samba (SMB) filesharing service"
-msgstr "Включение встроенного сервиса Samba общего доступа к файлам (SMB)"
+msgstr "Включить службу Samba (SMB) для общего доступа к файлам"
 
 msgctxt "#739"
 msgid "Set to ON to require username/password access to local Samba fileshares"
@@ -287,7 +292,7 @@ msgid ""
 "Set to ON to enable the embedded SSH server. The SSH console can be accessed "
 "with username 'root' and password '@ROOT_PASSWORD@'."
 msgstr ""
-"Включение встроенного SSH-сервера. Пользователь и пароли по-умолчанию для "
+"Включение встроенного SSH-сервера. Пользователь и пароли по умолчанию для "
 "SSH:  пользователь: 'root', пароль: '@ROOT_PASSWORD@'."
 
 msgctxt "#743"
@@ -312,14 +317,13 @@ msgctxt "#746"
 msgid "Set the password for SSH"
 msgstr "Установите пароль для SSH"
 
-#, fuzzy
 msgctxt "#747"
 msgid "Enable a PIN for @DISTRONAME@ Settings access"
-msgstr "Настройки @DISTRONAME@"
+msgstr "Включить ПИН-код для доступа к настройкам @DISTRONAME@"
 
 msgctxt "#748"
 msgid "Change the PIN Lock for @DISTRONAME@ Settings access"
-msgstr ""
+msgstr "Изменить ПИН-код для доступа к настойкам @DISTRONAME@"
 
 msgctxt "#749"
 msgid ""
@@ -417,15 +421,14 @@ msgid ""
 "basic statistics for the project. To continue checking for updates while "
 "opting-out of stats reporting, disable this option."
 msgstr ""
-"Проверка новой версии отправит установленный дистрибутив, Project, CPU Arch "
-"и Version на сервер обновлений. Эти данные также используются для "
-"составления базовой статистики по проекту. Чтобы продолжить проверку "
-"обновлений при отключении статистики, отключите эту опцию."
+"Проверка обновлений отправит на сервер обновлений информацию о дистрибутиве, "
+"проекте, процессоре и версии. Эти данные также используются для составления "
+"основной статистики проекта. Чтобы проверять обновления без отправки "
+"статистических данных, отключите эту опцию."
 
-#, fuzzy
 msgctxt "#780"
 msgid "Configure hardware settings"
-msgstr "Настроить обновления"
+msgstr "Настроить оборудование"
 
 msgctxt "#781"
 msgid "Set fan mode (off/auto/manual)"
@@ -433,7 +436,7 @@ msgstr ""
 
 msgctxt "#782"
 msgid "Set fan speed level"
-msgstr ""
+msgstr "Задать скорость вентилятора"
 
 msgctxt "#785"
 msgid ""
@@ -447,11 +450,11 @@ msgstr ""
 
 msgctxt "#787"
 msgid "Enable/Disable Wake-on-LAN"
-msgstr ""
+msgstr "Включить или выключить пробуждение по локальной сети"
 
 msgctxt "#788"
 msgid "Enable/Disable USB Power when device is off/suspend"
-msgstr ""
+msgstr "Включить или выключить USB-питание во время выключения и сна"
 
 msgctxt "#789"
 msgid "Enable/Disable device heartbeat LED"
@@ -463,7 +466,7 @@ msgstr ""
 
 msgctxt "#791"
 msgid "Set CPU governor for all cores"
-msgstr ""
+msgstr "Задать режим всех ядер процессора"
 
 msgctxt "#792"
 msgid ""
@@ -473,7 +476,7 @@ msgstr ""
 
 msgctxt "#793"
 msgid "Enable/Disable CEC Wake-Up"
-msgstr ""
+msgstr "Включить или выключить пробуждение по CEC"
 
 msgctxt "#794"
 msgid ""
@@ -492,10 +495,9 @@ msgctxt "#797"
 msgid "Enable/Disable HDD parking on power off/suspend"
 msgstr ""
 
-#, fuzzy
 msgctxt "#798"
 msgid "Time in seconds to wait for the HDD to spin down when parking"
-msgstr "Время в секундах для ожидания установленного сетевого подключения."
+msgstr "Время ожидания (в секундах), пока не остановится жёсткий диск"
 
 msgctxt "#799"
 msgid "Time in minutes/hours until the HDD should enter suspend mode"
@@ -515,7 +517,7 @@ msgstr "Интерфейс"
 
 msgctxt "#32004"
 msgid "Hardware"
-msgstr ""
+msgstr "Оборудование"
 
 msgctxt "#32005"
 msgid "Updates"
@@ -551,15 +553,15 @@ msgstr "Показывать пользовательские каналы"
 
 msgctxt "#32017"
 msgid "  - Custom Channel 1"
-msgstr "- Пользовательский канал 1"
+msgstr " — Пользовательский канал 1"
 
 msgctxt "#32018"
 msgid "  - Custom Channel 2"
-msgstr "- Пользовательский канал 2"
+msgstr " — Пользовательский канал 2"
 
 msgctxt "#32019"
 msgid "  - Custom Channel 3"
-msgstr "- Пользовательский канал 3"
+msgstr " — Пользовательский канал 3"
 
 msgctxt "#32020"
 msgid "Available Versions"
@@ -579,7 +581,7 @@ msgstr ""
 
 msgctxt "#32024"
 msgid "Bootloader EEPROM"
-msgstr ""
+msgstr "EEPROM загрузчика"
 
 msgctxt "#32025"
 msgid ""
@@ -629,7 +631,7 @@ msgstr "Проводные сети"
 
 msgctxt "#32105"
 msgid "Active"
-msgstr "Включен"
+msgstr "Активен"
 
 msgctxt "#32106"
 msgid "Username"
@@ -673,7 +675,7 @@ msgstr "Маска подсети"
 
 msgctxt "#32116"
 msgid "Default Gateway"
-msgstr "Шлюз по-умолчанию"
+msgstr "Шлюз по умолчанию"
 
 msgctxt "#32117"
 msgid "Prefix Length"
@@ -821,21 +823,19 @@ msgstr "Неверная ссылка"
 
 msgctxt "#32192"
 msgid "PIN lock"
-msgstr ""
+msgstr "ПИН-код"
 
-#, fuzzy
 msgctxt "#32193"
 msgid "Enable @DISTRONAME@ Settings PIN Lock"
-msgstr "Настройки @DISTRONAME@"
+msgstr "Включить ПИН-код настроек @DISTRONAME@"
 
-#, fuzzy
 msgctxt "#32194"
 msgid "Change @DISTRONAME@ Settings PIN Lock"
-msgstr "Настройки @DISTRONAME@"
+msgstr "Изменить ПИН-код настроек @DISTRONAME@"
 
 msgctxt "#32196"
 msgid "About"
-msgstr "Об CoreELEC"
+msgstr "О CoreELEC"
 
 msgctxt "#32198"
 msgid "SSID"
@@ -943,47 +943,44 @@ msgstr "Во время процесса произошла ошибка.[CR]П�
 
 msgctxt "#32226"
 msgid "Enter new 4 digit PIN"
-msgstr ""
+msgstr "Введите 4-значный ПИН-код"
 
 msgctxt "#32227"
 msgid "Re-enter PIN"
-msgstr ""
+msgstr "Повторите ПИН-код"
 
 msgctxt "#32228"
 msgid "Error - PIN codes did not match!"
-msgstr ""
+msgstr "Ошибка: ПИН-коды не совпали!"
 
 msgctxt "#32229"
 msgid "@DISTRONAME@ Settings PIN lock not set.[CR][CR]Please try again."
 msgstr ""
+"ПИН-код для настроек @DISTRONAME@ не был установлен.[CR][CR]Попробуйте снова."
 
-#, fuzzy
 msgctxt "#32230"
 msgid "@DISTRONAME@ Settings PIN lock set."
-msgstr "Настройки @DISTRONAME@"
+msgstr "ПИН-код для настроек @DISTRONAME@ установлен."
 
-#, fuzzy
 msgctxt "#32231"
 msgid "Your @DISTRONAME@ Settings PIN lock was set to:"
-msgstr "Настройки @DISTRONAME@"
+msgstr "ПИН-код для настроек @DISTRONAME@ установлен таким:"
 
 msgctxt "#32232"
 msgid "Error - PIN code not 4 digits!"
-msgstr ""
+msgstr "Ошибка: длина ПИН-кода не 4 цифры!"
 
-#, fuzzy
 msgctxt "#32233"
 msgid "@DISTRONAME@ Settings Locked - Enter PIN"
-msgstr "Настройки @DISTRONAME@"
+msgstr "Настройки @DISTRONAME@ заблокированы. Введите ПИН-код."
 
 msgctxt "#32234"
 msgid "Incorrect PIN!"
-msgstr ""
+msgstr "Неверный ПИН-код!"
 
-#, fuzzy
 msgctxt "#32235"
 msgid " attempts remaining."
-msgstr "Оставшееся время"
+msgstr " попыток осталось."
 
 msgctxt "#32236"
 msgid ""
@@ -991,21 +988,21 @@ msgid ""
 "wait 5 minutes before trying again."
 msgstr ""
 
-#, fuzzy
 msgctxt "#32237"
 msgid "@DISTRONAME@ Settings Locked!"
-msgstr "Настройки @DISTRONAME@"
+msgstr "Настройки @DISTRONAME@ заблокированы!"
 
 msgctxt "#32238"
 msgid ""
 " minutes remain before PIN can be entered.[CR][CR]Too many previous failed "
 "attempts."
 msgstr ""
+" минут осталось до возможности ввести ПИН-код.[CR][CR]Было слишком много "
+"неудачных попыток."
 
-#, fuzzy
 msgctxt "#32240"
 msgid "Wireless Regulatory Domain"
-msgstr "Беспроводные сети"
+msgstr "Страна"
 
 msgctxt "#32300"
 msgid "Welcome to @DISTRONAME@"
@@ -1013,7 +1010,7 @@ msgstr "Добро пожаловать в @DISTRONAME@"
 
 msgctxt "#32301"
 msgid "Welcome"
-msgstr "Добро пожаловать"
+msgstr "Добро пожаловать!"
 
 msgctxt "#32302"
 msgid ""
@@ -1029,7 +1026,7 @@ msgstr ""
 
 msgctxt "#32303"
 msgid "Next"
-msgstr "Следующ."
+msgstr "Дальше"
 
 msgctxt "#32304"
 msgid ""
@@ -1062,11 +1059,11 @@ msgstr ""
 
 msgctxt "#32307"
 msgid "Previous"
-msgstr ""
+msgstr "Назад"
 
 msgctxt "#32308"
 msgid "Hostname:"
-msgstr "Имя хоста:"
+msgstr "Сетевое имя:"
 
 msgctxt "#32309"
 msgid "The following Networks are currently available:"
@@ -1074,7 +1071,7 @@ msgstr "Доступны следующие сети:"
 
 msgctxt "#32310"
 msgid "Language:"
-msgstr ""
+msgstr "Язык:"
 
 msgctxt "#32311"
 msgid "Sharing and Remote Access"
@@ -1089,8 +1086,8 @@ msgid ""
 msgstr ""
 "@DISTRONAME@ так же поддерживает SSH для удаленного доступа. Это необходимо "
 "опытным пользователям, которые хотят взаимодействовать с операционной "
-"системой @DISTRONAME@ напрямую. Пользователь по-умолчанию [COLOR blue]root[/"
-"COLOR] пароль по-умолчанию [COLOR blue]@ROOT_PASSWORD@[/COLOR]."
+"системой @DISTRONAME@ напрямую. Пользователь по умолчанию [COLOR blue]root[/"
+"COLOR] пароль по умолчанию [COLOR blue]@ROOT_PASSWORD@[/COLOR]."
 
 msgctxt "#32313"
 msgid ""
@@ -1109,7 +1106,7 @@ msgstr "Настройка служб:"
 
 msgctxt "#32317"
 msgid "Thank you"
-msgstr "Спасибо Вам"
+msgstr "Спасибо!"
 
 msgctxt "#32318"
 msgid ""
@@ -1132,19 +1129,19 @@ msgstr "Включить Cron"
 
 msgctxt "#32323"
 msgid "Reset to Defaults"
-msgstr "Сбросить в настройки по-умолчанию"
+msgstr "Сбросить в настройки по умолчанию"
 
 msgctxt "#32324"
 msgid "Reset System Settings to defaults"
-msgstr "Сбросить системные настройки по-умолчанию"
+msgstr "Сбросить системные настройки по умолчанию"
 
 msgctxt "#32325"
 msgid "Reset @DISTRONAME@ to defaults"
-msgstr "Сбросить @DISTRONAME@ в настройки по-умолчанию"
+msgstr "Сбросить @DISTRONAME@ в настройки по умолчанию"
 
 msgctxt "#32326"
 msgid "Are you sure?"
-msgstr "Вы уверены ?"
+msgstr "Вы уверены?"
 
 msgctxt "#32328"
 msgid "The system must reboot."
@@ -1164,7 +1161,7 @@ msgstr "Bluetooth"
 
 msgctxt "#32333"
 msgid "Connected: "
-msgstr "Подключено:"
+msgstr "Подключено: "
 
 msgctxt "#32334"
 msgid "Yes"
@@ -1204,7 +1201,7 @@ msgstr "Доверять и подключиться"
 
 msgctxt "#32362"
 msgid "Check for updates now:"
-msgstr "Проверка обновлений:"
+msgstr "Проверить обновления:"
 
 msgctxt "#32363"
 msgid "@DISTRONAME@"
@@ -1359,7 +1356,7 @@ msgstr "Собственные"
 
 msgctxt "#32397"
 msgid "Off"
-msgstr "Выкл"
+msgstr "Выкл."
 
 msgctxt "#32398"
 msgid "Home"
@@ -1371,11 +1368,11 @@ msgstr "Общественные"
 
 msgctxt "#32400"
 msgid "Fan"
-msgstr ""
+msgstr "Вентилятор"
 
 msgctxt "#32401"
 msgid "Power"
-msgstr ""
+msgstr "Питание"
 
 msgctxt "#32402"
 msgid "Display"
@@ -1387,17 +1384,16 @@ msgstr ""
 
 msgctxt "#32404"
 msgid "CEC"
-msgstr ""
+msgstr "CEC"
 
 msgctxt "#32405"
 msgid "HDD"
-msgstr ""
+msgstr "Жёсткие диски"
 
 msgctxt "#32410"
 msgid "Fan Mode"
-msgstr ""
+msgstr "Режим вентилятора"
 
-#, fuzzy
 msgctxt "#32411"
 msgid "Speed Level"
 msgstr "Скорость"
@@ -1412,11 +1408,11 @@ msgstr ""
 
 msgctxt "#32417"
 msgid "Wake-on-LAN"
-msgstr ""
+msgstr "Wake-on-LAN"
 
 msgctxt "#32418"
 msgid "USB Power"
-msgstr ""
+msgstr "USB-питание"
 
 msgctxt "#32419"
 msgid "Heartbeat LED"
@@ -1428,11 +1424,11 @@ msgstr ""
 
 msgctxt "#32421"
 msgid "CPU governor"
-msgstr ""
+msgstr "Режим ЦП"
 
 msgctxt "#32422"
 msgid "Parking"
-msgstr ""
+msgstr "Парковка"
 
 msgctxt "#32423"
 msgid "Parking Time"
@@ -1448,32 +1444,31 @@ msgstr ""
 
 msgctxt "#32431"
 msgid "CEC Wake-Up"
-msgstr ""
+msgstr "Пробуждение по CEC"
 
 msgctxt "#32432"
 msgid "Auto power on"
-msgstr ""
+msgstr "Автовключение"
 
 msgctxt "#32433"
 msgid "Streaming path/Routing change"
 msgstr ""
 
-#, fuzzy
 msgctxt "#32434"
 msgid "Active route"
-msgstr "Включен"
+msgstr "Активный источник"
 
 msgctxt "#33410"
 msgid "Warning!"
-msgstr ""
+msgstr "Внимание!"
 
 msgctxt "#33411"
 msgid "Continue"
-msgstr ""
+msgstr "Продолжить"
 
 msgctxt "#33412"
 msgid "Finished!"
-msgstr ""
+msgstr "Завершено!"
 
 msgctxt "#33413"
 msgid "Notice!"
@@ -1481,7 +1476,7 @@ msgstr ""
 
 msgctxt "#33414"
 msgid "Error!"
-msgstr ""
+msgstr "Ошибка!"
 
 msgctxt "#33415"
 msgid "Inject Bootloader BL301 Blob..."
