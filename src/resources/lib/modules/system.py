@@ -6,6 +6,7 @@
 
 import os
 import re
+import fnmatch
 import glob
 import time
 import json
@@ -529,16 +530,17 @@ class system:
             self.oe.dbg_log('system::do_backup', 'enter_function', self.oe.LOGDEBUG)
             self.total_backup_size = 1
             self.done_backup_size = 1
+            xbmcDialog = xbmcgui.Dialog()
+            includeThumbnails = 1 == xbmcDialog.yesno('CoreELEC Backup', 'Should this backup include the thumbnails folder(s)?', yeslabel='Include', nolabel='Exclude')
 
             try:
                 self.oe.set_busy(1)
                 for directory in self.BACKUP_DIRS:
-                    self.get_folder_size(directory)
+                    self.get_folder_size(directory, includeThumbnails)
                 self.oe.set_busy(0)
             except:
                 self.oe.set_busy(0)
 
-            xbmcDialog = xbmcgui.Dialog()
             bckDir = xbmcDialog.browse( 0,
                                         self.oe._(32371),
                                         'files',
@@ -567,7 +569,7 @@ class system:
                 self.backup_file = self.oe.timestamp() + '.tar'
                 tar = tarfile.open(bckDir + self.backup_file, 'w', format=tarfile.GNU_FORMAT)
                 for directory in self.BACKUP_DIRS:
-                    self.tar_add_folder(tar, directory)
+                    self.tar_add_folder(tar, directory, includeThumbnails)
                 tar.close()
                 self.backup_dlg.close()
                 del self.backup_dlg
@@ -689,7 +691,7 @@ class system:
         except Exception as e:
             self.oe.dbg_log('system::do_do_send_logs', 'ERROR: (' + repr(e) + ')')
 
-    def tar_add_folder(self, tar, folder):
+    def tar_add_folder(self, tar, folder, includeThumbnails=False):
         try:
             for item in os.listdir(folder):
                 if item == self.backup_file:
@@ -701,7 +703,7 @@ class system:
                         pass
                     return 0
                 itempath = os.path.join(folder, item).encode('utf-8', 'replace').decode()
-                if itempath == self.XBMC_THUMBNAILS:
+                if not includeThumbnails and fnmatch.fnmatchcase(itempath, self.XBMC_THUMBNAILS):
                     continue
                 if os.path.islink(itempath):
                     tar.add(itempath)
@@ -711,7 +713,7 @@ class system:
                     if os.listdir(itempath) == []:
                         tar.add(itempath)
                     else:
-                        self.tar_add_folder(tar, itempath)
+                        self.tar_add_folder(tar, itempath, includeThumbnails)
                 elif os.path.exists(itempath):
                     self.done_backup_size += os.path.getsize(itempath)
                     tar.add(itempath)
@@ -722,19 +724,19 @@ class system:
             self.backup_dlg.close()
             self.oe.dbg_log('system::tar_add_folder', 'ERROR: (' + repr(e) + ')')
 
-    def get_folder_size(self, folder):
+    def get_folder_size(self, folder, includeThumbnails=False):
         for item in os.listdir(folder):
             itempath = os.path.join(folder, item)
             if os.path.islink(itempath):
                 continue
-            elif itempath == self.XBMC_THUMBNAILS:
+            elif not includeThumbnails and fnmatch.fnmatchcase(itempath, self.XBMC_THUMBNAILS):
                 continue
             elif os.path.isfile(itempath):
                 self.total_backup_size += os.path.getsize(itempath)
             elif os.path.ismount(itempath):
                 continue
             elif os.path.isdir(itempath):
-                self.get_folder_size(itempath)
+                self.get_folder_size(itempath, includeThumbnails)
 
     def init_pinlock(self, listItem=None):
         try:
