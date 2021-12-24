@@ -46,6 +46,14 @@ msgctxt "#608"
 msgid "Architecture: "
 msgstr "Architektura:"
 
+msgctxt "#609"
+msgid "CoreELEC is created by a global team of Linux and Kodi enthusiasts who contribute time and effort to manage the project, write code, and provide support. We have fun making it. We hope you have fun using it!"
+msgstr "CoreELEC je vytvořen globálním týmem nadšenců pro Linux a Kodi, kteří přispívají svým časem a úsilím ke správě projektu, psaní kódu a poskytování podpory. Baví nás to vyrábět. Doufáme, že se s jeho používáním budete bavit!"
+
+msgctxt "#610"
+msgid "[B]Support[/B] is provided via our forum:[CR]https://discourse.coreelec.org[CR][CR][B]Documentation[/B] can be read at our website:[CR]https://coreelec.org[CR][CR][B]Wiki[/B] can be read at our website:[CR]https://wiki.coreelec.org[CR][CR][B]Code[/B] can be found on GitHub:[CR]https://github.com/CoreELEC[CR][CR]"
+msgstr "[B]Podpora[/B] je poskytována prostřednictvím našeho fóra:[CR]https://discourse.coreelec.org[CR][CR][B]Dokumentaci[/B] si můžete přečíst na našem webu:[CR]https://coreelec.org[CR][CR][B]Wiki[/B] si můžete přečíst na našem webu:[CR]https://wiki.coreelec.org[CR][CR][B]Code[/B] najdete na GitHubu:[CR]https://github.com/CoreELEC[CR][CR]"
+
 msgctxt "#700"
 msgid ""
 "Configure a hostname, keyboard type, perform a reset, update, or backups and"
@@ -109,6 +117,10 @@ msgid ""
 "Set to ON and an on-screen notification will be displayed when a new update "
 "is available"
 msgstr "Nastavte do polohy [I]povoleno[/I], aby se na obrazovce zobrazovala oznámení o dostupnosti nové aktualizace"
+
+msgctxt "#716"
+msgid "Update to the next stable release instead of remaining on nightly builds, when the next stable release is ready."
+msgstr "Až bude připraveno další stabilní vydání, aktualizujte na další stabilní vydání, místo abyste zůstávali u nočních sestav"
 
 msgctxt "#718"
 msgid ""
@@ -340,6 +352,94 @@ msgid ""
 "has been activated in the LibreELEC device connection context menu."
 msgstr "Nastavit časový limit nečinnosti (v minutách) předtím, než budou zařízení odpojena (0 je výchozí hodnota pro žádný časový limit). Platí pro všechna zařízení, u kterých bylo v kontextovém menu LibreELEC Připojení aktivováno nastavení „Povolit pohotovostní režim“."
 
+msgctxt "#774"
+msgid "Automatic reconnect previously paired device after booting"
+msgstr "Automatické opětovné připojení dříve spárovaného zařízení po spuštění"
+
+msgctxt "#775"
+msgid "Automatic change audio output to PULSE when a audio device get connected"
+msgstr "Automatická změna výstupu zvuku na PULSE, když se připojí audio zařízení"
+
+msgctxt "#780"
+msgid "Configure hardware settings"
+msgstr "Konfigurace nastavení hardwaru"
+
+msgctxt "#781"
+msgid "Set fan mode (off/auto/manual)"
+msgstr "Nastavte režim ventilátoru (vypnuto/automaticky/manuálně)"
+
+msgctxt "#782"
+msgid "Set fan speed level"
+msgstr "Nastavte rychlost ventilátoru"
+
+msgctxt "#785"
+msgid "Modify Vendor Bootloader to support all wake-up features such as CEC, Wake-On-LAN, IR, and GPIO wake-up from suspend or power off state!"
+msgstr "Upravte zavaděč dodavatele tak, aby podporoval všechny funkce probuzení, jako je CEC, Wake-On-LAN, IR a GPIO probuzení ze stavu spánku nebo vypnutí!"
+
+msgctxt "#786"
+msgid "Set the IR remote control power button code"
+msgstr "Nastavení kódu tlačítka napájení IR dálkového ovladače"
+
+msgctxt "#787"
+msgid "Enable/Disable Wake-on-LAN"
+msgstr "Povolit/Zakázat Wake-on-LAN"
+
+msgctxt "#788"
+msgid "Enable/Disable USB Power when device is off/suspend"
+msgstr "Povolit/zakázat napájení USB, když je zařízení vypnuto/pozastaveno"
+
+msgctxt "#789"
+msgid "Change device LED behavior"
+msgstr "Změňte chování indikátoru LED zařízení"
+
+msgctxt "#790"
+msgid "Enable/Disable VESA display modes"
+msgstr "Povolit/zakázat režimy zobrazení VESA"
+
+msgctxt "#791"
+msgid "Set CPU governor for all cores"
+msgstr "Nastavte regulátor CPU pro všechna jádra"
+
+msgctxt "#792"
+msgid "Enable/Disable HDD parking on power off/suspend"
+msgstr "Povolit/zakázat parkování HDD při vypnutí/pozastavení"
+
+msgctxt "#793"
+msgid "Time in seconds to wait for the HDD to spin down when parking"
+msgstr "Čas v sekundách pro čekání, než se pevný disk při parkování roztočí"
+
+msgctxt "#794"
+msgid "Time in minutes/hours until the HDD should enter suspend mode"
+msgstr "Čas v minutách/hodinách, než by měl pevný disk přejít do režimu spánku"
+
+msgctxt "#900"
+msgid "Configure eMMC speed mode"
+msgstr "Konfigurace režimu rychlosti eMMC"
+
+msgctxt "#901"
+msgid "Configure WiFi SoC SDIO speed"
+msgstr "Konfigurace rychlosti WiFi SoC SDIO"
+
+msgctxt "#902"
+msgid "Enable/Disable SPI interface"
+msgstr "Povolit/zakázat rozhraní SPI"
+
+msgctxt "#903"
+msgid "Choose IR protocol type for meson-remote"
+msgstr "Vyberte typ IR protokolu pro meson-remote"
+
+msgctxt "#904"
+msgid "Configure DVB GPIO support"
+msgstr "Konfigurace podpory DVB GPIO"
+
+msgctxt "#905"
+msgid "Configure Wired Network Interface"
+msgstr "Konfigurace rozhraní drátové sítě"
+
+msgctxt "#906"
+msgid "Choose if IP1001 is assembled"
+msgstr "Vyberte, zda je sestaven IP1001"
+
 msgctxt "#32001"
 msgid "Services"
 msgstr "Služby"
@@ -441,6 +541,10 @@ msgstr "aktualizovat z %s na %s"
 msgctxt "#32029"
 msgid "up to date: %s"
 msgstr "aktuální: %s"
+
+msgctxt "#32030"
+msgid "Update To Next Stable"
+msgstr "Aktualizovat na další stabilní"
 
 msgctxt "#32100"
 msgid "Connections"
@@ -1052,6 +1156,10 @@ msgctxt "#32373"
 msgid "Restore Backup"
 msgstr "Obnovit zálohu"
 
+msgctxt "#32374"
+msgid "Restore file cannot be accessed by the system, it must be located on the local filesystem"
+msgstr "K souboru obnovy nemá systém přístup, musí být umístěn v místním souborovém systému"
+
 msgctxt "#32375"
 msgid "Backup Progress"
 msgstr "Průběh zálohování"
@@ -1162,3 +1270,163 @@ msgstr "Veřejný"
 msgctxt "#32400"
 msgid "Idle Timeout"
 msgstr "Časový limit nečinnosti"
+
+msgctxt "#32401"
+msgid "Connect paired devices"
+msgstr "Připojte spárovaná zařízení"
+
+msgctxt "#32500"
+msgid "Fan"
+msgstr "Ventilátor"
+
+msgctxt "#32501"
+msgid "Power"
+msgstr "Napájení"
+
+msgctxt "#32502"
+msgid "Zobrazení"
+msgstr ""
+
+msgctxt "#32503"
+msgid "Performance"
+msgstr "Výkon"
+
+msgctxt "#32504"
+msgid "CEC"
+msgstr "CEC"
+
+msgctxt "#32505"
+msgid "HDD"
+msgstr "HDD"
+
+msgctxt "#32510"
+msgid "Fan Mode"
+msgstr "Režim ventilátoru"
+
+msgctxt "#32511"
+msgid "Speed Level"
+msgstr "Úroveň rychlosti"
+
+msgctxt "#32516"
+msgid "IR Remote Power Code"
+msgstr "Kód napájení IR dálkového ovladače"
+
+msgctxt "#32518"
+msgid "USB Power"
+msgstr "Napájení USB"
+
+msgctxt "#32519"
+msgid "System LED"
+msgstr "Systemová LED"
+
+msgctxt "#32520"
+msgid "VESA modes"
+msgstr "VESA režim"
+
+msgctxt "#32521"
+msgid "CPU governor"
+msgstr "Regulátor CPU"
+
+msgctxt "#32522"
+msgid "Parking"
+msgstr "Parkování"
+
+msgctxt "#32523"
+msgid "Parking Time"
+msgstr "Doba parkování"
+
+msgctxt "#32524"
+msgid "Idle Time"
+msgstr "Limit nečinosti"
+
+msgctxt "#32525"
+msgid "eMMC Speed Mode"
+msgstr "Režim rychlosti eMMC"
+
+msgctxt "#32526"
+msgid "WiFi SoC SDIO Speed"
+msgstr "Rychlost WiFi SoC SDIO"
+
+msgctxt "#32527"
+msgid "Red LED"
+msgstr "Červená LED"
+
+msgctxt "#32528"
+msgid "SPI Interface"
+msgstr "Rozhraní SPI"
+
+msgctxt "#32529"
+msgid "IR Protocol Type"
+msgstr "Typ IR protokolu"
+
+msgctxt "#32530"
+msgid "DVB GPIO Support"
+msgstr "Podpora DVB GPIO"
+
+msgctxt "#32531"
+msgid "Wired Network Interface"
+msgstr "Rozhraní pro kabelovou síť"
+
+msgctxt "#32532"
+msgid "Green LED"
+msgstr "Zelená LED"
+
+msgctxt "#32533"
+msgid "IP1001 Ethernet Transceiver"
+msgstr "Ethernetový transceiver IP1001"
+
+msgctxt "#33510"
+msgid "Warning!"
+msgstr "Varování!"
+
+msgctxt "#33511"
+msgid "Continue"
+msgstr "Pokračovat"
+
+msgctxt "#33512"
+msgid "Finished!"
+msgstr "Hotovo!"
+
+msgctxt "#33513"
+msgid "Notice!"
+msgstr "Oznámení!"
+
+msgctxt "#33514"
+msgid "Error!"
+msgstr "Chyba!"
+
+msgctxt "#33516"
+msgid "[B][COLOR red]Note: This will modify the firmware on your device.[/COLOR][/B][CR]The BL301 bootloader blob has been customized by the CoreELEC Team to support all features used to wake a device from a suspend or power off state!"
+msgstr "[B][COLOR red]Poznámka: Tím se upraví firmware na vašem zařízení.[/COLOR][/B][CR]BL301 bootloader blob byl upraven týmem CoreELEC tak, aby podporoval všechny funkce používané k probuzení zařízení ze stavu spánku nebo vypnutí!"
+
+msgctxt "#33517"
+msgid "Finished update of the BL301 on internal eMMC.[CR]A reboot is now required!"
+msgstr "Dokončena aktualizace BL301 na interním eMMC.[CR]Nyní je vyžadován restart!"
+
+msgctxt "#33518"
+msgid "Error [%d] has occurred while using the 'inject_bl301' tool![CR]See '/storage/inject_bl301.log' for details."
+msgstr "Při používání nástroje 'inject_bl301' došlo k chybě [%d] ![CR]Podrobnosti v '/storage/inject_bl301.log'"
+
+msgctxt "#33519"
+msgid "System is not supported by BL301 injection![CR]See '/storage/inject_bl301.log' for details."
+msgstr "Systém není podporován pro BL301 injection![CR]Podrobnosti v '/storage/inject_bl301.log'"
+
+msgctxt "#33520"
+msgid "Update of BL301 on eMMC is not needed."
+msgstr "Aktualizace BL301 na eMMC není potřeba."
+
+msgctxt "#33521"
+msgid "[B][COLOR red]Note: This will remove the bl301 injection on your device.[/COLOR][CR]The injected BL301 bootloader blob will be removed by the backup done automatically before injection.[/B]"
+msgstr "[B][COLOR red]Poznámka: Tím se odstraní bl301 injection z vašeho zařízení.[/COLOR][CR]Inject BL301 bootloader bude odstraněn zálohou provedenou automaticky před Inject BL301.[/B]"
+
+msgctxt "#33522"
+msgid "Finished remove of the BL301 on internal eMMC.[CR]A reboot is now required!"
+msgstr "Dokončeno odstranění BL301 z interního eMMC.[CR]Nyní je vyžadován restart!"
+
+msgctxt "#33523"
+msgid "Finished update of /flash/dtb.img.[CR]A reboot is now required!"
+msgstr "Dokončena aktualizace /flash/dtb.img.[CR]Nyní je vyžadován restart!"
+
+msgctxt "#33524"
+msgid "[COLOR red]Are you sure to change this value?[/COLOR][CR]Please enter confirmation code '%s'"
+msgstr "[COLOR red]Opravdu chcete změnit tuto hodnotu?[/COLOR][CR]Zadejte prosím potvrzovací kód '%s'"
