@@ -1284,8 +1284,8 @@ msgid "Power"
 msgstr "Napájení"
 
 msgctxt "#32502"
-msgid "Zobrazení"
-msgstr ""
+msgid "Display"
+msgstr "Zobrazení"
 
 msgctxt "#32503"
 msgid "Performance"
