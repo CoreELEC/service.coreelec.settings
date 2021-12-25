@@ -140,7 +140,7 @@ msgstr "Nastavte do polohy [I]povoleno[/I] pro povolení služby Bluetooth"
 
 msgctxt "#721"
 msgid "Send CoreELEC debug info without logs to http://ix.io, and display the short URL"
-msgstr ""
+msgstr "Odeslat informace o ladění CoreELEC bez protokolů na http://ix.io a zobrazit krátkou adresu URL"
 
 msgctxt "#722"
 msgid ""
@@ -346,11 +346,8 @@ msgid ""
 msgstr "Při kontrolování nové verze se aktualizačnímu serveru odešlou informace o nainstalované distribuci, projektu, architektuře procesoru a verzi. Tato data budou použita i k získání základních statistik projektu. Zakažte tuto volbu, pokud tato data nechcete odesílat, a chcete pouze zkontrolovat novou verzi."
 
 msgctxt "#773"
-msgid ""
-"Set the idle timeout (in minutes) before devices will be disconnected "
-"(defaults to 0 for no timeout). Applies to devices where \"Enable Standby\" "
-"has been activated in the LibreELEC device connection context menu."
-msgstr "Nastavit časový limit nečinnosti (v minutách) předtím, než budou zařízení odpojena (0 je výchozí hodnota pro žádný časový limit). Platí pro všechna zařízení, u kterých bylo v kontextovém menu LibreELEC Připojení aktivováno nastavení „Povolit pohotovostní režim“."
+msgid "Set the idle timeout (in minutes) before devices will be disconnected (defaults to 0 for no timeout). Applies to devices where \"Enable Standby\" has been activated in the @DISTRONAME@ device connection context menu."
+msgstr "Nastavit časový limit nečinnosti (v minutách) předtím, než budou zařízení odpojena (0 je výchozí hodnota pro žádný časový limit). Platí pro všechna zařízení, u kterých bylo v kontextovém menu @DISTRONAME@ Připojení aktivováno nastavení „Povolit pohotovostní režim“."
 
 msgctxt "#774"
 msgid "Automatic reconnect previously paired device after booting"
@@ -386,7 +383,7 @@ msgstr "Povolit/Zakázat Wake-on-LAN"
 
 msgctxt "#788"
 msgid "Enable/Disable USB Power when device is off/suspend"
-msgstr "Povolit/zakázat napájení USB, když je zařízení vypnuto/pozastaveno"
+msgstr "Povolit/zakázat napájení USB, když je zařízení vypnuto/uspáno"
 
 msgctxt "#789"
 msgid "Change device LED behavior"
@@ -402,11 +399,11 @@ msgstr "Nastavte regulátor CPU pro všechna jádra"
 
 msgctxt "#792"
 msgid "Enable/Disable HDD parking on power off/suspend"
-msgstr "Povolit/zakázat parkování HDD při vypnutí/pozastavení"
+msgstr "Povolit/zakázat parkování HDD při vypnutí/uspání"
 
 msgctxt "#793"
 msgid "Time in seconds to wait for the HDD to spin down when parking"
-msgstr "Čas v sekundách pro čekání, než se pevný disk při parkování roztočí"
+msgstr "Čas v sekundách pro čekání, než se pevný disk po zaparkování roztočí"
 
 msgctxt "#794"
 msgid "Time in minutes/hours until the HDD should enter suspend mode"
@@ -894,7 +891,7 @@ msgstr "Zámek PIN pro vstup do Nastavení @DISTRONAME@ byl nastaven."
 
 msgctxt "#32231"
 msgid "Your @DISTRONAME@ Settings PIN lock has been set to:"
-msgstr ""
+msgstr "Váš zámek PIN v nastavení @DISTRONAME@ byl nastaven na:"
 
 msgctxt "#32232"
 msgid "Error - PIN code not 4 digits!"
@@ -902,7 +899,7 @@ msgstr "Chyba – PIN není 4číselný!"
 
 msgctxt "#32233"
 msgid "@DISTRONAME@ Settings Locked[CR]Enter 4 digit PIN"
-msgstr ""
+msgstr "@DISTRONAME@ Nastavení uzamčeno[CR]Zadejte čtyřmístný kód PIN"
 
 msgctxt "#32234"
 msgid "Incorrect PIN!"
@@ -926,7 +923,7 @@ msgctxt "#32238"
 msgid ""
 "Time remaining before PIN can be entered: %02d:%02d[CR][CR]Too many previous"
 " failed attempts."
-msgstr ""
+msgstr "Zbývající čas do zadání PIN: %02d:%02d[CR][CR]Příliš mnoho neúspěšných pokusů"
 
 msgctxt "#32240"
 msgid "Wireless Regulatory Domain"
@@ -1228,24 +1225,15 @@ msgstr "Nastavení doplňku ještě není připraveno, zkuste to prosím pozděj
 
 msgctxt "#32391"
 msgid "Upload configs and other debug info without logs, and view the short URL"
-msgstr ""
+msgstr "Nahrání konfigurace a dalších ladicích informací bez protokolů a zobrazení krátké adresy URL"
 
 msgctxt "#32393"
 msgid "** SAFE MODE! ** SAFE MODE! ** SAFE MODE! **"
 msgstr "** NOUZOVÝ REŽIM! ** NOUZOVÝ REŽIM! ** NOUZOVÝ REŽIM! **"
 
 msgctxt "#32394"
-msgid ""
-"@DISTRONAME@ has temporarily started in safe mode due to repeated Kodi "
-"crashes.[CR][CR]You may now investigate the cause of the crashes by enabling"
-" ssh or Samba.[CR][CR]Your original Kodi installation can be accessed via "
-"\"/storage/.kodi.FAILED\" and the Samba \"Kodi-Failed\" "
-"share.[CR][CR]Rebooting will return to your original Kodi "
-"installation.[CR][CR]Go to https://forum.libreelec.tv if you require further"
-" assistance. When posting to the forum include the link to your crash log "
-"which can be viewed by clicking the crash log option in Settings > LibreELEC"
-" > System > Submit Log."
-msgstr "@DISTRONAME@ byl z důvodu opakovaných pádů Kodi dočasně spuštěn v nouzovém režimu.[CR][CR]Můžete prověřit příčiny pádů povolením SSH nebo Samby (SMB).[CR][CR]Vaše původní instalace Kodi je přístupná přes „/storage/.kodi.FAILED“ a sdílenou složku Samba – „Kodi-Failed“.[CR][CR]Restartováním se vrátíte k původní instalaci Kodi.[CR][CR]Pokud potřebujete další pomoc, navštivte https://forum.libreelec.tv. Při přispívání do fóra prosím uveďte adresu protokolu o pádu, kterou získáte klepnutím na volbu Protokol o pádu v Nastavení > LibreELEC > Systém > Odeslat protokol."
+msgid "@DISTRONAME@ has temporarily started in safe mode due to repeated Kodi crashes.[CR][CR]You may now investigate the cause of the crashes by enabling ssh or Samba.[CR][CR]Your original Kodi installation can be accessed via \"/storage/.kodi.FAILED\" and the Samba \"Kodi-Failed\" share.[CR][CR]Rebooting will return to your original Kodi installation.[CR][CR]Go to https://discourse.coreelec.org if you require further assistance. When posting to the forum include the link to your crash log which can be viewed by clicking the crash log option in Settings > CoreELEC > System > Submit Log."
+msgstr "@DISTRONAME@ byl z důvodu opakovaných pádů Kodi dočasně spuštěn v nouzovém režimu.[CR][CR]Můžete prověřit příčiny pádů povolením SSH nebo Samby (SMB).[CR][CR]Vaše původní instalace Kodi je přístupná přes „/storage/.kodi.FAILED“ a sdílenou složku Samba – „Kodi-Failed“.[CR][CR]Restartováním se vrátíte k původní instalaci Kodi.[CR][CR]Pokud potřebujete další pomoc, navštivte https://discourse.coreelec.org. Při přispívání do fóra prosím uveďte adresu protokolu o pádu, kterou získáte klepnutím na volbu Protokol o pádu v Nastavení > CoreElec > Systém > Odeslat protokol."
 
 msgctxt "#32395"
 msgid "Firewall"
@@ -1337,7 +1325,7 @@ msgstr "Doba parkování"
 
 msgctxt "#32524"
 msgid "Idle Time"
-msgstr "Limit nečinosti"
+msgstr "Doba nečinosti"
 
 msgctxt "#32525"
 msgid "eMMC Speed Mode"
@@ -1365,7 +1353,7 @@ msgstr "Podpora DVB GPIO"
 
 msgctxt "#32531"
 msgid "Wired Network Interface"
-msgstr "Rozhraní pro kabelovou síť"
+msgstr "Rozhraní kabelové sítě"
 
 msgctxt "#32532"
 msgid "Green LED"
@@ -1417,7 +1405,7 @@ msgstr "Aktualizace BL301 na eMMC není potřeba."
 
 msgctxt "#33521"
 msgid "[B][COLOR red]Note: This will remove the bl301 injection on your device.[/COLOR][CR]The injected BL301 bootloader blob will be removed by the backup done automatically before injection.[/B]"
-msgstr "[B][COLOR red]Poznámka: Tím se odstraní bl301 injection z vašeho zařízení.[/COLOR][CR]Inject BL301 bootloader bude odstraněn zálohou provedenou automaticky před Inject BL301.[/B]"
+msgstr "[B][COLOR red]Poznámka: Tím se odstraní bl301 injection z vašeho zařízení.[/COLOR][CR]Inject BL301 bootloader bude odstraněn a nahrazen zálohou provedenou automaticky před Inject BL301.[/B]"
 
 msgctxt "#33522"
 msgid "Finished remove of the BL301 on internal eMMC.[CR]A reboot is now required!"
