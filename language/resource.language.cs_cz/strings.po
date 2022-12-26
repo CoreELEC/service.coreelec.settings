@@ -437,6 +437,30 @@ msgctxt "#906"
 msgid "Choose if IP1001 is assembled"
 msgstr "Vyberte, zda je sestaven IP1001"
 
+msgctxt "#907"
+msgid "Switch between using the USB3 interface or the PCIE interface on m.2 connector"
+msgstr "Přepínač mezi použitím rozhraní USB3 nebo rozhraní PCIE na konektoru m.2"
+
+msgctxt "#908"
+msgid "Choose assembled Smartchip device"
+msgstr "Vyberte zařízení Smartchip"
+
+msgctxt "#909"
+msgid "Set to ON to enable service"
+msgstr "Chcete-li službu povolit, nastavte na ZAP"
+
+msgctxt "#910"
+msgid "Set to ON to send invitation to the @DISTRONAME@ developers for remote debugging"
+msgstr "Nastavte na ZAP, chcete-li poslat pozvánku vývojářům @DISTRONAME@ ke vzdálenému ladění"
+
+msgctxt "#911"
+msgid "Select the SSH key used for access control"
+msgstr "Vyberte klíč SSH používaný pro přístup"
+
+msgctxt "#912"
+msgid "Forum username to identify the connection"
+msgstr "Uživatelské jméno na fóru pro identifikaci připojení"
+
 msgctxt "#32001"
 msgid "Services"
 msgstr "Služby"
@@ -448,6 +472,10 @@ msgstr "Systém"
 msgctxt "#32003"
 msgid "Interface"
 msgstr "Rozhraní"
+
+msgctxt "#32004"
+msgid "Hardware"
+msgstr ""
 
 msgctxt "#32005"
 msgid "Updates"
@@ -1263,6 +1291,10 @@ msgctxt "#32401"
 msgid "Connect paired devices"
 msgstr "Připojte spárovaná zařízení"
 
+msgctxt "#32402"
+msgid "Switch audio device on connection"
+msgstr "Přepněte na zvukové zařízení při připojení"
+
 msgctxt "#32500"
 msgid "Fan"
 msgstr "Ventilátor"
@@ -1287,6 +1319,10 @@ msgctxt "#32505"
 msgid "HDD"
 msgstr "HDD"
 
+msgctxt "#32506"
+msgid "Device Tree"
+msgstr ""
+
 msgctxt "#32510"
 msgid "Fan Mode"
 msgstr "Režim ventilátoru"
@@ -1295,9 +1331,17 @@ msgctxt "#32511"
 msgid "Speed Level"
 msgstr "Úroveň rychlosti"
 
+msgctxt "#32515"
+msgid "Inject BL30 Blob"
+msgstr ""
+
 msgctxt "#32516"
 msgid "IR Remote Power Code"
 msgstr "Kód napájení IR dálkového ovladače"
+
+msgctxt "#32517"
+msgid "Wake-on-LAN"
+msgstr ""
 
 msgctxt "#32518"
 msgid "USB Power"
@@ -1363,6 +1407,14 @@ msgctxt "#32533"
 msgid "IP1001 Ethernet Transceiver"
 msgstr "Ethernetový transceiver IP1001"
 
+msgctxt "#32534"
+msgid "VIM3 USB3/PCIE Switch"
+msgstr "VIM3 USB3/PCIE přepínač"
+
+msgctxt "#32535"
+msgid "Smartchip WiFi Driver"
+msgstr ""
+
 msgctxt "#33510"
 msgid "Warning!"
 msgstr "Varování!"
@@ -1383,33 +1435,37 @@ msgctxt "#33514"
 msgid "Error!"
 msgstr "Chyba!"
 
+msgctxt "#33515"
+msgid "Inject Bootloader BL30 Blob..."
+msgstr ""
+
 msgctxt "#33516"
-msgid "[B][COLOR red]Note: This will modify the firmware on your device.[/COLOR][/B][CR]The BL301 bootloader blob has been customized by the CoreELEC Team to support all features used to wake a device from a suspend or power off state!"
-msgstr "[B][COLOR red]Poznámka: Tím se upraví firmware na vašem zařízení.[/COLOR][/B][CR]BL301 bootloader blob byl upraven týmem CoreELEC tak, aby podporoval všechny funkce používané k probuzení zařízení ze stavu spánku nebo vypnutí!"
+msgid "[B][COLOR red]Note: This will modify the firmware on your device.[/COLOR][/B][CR]The BL30 bootloader blob has been customized by the CoreELEC Team to support all features used to wake a device from a suspend or power off state!"
+msgstr "[B][COLOR red]Poznámka: Tím se upraví firmware na vašem zařízení.[/COLOR][/B][CR]BL30 bootloader blob byl upraven týmem CoreELEC tak, aby podporoval všechny funkce používané k probuzení zařízení ze stavu spánku nebo vypnutí!"
 
 msgctxt "#33517"
-msgid "Finished update of the BL301 on internal eMMC.[CR]A reboot is now required!"
-msgstr "Dokončena aktualizace BL301 na interním eMMC.[CR]Nyní je vyžadován restart!"
+msgid "Finished update of the BL30 on internal eMMC.[CR]A reboot is now required!"
+msgstr "Dokončena aktualizace BL30 na interním eMMC.[CR]Nyní je vyžadován restart!"
 
 msgctxt "#33518"
-msgid "Error [%d] has occurred while using the 'inject_bl301' tool![CR]See '/storage/inject_bl301.log' for details."
-msgstr "Při používání nástroje 'inject_bl301' došlo k chybě [%d] ![CR]Podrobnosti v '/storage/inject_bl301.log'"
+msgid "Error [%d] has occurred while using the 'inject_BL30' tool![CR]See '/storage/inject_BL30.log' for details."
+msgstr "Při používání nástroje 'inject_BL30' došlo k chybě [%d] ![CR]Podrobnosti v '/storage/inject_BL30.log'"
 
 msgctxt "#33519"
-msgid "System is not supported by BL301 injection![CR]See '/storage/inject_bl301.log' for details."
-msgstr "Systém není podporován pro BL301 injection![CR]Podrobnosti v '/storage/inject_bl301.log'"
+msgid "System is not supported by BL30 injection![CR]See '/storage/inject_BL30.log' for details."
+msgstr "Systém není podporován pro BL30 injection![CR]Podrobnosti v '/storage/inject_BL30.log'"
 
 msgctxt "#33520"
-msgid "Update of BL301 on eMMC is not needed."
-msgstr "Aktualizace BL301 na eMMC není potřeba."
+msgid "Update of BL30 on eMMC is not needed."
+msgstr "Aktualizace BL30 na eMMC není potřeba."
 
 msgctxt "#33521"
-msgid "[B][COLOR red]Note: This will remove the bl301 injection on your device.[/COLOR][CR]The injected BL301 bootloader blob will be removed by the backup done automatically before injection.[/B]"
-msgstr "[B][COLOR red]Poznámka: Tím se odstraní bl301 injection z vašeho zařízení.[/COLOR][CR]Inject BL301 bootloader bude odstraněn a nahrazen zálohou provedenou automaticky před Inject BL301.[/B]"
+msgid "[B][COLOR red]Note: This will remove the BL30 injection on your device.[/COLOR][CR]The injected BL30 bootloader blob will be removed by the backup done automatically before injection.[/B]"
+msgstr "[B][COLOR red]Poznámka: Tím se odstraní BL30 injection z vašeho zařízení.[/COLOR][CR]Inject BL30 bootloader bude odstraněn a nahrazen zálohou provedenou automaticky před Inject BL30.[/B]"
 
 msgctxt "#33522"
-msgid "Finished remove of the BL301 on internal eMMC.[CR]A reboot is now required!"
-msgstr "Dokončeno odstranění BL301 z interního eMMC.[CR]Nyní je vyžadován restart!"
+msgid "Finished remove of the BL30 on internal eMMC.[CR]A reboot is now required!"
+msgstr "Dokončeno odstranění BL30 z interního eMMC.[CR]Nyní je vyžadován restart!"
 
 msgctxt "#33523"
 msgid "Finished update of /flash/dtb.img.[CR]A reboot is now required!"
@@ -1418,3 +1474,27 @@ msgstr "Dokončena aktualizace /flash/dtb.img.[CR]Nyní je vyžadován restart!"
 msgctxt "#33524"
 msgid "[COLOR red]Are you sure to change this value?[/COLOR][CR]Please enter confirmation code '%s'"
 msgstr "[COLOR red]Opravdu chcete změnit tuto hodnotu?[/COLOR][CR]Zadejte prosím potvrzovací kód '%s'"
+
+msgctxt "#33525"
+msgid "Terminal sharing"
+msgstr "Sdílení terminálu"
+
+msgctxt "#33526"
+msgid "Enable terminal sharing"
+msgstr "Povolit sdílení terminálu"
+
+msgctxt "#33527"
+msgid "Send invitation to @DISTRONAME@ developers"
+msgstr "Poslat pozvánku vývojářům @DISTRONAME@"
+
+msgctxt "#33528"
+msgid "Hint: enable this option only when requested by team @DISTRONAME@"
+msgstr "Tip: povolte tuto možnost pouze na žádost týmu @DISTRONAME@"
+
+msgctxt "#33529"
+msgid "Access control key"
+msgstr "Klíč pro ovládání přístupu"
+
+msgctxt "#33530"
+msgid "Connection name"
+msgstr "Název připojení"
