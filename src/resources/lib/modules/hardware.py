@@ -173,16 +173,8 @@ class hardware:
                             'type': 'multivalue',
                             'values': ['Unknown'],
                             },
-                        'wol': {
-                            'order': 3,
-                            'name': 32517,
-                            'InfoText': 787,
-                            'value': '0',
-                            'action': 'set_wol',
-                            'type': 'bool',
-                            },
                         'usbpower': {
-                            'order': 4,
+                            'order': 3,
                             'name': 32518,
                             'InfoText': 788,
                             'value': '0',
@@ -329,6 +321,15 @@ class hardware:
                             'InfoText': 913,
                             'value': '',
                             'xml_node': 'motorcomm',
+                            'action': 'set_value_xml',
+                            'type': 'multivalue',
+                            },
+                        'wol': {
+                            'order': 16,
+                            'name': 32517,
+                            'InfoText': 787,
+                            'value': '',
+                            'xml_node': 'wol',
                             'action': 'set_value_xml',
                             'type': 'multivalue',
                             },
@@ -563,6 +564,7 @@ class hardware:
             self.fill_values_by_xml(self.struct['dtb_settings']['settings']['k_usb3_pcie'])
             self.fill_values_by_xml(self.struct['dtb_settings']['settings']['smartchip'])
             self.fill_values_by_xml(self.struct['dtb_settings']['settings']['motorcomm'])
+            self.fill_values_by_xml(self.struct['dtb_settings']['settings']['wol'])
 
             # check if Smartchip device is found
             if os.path.exists('/sys/bus/sdio/devices'):
@@ -634,20 +636,13 @@ class hardware:
                     self.struct['power']['settings']['remote_power']['values'] = remote_names
 
                 if not (self.injection_done() or self.check_compatibility()):
-                    self.struct['power']['settings']['wol']['hidden'] = 'true'
+                    self.struct['dtb_settings']['settings']['wol']['hidden'] = 'true'
                 else:
-                    if 'hidden' in self.struct['power']['settings']['wol']:
-                        del self.struct['power']['settings']['wol']['hidden']
-                    wol = self.oe.get_config_ini('wol', '0')
-                    if any("0.0:00" in s for s in os.listdir('/sys/bus/mdio_bus/drivers/RTL8211F Gigabit Ethernet')):
-                        if wol == '' or "0" in wol:
-                            self.struct['power']['settings']['wol']['value'] = '0'
-                        if "1" in wol:
-                            self.struct['power']['settings']['wol']['value'] = '1'
-                    else:
-                        self.struct['power']['settings']['wol']['hidden'] = 'true'
-                        if "1" in wol:
-                            self.oe.set_config_ini("wol", "0")
+                    if 'hidden' in self.struct['dtb_settings']['settings']['wol']:
+                        del self.struct['dtb_settings']['settings']['wol']['hidden']
+                    if not any("0.0:00" in s for s in os.listdir('/sys/bus/mdio_bus/drivers/RTL8211F Gigabit Ethernet')):
+                        self.struct['dtb_settings']['settings']['wol']['hidden'] = 'true'
+                        self.struct['dtb_settings']['settings']['wol']['value'] = 'off'
 
                 if not (self.injection_done() or self.check_compatibility()):
                     self.struct['power']['settings']['usbpower']['hidden'] = 'true'
@@ -826,24 +821,6 @@ class hardware:
             self.oe.dbg_log('hardware::set_bl301', 'exit_function', 0)
         except Exception as e:
             self.oe.dbg_log('hardware::set_bl301', 'ERROR: (%s)' % repr(e), 4)
-        finally:
-            self.oe.set_busy(0)
-
-    def set_wol(self, listItem=None):
-        try:
-            self.oe.dbg_log('hardware::set_wol', 'enter_function', 0)
-            self.oe.set_busy(1)
-            if not listItem == None:
-                self.set_value(listItem)
-
-                if self.struct['power']['settings']['wol']['value'] == '1':
-                    self.oe.set_config_ini("wol", "1")
-                else:
-                    self.oe.set_config_ini("wol", "0")
-
-            self.oe.dbg_log('hardware::set_wol', 'exit_function', 0)
-        except Exception as e:
-            self.oe.dbg_log('hardware::set_wol', 'ERROR: (%s)' % repr(e), 4)
         finally:
             self.oe.set_busy(0)
 
