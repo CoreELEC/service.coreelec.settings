@@ -59,6 +59,9 @@ class service_thread(threading.Thread):
             if os.path.isfile('/tmp/tee.message'):
                 threading.Thread(target=self.oe.showPopUp, args=('CoreELEC Media Playback', '/tmp/tee.message',)).start()
 
+            if os.path.isfile('/tmp/dovi.message'):
+                threading.Thread(target=self.oe.showPopUp, args=('CoreELEC Dolby Vision Media Playback', '/tmp/dovi.message',)).start()
+
             while self.stopped == False:
                 self.oe.dbg_log('_service_::run', 'WAITING:', self.oe.LOGINFO)
                 conn, addr = self.sock.accept()
