@@ -10,7 +10,7 @@
                 <aspectratio>scale</aspectratio>
                 <animation effect="fade" start="100" end="bg_alpha" time="0" condition="Player.HasMedia + String.IsEmpty(Window(videos).Property(PlayingBackgroundMedia))">Conditional</animation>
                 <animation effect="fade" start="0" end="100" time="300" condition="Window.Previous(fullscreenvideo) | Window.Previous(startup)">WindowOpen</animation>
-                <texture colordiffuse="button_focus">bg.jpg</texture>
+                <texture colordiffuse="primary_background">bg.jpg</texture>
 
             </control>
         </control>
