@@ -66,7 +66,7 @@
                 <top>575</top>
                 <width>1050</width>
                 <height>3</height>
-                <texture colordiffuse="FF12A0C7" border="2">separator-grey.png</texture>
+                <texture colordiffuse="button_focus" border="2">separator-grey.png</texture>
             </control>
             <control type="group" id="1398">
                 <visible>String.IsEmpty(Control.GetLabel(1390))</visible>
