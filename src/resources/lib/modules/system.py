@@ -60,8 +60,32 @@ class system:
                         'InfoText': 710,
                         }},
                     },
-                'keyboard': {
+                'timezone': {
                     'order': 2,
+                    'name': 32538,
+                    'settings': {
+                        'timezone_country': {
+                            'order': 1,
+                            'name': 32537,
+                            'value': '',
+                            'action': 'set_timezone_country',
+                            'type': 'multivalue',
+                            'values': [],
+                            'InfoText': 795,
+                            },
+                        'timezone': {
+                            'order': 2,
+                            'name': 32538,
+                            'value': '',
+                            'action': 'set_timezone_zone',
+                            'type': 'multivalue',
+                            'values': [],
+                            'InfoText': 796,
+                            },
+                        },
+                    },
+                'keyboard': {
+                    'order': 3,
                     'name': 32009,
                     'settings': {
                         'KeyboardLayout1': {
@@ -112,7 +136,7 @@ class system:
                         },
                     },
                 'pinlock': {
-                    'order': 3,
+                    'order': 4,
                     'name': 32192,
                     'settings': {
                         'pinlock_enable': {
@@ -139,7 +163,7 @@ class system:
                     },
 
                 'backup': {
-                    'order': 7,
+                    'order': 5,
                     'name': 32371,
                     'settings': {
                         'backup': {
@@ -161,7 +185,7 @@ class system:
                         },
                     },
                 'reset': {
-                    'order': 8,
+                    'order': 6,
                     'name': 32323,
                     'settings': {
                         'xbmc_reset': {
@@ -183,7 +207,7 @@ class system:
                         },
                     },
                 'debug': {
-                    'order': 9,
+                    'order': 7,
                     'name': 32376,
                     'settings': {
                         'paste_system': {
@@ -302,6 +326,31 @@ class system:
                 self.struct['ident']['settings']['hostname']['value'] = value
             else:
                 self.struct['ident']['settings']['hostname']['value'] = self.oe.DISTRIBUTION
+
+            # timezone
+            timezone = '/storage/.cache/timezone'
+            if os.path.isfile(timezone):
+                with open(timezone, 'r') as f:
+                    value = f.readline().replace('\n', '').split('=')[1]
+
+                    if not value == "":
+                        zone_tab = '/usr/share/zoneinfo/zone.tab'
+                        timezone_cities = [x.replace('\n', '') for x in open(zone_tab, 'r') if not x.startswith('#')]
+                        timezone_country_code = str([x.split('\t')[0] for x in timezone_cities if value in x][0])
+                        timezone_cities = [x.split('\t')[2] for x in timezone_cities if x.startswith(timezone_country_code)]
+                        timezone_cities.sort()
+                        self.struct['timezone']['settings']['timezone']['values'] = timezone_cities
+                        self.struct['timezone']['settings']['timezone']['value'] = value
+                        self.oe.dbg_log('system::load_values', 'current timezone city: %s, %s' % (value, timezone_country_code))
+
+                        iso3166_tab = '/usr/share/zoneinfo/iso3166.tab'
+                        timezone_countries = [x.replace('\n', '') for x in open(iso3166_tab, 'r') if not x.startswith('#')]
+                        timezone_country = str([x.split('\t')[1] for x in timezone_countries if x.startswith(timezone_country_code)][0])
+                        timezone_countries = [x.split('\t')[1] for x in timezone_countries]
+                        timezone_countries.sort()
+                        self.struct['timezone']['settings']['timezone_country']['values'] = timezone_countries
+                        self.struct['timezone']['settings']['timezone_country']['value'] = timezone_country
+                        self.oe.dbg_log('system::load_values', 'current timezone country: %s, %s' % (timezone_country, timezone_country_code))
 
             # PIN Lock
             self.struct['pinlock']['settings']['pinlock_enable']['value'] = '1' if self.oe.PIN.isEnabled() else '0'
@@ -737,6 +786,57 @@ class system:
                 continue
             elif os.path.isdir(itempath):
                 self.get_folder_size(itempath, includeThumbnails)
+
+    def set_timezone(self, zone=None):
+        try:
+            self.oe.dbg_log('system::set_timezone', 'enter_function', self.oe.LOGDEBUG)
+            if not zone == None:
+                with open('/storage/.cache/timezone', 'w') as timezone:
+                    timezone.write('TIMEZONE=%s' % zone)
+                self.oe.execute('systemctl restart tz-data')
+                os.environ['TZ'] = zone
+                time.tzset()
+
+            self.oe.dbg_log('system::set_timezone', 'exit_function', self.oe.LOGDEBUG)
+        except Exception as e:
+            self.oe.dbg_log('system::set_timezone', 'ERROR: (%s)' % repr(e), self.oe.LOGERROR)
+
+    def set_timezone_country(self, listItem=None):
+        try:
+            self.oe.dbg_log('system::set_timezone_country', 'enter_function', self.oe.LOGDEBUG)
+
+            if not self.struct['timezone']['settings']['timezone_country']['value'] is None:
+                iso3166_tab = '/usr/share/zoneinfo/iso3166.tab'
+                value = self.struct['timezone']['settings']['timezone_country']['value']
+                timezone_country = str([x.replace('\n', '').split('\t')[0] for x in open(iso3166_tab, 'r')
+                    if value in x and not x.startswith('#')][0])
+
+                if not timezone_country is None:
+                    zone_tab = '/usr/share/zoneinfo/zone.tab'
+                    zones = [x.replace('\n', '').split('\t')[2] for x in open(zone_tab, 'r')
+                        if x.startswith(timezone_country)]
+                    zones.sort()
+                    zone = str(zones[0])
+                    self.struct['timezone']['settings']['timezone']['values'] = zones
+                    self.struct['timezone']['settings']['timezone']['value'] = zone
+                    self.oe.write_setting("system", "timezone", zone)
+                    self.set_timezone(zone)
+                    self.oe.dbg_log('system::set_timezone_country', 'timezone_country: %s, %s' % (value, zone))
+
+            self.oe.dbg_log('system::set_timezone_country', 'exit_function', self.oe.LOGDEBUG)
+        except Exception as e:
+            self.oe.dbg_log('system::set_timezone_country', 'ERROR: (%s)' % repr(e), self.oe.LOGERROR)
+
+    def set_timezone_zone(self, listItem=None):
+        try:
+            self.oe.dbg_log('system::set_timezone_zone', 'enter_function', self.oe.LOGDEBUG)
+            if not listItem == None:
+                self.set_timezone(listItem.getProperty('value'))
+                self.oe.dbg_log('system::set_timezone_zone', 'timezone_country: %s' % listItem.getProperty('value'))
+
+            self.oe.dbg_log('system::set_timezone_zone', 'exit_function', self.oe.LOGDEBUG)
+        except Exception as e:
+            self.oe.dbg_log('system::set_timezone_zone', 'ERROR: (%s)' % repr(e), self.oe.LOGERROR)
 
     def init_pinlock(self, listItem=None):
         try:

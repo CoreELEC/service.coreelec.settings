@@ -352,6 +352,14 @@ msgctxt "#794"
 msgid "Time in minutes/hours until the HDD should enter suspend mode"
 msgstr ""
 
+msgctxt "#795"
+msgid "Select country location."
+msgstr ""
+
+msgctxt "#796"
+msgid "Select your current timezone."
+msgstr ""
+
 msgctxt "#900"
 msgid "Configure eMMC speed mode"
 msgstr ""
@@ -1322,6 +1330,14 @@ msgstr ""
 
 msgctxt "#32536"
 msgid "Motorcomm Ethernet Transceiver"
+msgstr ""
+
+msgctxt "#32537"
+msgid "Timezone country"
+msgstr ""
+
+msgctxt "#32538"
+msgid "Timezone"
 msgstr ""
 
 
