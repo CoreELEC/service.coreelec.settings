@@ -107,21 +107,21 @@ msgstr "ON으로 설정하고 새로운 업데이트가 있으면 화면 알림�
 msgctxt "#718"
 msgid ""
 "Send boot config files from /flash, kodi.log, kernel log and Samba configs "
-"to http://ix.io, and display the short URL"
-msgstr "/flash, kodi.log, kernel.log, Samba 부트 설정 파일들을 http://ix.io 에 올리고 단축 URL을 표시합니다"
+"to https://paste.coreelec.org, and display the short URL"
+msgstr "/flash, kodi.log, kernel.log, Samba 부트 설정 파일들을 https://paste.coreelec.org 에 올리고 단축 URL을 표시합니다"
 
 msgctxt "#719"
 msgid ""
 "Send boot config files from /flash, kodi_crash.log, kernel log and Samba "
-"configs to http://ix.io, and display the short URL"
-msgstr "/flash, kodi_crash.log, kernel.log, Samba 부트 설정 파일들을 http://ix.io 에 올리고 단축 URL을 표시합니다"
+"configs to https://paste.coreelec.org, and display the short URL"
+msgstr "/flash, kodi_crash.log, kernel.log, Samba 부트 설정 파일들을 https://paste.coreelec.org 에 올리고 단축 URL을 표시합니다"
 
 msgctxt "#720"
 msgid "Set to ON to enable the Bluetooth service"
 msgstr "블루투스 서비스를 사용하려면 ON으로 설정합니다"
 
 msgctxt "#721"
-msgid "Send CoreELEC debug info without logs to http://ix.io, and display the short URL"
+msgid "Send CoreELEC debug info without logs to https://paste.coreelec.org, and display the short URL"
 msgstr ""
 
 msgctxt "#722"

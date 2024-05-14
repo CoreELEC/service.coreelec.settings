@@ -107,21 +107,21 @@ msgstr "AÇIK olarak ayarlandığında, yeni bir güncelleme olduğunda ekranda 
 msgctxt "#718"
 msgid ""
 "Send boot config files from /flash, kodi.log, kernel log and Samba configs "
-"to http://ix.io, and display the short URL"
-msgstr "kodi.log, kernel günlüğü, Samba yapılandırmaları ve /flash dizininden önyükleme yapılandırma dosyalarını http://ix.io adresine yolla ve kısa URL adresini göster"
+"to https://paste.coreelec.org, and display the short URL"
+msgstr "kodi.log, kernel günlüğü, Samba yapılandırmaları ve /flash dizininden önyükleme yapılandırma dosyalarını https://paste.coreelec.org adresine yolla ve kısa URL adresini göster"
 
 msgctxt "#719"
 msgid ""
 "Send boot config files from /flash, kodi_crash.log, kernel log and Samba "
-"configs to http://ix.io, and display the short URL"
-msgstr "kodi_crash.log, kernel günlüğü, Samba yapılandırmaları ve /flash dizininden önyükleme yapılandırma dosyalarını http://ix.io adresine yolla ve kısa URL adresini göster"
+"configs to https://paste.coreelec.org, and display the short URL"
+msgstr "kodi_crash.log, kernel günlüğü, Samba yapılandırmaları ve /flash dizininden önyükleme yapılandırma dosyalarını https://paste.coreelec.org adresine yolla ve kısa URL adresini göster"
 
 msgctxt "#720"
 msgid "Set to ON to enable the Bluetooth service"
 msgstr ""
 
 msgctxt "#721"
-msgid "Send CoreELEC debug info without logs to http://ix.io, and display the short URL"
+msgid "Send CoreELEC debug info without logs to https://paste.coreelec.org, and display the short URL"
 msgstr ""
 
 msgctxt "#722"

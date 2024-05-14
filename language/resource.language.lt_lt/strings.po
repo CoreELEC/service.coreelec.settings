@@ -107,21 +107,21 @@ msgstr "Nustatykite ĮJUNGTA ir ekrane bus rodomas pranešimas, jei prieinama na
 msgctxt "#718"
 msgid ""
 "Send boot config files from /flash, kodi.log, kernel log and Samba configs "
-"to http://ix.io, and display the short URL"
-msgstr "Siųsti krovimo konfigūracijos failus iš /flash, kodi.log, branduolio žurnalo ir samba konfigūraciją į http://ix.io ir rodyti trumpą URL"
+"to https://paste.coreelec.org, and display the short URL"
+msgstr "Siųsti krovimo konfigūracijos failus iš /flash, kodi.log, branduolio žurnalo ir samba konfigūraciją į https://paste.coreelec.org ir rodyti trumpą URL"
 
 msgctxt "#719"
 msgid ""
 "Send boot config files from /flash, kodi_crash.log, kernel log and Samba "
-"configs to http://ix.io, and display the short URL"
-msgstr "Siųsti krovimo konfigūracijos failus iš /flash, kodi_crash.log, branduolio žurnalo ir samba konfigūraciją į http://ix.io ir rodyti trumpą URL"
+"configs to https://paste.coreelec.org, and display the short URL"
+msgstr "Siųsti krovimo konfigūracijos failus iš /flash, kodi_crash.log, branduolio žurnalo ir samba konfigūraciją į https://paste.coreelec.org ir rodyti trumpą URL"
 
 msgctxt "#720"
 msgid "Set to ON to enable the Bluetooth service"
 msgstr ""
 
 msgctxt "#721"
-msgid "Send CoreELEC debug info without logs to http://ix.io, and display the short URL"
+msgid "Send CoreELEC debug info without logs to https://paste.coreelec.org, and display the short URL"
 msgstr ""
 
 msgctxt "#722"

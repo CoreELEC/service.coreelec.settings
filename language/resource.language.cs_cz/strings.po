@@ -125,22 +125,22 @@ msgstr "Až bude připraveno další stabilní vydání, aktualizujte na další
 msgctxt "#718"
 msgid ""
 "Send boot config files from /flash, kodi.log, kernel log and Samba configs "
-"to http://ix.io, and display the short URL"
-msgstr "Odeslat soubory konfigurace bootování z /flash, kodi.log, záznam jádra a nastavení SMB na http://ix.io a zobrazit zkrácenou adresu URL"
+"to https://paste.coreelec.org, and display the short URL"
+msgstr "Odeslat soubory konfigurace bootování z /flash, kodi.log, záznam jádra a nastavení SMB na https://paste.coreelec.org a zobrazit zkrácenou adresu URL"
 
 msgctxt "#719"
 msgid ""
 "Send boot config files from /flash, kodi_crash.log, kernel log and Samba "
-"configs to http://ix.io, and display the short URL"
-msgstr "Odeslat soubory konfigurace bootování z /flash, kodi_crash.log, záznam jádra a nastavení SMB na http://ix.io a zobrazit zkrácenou adresu URL"
+"configs to https://paste.coreelec.org, and display the short URL"
+msgstr "Odeslat soubory konfigurace bootování z /flash, kodi_crash.log, záznam jádra a nastavení SMB na https://paste.coreelec.org a zobrazit zkrácenou adresu URL"
 
 msgctxt "#720"
 msgid "Set to ON to enable the Bluetooth service"
 msgstr "Nastavte do polohy [I]povoleno[/I] pro povolení služby Bluetooth"
 
 msgctxt "#721"
-msgid "Send CoreELEC debug info without logs to http://ix.io, and display the short URL"
-msgstr "Odeslat informace o ladění CoreELEC bez protokolů na http://ix.io a zobrazit krátkou adresu URL"
+msgid "Send CoreELEC debug info without logs to https://paste.coreelec.org, and display the short URL"
+msgstr "Odeslat informace o ladění CoreELEC bez protokolů na https://paste.coreelec.org a zobrazit krátkou adresu URL"
 
 msgctxt "#722"
 msgid ""

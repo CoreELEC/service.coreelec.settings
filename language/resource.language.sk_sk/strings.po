@@ -95,20 +95,20 @@ msgid "Set to ON and an on-screen notification will be displayed when a new upda
 msgstr "Nastavte na ON a pri dostupnosti novej aktualizácie sa na obrazovke zobrazí upozornenie"
 
 msgctxt "#718"
-msgid "Send boot config files from /flash, kodi.log, kernel log and Samba configs to http://ix.io, and display the short URL"
-msgstr "Nahrať bootovacie konfiguračné súbory z /flash, kodi.log, záznam jadra a konfiguráciu Samby na http://ix.io a zobraziť krátku URL"
+msgid "Send boot config files from /flash, kodi.log, kernel log and Samba configs to https://paste.coreelec.org, and display the short URL"
+msgstr "Nahrať bootovacie konfiguračné súbory z /flash, kodi.log, záznam jadra a konfiguráciu Samby na https://paste.coreelec.org a zobraziť krátku URL"
 
 msgctxt "#719"
-msgid "Send boot config files from /flash, kodi_crash.log, kernel log and Samba configs to http://ix.io, and display the short URL"
-msgstr "Nahrať bootovacie konfiguračné súbory z /flash, kodi_crash.log, záznam jadra a konfiguráciu Samby na http://ix.io a zobraziť krátku adresu URL"
+msgid "Send boot config files from /flash, kodi_crash.log, kernel log and Samba configs to https://paste.coreelec.org, and display the short URL"
+msgstr "Nahrať bootovacie konfiguračné súbory z /flash, kodi_crash.log, záznam jadra a konfiguráciu Samby na https://paste.coreelec.org a zobraziť krátku adresu URL"
 
 msgctxt "#720"
 msgid "Set to ON to enable the Bluetooth service"
 msgstr "Nastavte na ON pre povolenie služby Bluetooth"
 
 msgctxt "#721"
-msgid "Send CoreELEC debug info without logs to http://ix.io, and display the short URL"
-msgstr "Nahrať informácie ladenia CoreELEC bez protokolov na http://ix.io a zobraziť krátku adresu URL"
+msgid "Send CoreELEC debug info without logs to https://paste.coreelec.org, and display the short URL"
+msgstr "Nahrať informácie ladenia CoreELEC bez protokolov na https://paste.coreelec.org a zobraziť krátku adresu URL"
 
 msgctxt "#722"
 msgid "Create a tar archive containing all @DISTRONAME@ and Kodi configuration settings, databases and thumbnail content. Backup files will be stored in /storage/backup/"

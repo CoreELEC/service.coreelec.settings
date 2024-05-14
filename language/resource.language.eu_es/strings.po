@@ -107,21 +107,21 @@ msgstr "Aukeratu ON pantailan jakinarazpen bat erakusteko bertsio berri bat esku
 msgctxt "#718"
 msgid ""
 "Send boot config files from /flash, kodi.log, kernel log and Samba configs "
-"to http://ix.io, and display the short URL"
-msgstr "Bidali /flash, kodi.log eta kernel log-eko abioko konfigurazio-fitxategiak eta Samba-ko konfigurazioak http://ix.io helbidera, eta ondoren erakutsi URL laburra."
+"to https://paste.coreelec.org, and display the short URL"
+msgstr "Bidali /flash, kodi.log eta kernel log-eko abioko konfigurazio-fitxategiak eta Samba-ko konfigurazioak https://paste.coreelec.org helbidera, eta ondoren erakutsi URL laburra."
 
 msgctxt "#719"
 msgid ""
 "Send boot config files from /flash, kodi_crash.log, kernel log and Samba "
-"configs to http://ix.io, and display the short URL"
-msgstr "Bidali /flash, kodi_crash.log, kernel log-eko abioko konfigurazio-fitxategiak eta Samba-ko konfigurazioak http://ix.io helbidera, eta ondoren erakutsi URL laburra."
+"configs to https://paste.coreelec.org, and display the short URL"
+msgstr "Bidali /flash, kodi_crash.log, kernel log-eko abioko konfigurazio-fitxategiak eta Samba-ko konfigurazioak https://paste.coreelec.org helbidera, eta ondoren erakutsi URL laburra."
 
 msgctxt "#720"
 msgid "Set to ON to enable the Bluetooth service"
 msgstr ""
 
 msgctxt "#721"
-msgid "Send CoreELEC debug info without logs to http://ix.io, and display the short URL"
+msgid "Send CoreELEC debug info without logs to https://paste.coreelec.org, and display the short URL"
 msgstr ""
 
 msgctxt "#722"

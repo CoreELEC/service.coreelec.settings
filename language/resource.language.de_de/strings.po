@@ -107,21 +107,21 @@ msgstr "Auf EIN stellen und eine Bildschirm-Benachrichtigung wird angezeigt, sob
 msgctxt "#718"
 msgid ""
 "Send boot config files from /flash, kodi.log, kernel log and Samba configs "
-"to http://ix.io, and display the short URL"
-msgstr "Boot-Konfigurationen von /flash, kodi.log, kernel log und Samba-Konfigurationen an http://ix.io übermitteln und die Kurz-URL anzeigen"
+"to https://paste.coreelec.org, and display the short URL"
+msgstr "Boot-Konfigurationen von /flash, kodi.log, kernel log und Samba-Konfigurationen an https://paste.coreelec.org übermitteln und die Kurz-URL anzeigen"
 
 msgctxt "#719"
 msgid ""
 "Send boot config files from /flash, kodi_crash.log, kernel log and Samba "
-"configs to http://ix.io, and display the short URL"
-msgstr "Boot-Konfigurationen von /flash, kodi_crash.log, kernel log und Samba-Konfigurationen an http://ix.io übermitteln und die Kurz-URL anzeigen"
+"configs to https://paste.coreelec.org, and display the short URL"
+msgstr "Boot-Konfigurationen von /flash, kodi_crash.log, kernel log und Samba-Konfigurationen an https://paste.coreelec.org übermitteln und die Kurz-URL anzeigen"
 
 msgctxt "#720"
 msgid "Set to ON to enable the Bluetooth service"
 msgstr "Auf EIN stellen, um Bluetooth zu aktivieren"
 
 msgctxt "#721"
-msgid "Send CoreELEC debug info without logs to http://ix.io, and display the short URL"
+msgid "Send CoreELEC debug info without logs to https://paste.coreelec.org, and display the short URL"
 msgstr ""
 
 msgctxt "#722"

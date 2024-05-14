@@ -107,21 +107,21 @@ msgstr "ONにすると、新しいアップデートが利用可能になった�
 msgctxt "#718"
 msgid ""
 "Send boot config files from /flash, kodi.log, kernel log and Samba configs "
-"to http://ix.io, and display the short URL"
-msgstr "/flash、kodi.log、カーネルログおよびSambaコンフィギュレーションからブートコンフィギュレーションファイルをhttp://ix.io に送信して、短いURLを表示します"
+"to https://paste.coreelec.org, and display the short URL"
+msgstr "/flash、kodi.log、カーネルログおよびSambaコンフィギュレーションからブートコンフィギュレーションファイルをhttps://paste.coreelec.org に送信して、短いURLを表示します"
 
 msgctxt "#719"
 msgid ""
 "Send boot config files from /flash, kodi_crash.log, kernel log and Samba "
-"configs to http://ix.io, and display the short URL"
-msgstr "/flash、kodi_crash.log、カーネルログおよびSambaコンフィギュレーションからブートコンフィギュレーションファイルを http://ix.io に送信して、短いURLを表示します"
+"configs to https://paste.coreelec.org, and display the short URL"
+msgstr "/flash、kodi_crash.log、カーネルログおよびSambaコンフィギュレーションからブートコンフィギュレーションファイルを https://paste.coreelec.org に送信して、短いURLを表示します"
 
 msgctxt "#720"
 msgid "Set to ON to enable the Bluetooth service"
 msgstr ""
 
 msgctxt "#721"
-msgid "Send CoreELEC debug info without logs to http://ix.io, and display the short URL"
+msgid "Send CoreELEC debug info without logs to https://paste.coreelec.org, and display the short URL"
 msgstr ""
 
 msgctxt "#722"

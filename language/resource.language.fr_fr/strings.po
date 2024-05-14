@@ -107,21 +107,21 @@ msgstr "Activer cette option affichera une notification à l'écran lorsqu'une m
 msgctxt "#718"
 msgid ""
 "Send boot config files from /flash, kodi.log, kernel log and Samba configs "
-"to http://ix.io, and display the short URL"
-msgstr "Envoyez les fichiers de configuration de démarrage de /flash, kodi.log, les logs du kernel et la configuration Samba à http://ix.io, et affichez l'URL raccourcie."
+"to https://paste.coreelec.org, and display the short URL"
+msgstr "Envoyez les fichiers de configuration de démarrage de /flash, kodi.log, les logs du kernel et la configuration Samba à https://paste.coreelec.org, et affichez l'URL raccourcie."
 
 msgctxt "#719"
 msgid ""
 "Send boot config files from /flash, kodi_crash.log, kernel log and Samba "
-"configs to http://ix.io, and display the short URL"
-msgstr "Envoyer les fichiers de configuration de /flash, kodi_crash.log, kernel log et Samba vers http://ix.io et afficher l'URL raccourcie"
+"configs to https://paste.coreelec.org, and display the short URL"
+msgstr "Envoyer les fichiers de configuration de /flash, kodi_crash.log, kernel log et Samba vers https://paste.coreelec.org et afficher l'URL raccourcie"
 
 msgctxt "#720"
 msgid "Set to ON to enable the Bluetooth service"
 msgstr "Changez à ON pour activer le service Bluetooth"
 
 msgctxt "#721"
-msgid "Send CoreELEC debug info without logs to http://ix.io, and display the short URL"
+msgid "Send CoreELEC debug info without logs to https://paste.coreelec.org, and display the short URL"
 msgstr ""
 
 msgctxt "#722"

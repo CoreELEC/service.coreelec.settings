@@ -107,21 +107,21 @@ msgstr "Kytke päälle, jos haluat nähdä ruudulla ilmoituksen, kun uusi päivi
 msgctxt "#718"
 msgid ""
 "Send boot config files from /flash, kodi.log, kernel log and Samba configs "
-"to http://ix.io, and display the short URL"
-msgstr "Lähetä käynnistystiedostot polusta /flash, kodi.log, kernel log ja Samba-asetukset osoitteeseen http://ix.io ja näytä lyhennetty osoite"
+"to https://paste.coreelec.org, and display the short URL"
+msgstr "Lähetä käynnistystiedostot polusta /flash, kodi.log, kernel log ja Samba-asetukset osoitteeseen https://paste.coreelec.org ja näytä lyhennetty osoite"
 
 msgctxt "#719"
 msgid ""
 "Send boot config files from /flash, kodi_crash.log, kernel log and Samba "
-"configs to http://ix.io, and display the short URL"
-msgstr "Lähetä käynnistystiedostot polusta /flash, kodi_crash.log, kernel log ja Samba-asetukset osoitteeseen http://ix.io ja näytä lyhennetty osoite"
+"configs to https://paste.coreelec.org, and display the short URL"
+msgstr "Lähetä käynnistystiedostot polusta /flash, kodi_crash.log, kernel log ja Samba-asetukset osoitteeseen https://paste.coreelec.org ja näytä lyhennetty osoite"
 
 msgctxt "#720"
 msgid "Set to ON to enable the Bluetooth service"
 msgstr ""
 
 msgctxt "#721"
-msgid "Send CoreELEC debug info without logs to http://ix.io, and display the short URL"
+msgid "Send CoreELEC debug info without logs to https://paste.coreelec.org, and display the short URL"
 msgstr ""
 
 msgctxt "#722"

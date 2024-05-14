@@ -107,21 +107,21 @@ msgstr "Включите ли опцията, ще бъдете известяв
 msgctxt "#718"
 msgid ""
 "Send boot config files from /flash, kodi.log, kernel log and Samba configs "
-"to http://ix.io, and display the short URL"
-msgstr "Изпраща конфигурационните файлове от /flash, журналите kodi.log, kernel, и конфигурацията на Samba в http://ix.io. След това показва кратък URL адрес за достъп до качените данни"
+"to https://paste.coreelec.org, and display the short URL"
+msgstr "Изпраща конфигурационните файлове от /flash, журналите kodi.log, kernel, и конфигурацията на Samba в https://paste.coreelec.org. След това показва кратък URL адрес за достъп до качените данни"
 
 msgctxt "#719"
 msgid ""
 "Send boot config files from /flash, kodi_crash.log, kernel log and Samba "
-"configs to http://ix.io, and display the short URL"
-msgstr "Изпраща конфигурационните файлове от /flash, журналите kodi.log, kernel, и конфигурацията на Samba в http://ix.io. След това показва кратък URL адрес за достъп до качените данни"
+"configs to https://paste.coreelec.org, and display the short URL"
+msgstr "Изпраща конфигурационните файлове от /flash, журналите kodi.log, kernel, и конфигурацията на Samba в https://paste.coreelec.org. След това показва кратък URL адрес за достъп до качените данни"
 
 msgctxt "#720"
 msgid "Set to ON to enable the Bluetooth service"
 msgstr "Включете за да активирате Bluetooth"
 
 msgctxt "#721"
-msgid "Send CoreELEC debug info without logs to http://ix.io, and display the short URL"
+msgid "Send CoreELEC debug info without logs to https://paste.coreelec.org, and display the short URL"
 msgstr ""
 
 msgctxt "#722"
