@@ -354,6 +354,14 @@ msgctxt "#794"
 msgid "Time in minutes/hours until the HDD should enter suspend mode"
 msgstr "Az idő percben/órában, amíg a merevlemez felfüggesztett módba lép"
 
+msgctxt "#795"
+msgid "Select country location."
+msgstr "Válaszd ki az ország helyét"
+
+msgctxt "#796"
+msgid "Select your current timezone."
+msgstr "Válassz időzónát"
+
 msgctxt "#900"
 msgid "Configure eMMC speed mode"
 msgstr "eMMC sebesség beállítása"
@@ -1326,7 +1334,13 @@ msgstr "Smartchip WiFi Driver"
 msgctxt "#32536"
 msgid "Motorcomm Ethernet Transceiver"
 msgstr "Motorcomm Ethernet Transceiver"
+msgctxt "#32537"
+msgid "Timezone country"
+msgstr "Időzóna szerinti ország"
 
+msgctxt "#32538"
+msgid "Timezone"
+msgstr "Időzóna"
 
 msgctxt "#33510"
 msgid "Warning!"
@@ -1411,4 +1425,3 @@ msgstr "Beléptető kulcs"
 msgctxt "#33530"
 msgid "Connection name"
 msgstr "Kapcsolat neve"
-
