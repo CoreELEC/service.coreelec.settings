@@ -12,7 +12,7 @@ import threading
 import socket
 import os
 import xbmcaddon
-
+import filecmp
 
 class service_thread(threading.Thread):
 
@@ -61,6 +61,20 @@ class service_thread(threading.Thread):
 
             if os.path.isfile('/tmp/dovi.message'):
                 threading.Thread(target=self.oe.showPopUp, args=('CoreELEC Dolby Vision Media Playback', '/tmp/dovi.message',)).start()
+
+            if os.path.isfile('/tmp/firmware.message'):
+                shownotify=True
+                if os.path.isfile('%s/firmware.message' % self.oe.CONFIG_CACHE):
+                    shownotify=not filecmp.cmp('/tmp/firmware.message', '%s/firmware.message' % self.oe.CONFIG_CACHE, shallow=False)
+                if shownotify:
+                    self.oe.copy_file('/tmp/firmware.message', '%s/firmware.message' % self.oe.CONFIG_CACHE, silent=True)
+                    self.oe.notify(self.oe._(32363), None, path='/tmp/firmware.message', timeout=120000)
+            else:
+                if os.path.isfile('%s/firmware.message' % self.oe.CONFIG_CACHE):
+                    os.remove('%s/firmware.message' % self.oe.CONFIG_CACHE)
+                    self.oe.notify(self.oe._(32363),
+                      'Android firmware has been updated, and now %s offers the best possible media support.' % self.oe._(32363),
+                      path=None,timeout=20000)
 
             while self.stopped == False:
                 self.oe.dbg_log('_service_::run', 'WAITING:', self.oe.LOGINFO)

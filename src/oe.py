@@ -316,12 +316,15 @@ def dbg_log(source, text, level=3):
         if tracedata != "NoneType: None\n":
             xbmc.log(tracedata, level)
 
-def notify(title, message, icon='icon'):
+def notify(title, message, icon='icon', path=None, timeout=5000):
     try:
         dbg_log('oe::notify', 'enter_function', LOGDEBUG)
-        msg = 'Notification("%s", "%s", 5000, "%s/%s.png")' % (
+        if not path == None:
+            message = load_file(path)
+        msg = 'Notification("%s", "%s", "%d", "%s/%s.png")' % (
             title,
-            message[0:64],
+            message[0:250],
+            timeout,
             __media__,
             icon,
             )
