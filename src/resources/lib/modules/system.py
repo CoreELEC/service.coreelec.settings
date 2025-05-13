@@ -26,7 +26,7 @@ class system:
     ENABLED = False
     KERNEL_CMD = None
     XBMC_RESET_FILE = None
-    COREELEC_RESET_FILE = None
+    DISTRO_RESET_FILE = None
     KEYBOARD_INFO = None
     UDEV_KEYBOARD_INFO = None
     NOX_KEYBOARD_INFO = None
@@ -573,7 +573,7 @@ class system:
             self.oe.dbg_log('system::reset_hard', 'enter_function', self.oe.LOGDEBUG)
             if self.ask_sure_reset('Hard') == 1:
                 self.oe.set_busy(1)
-                open(self.COREELEC_RESET_FILE, 'a').close()
+                open(self.DISTRO_RESET_FILE, 'a').close()
                 self.oe.winOeMain.close()
                 self.oe.xbmcm.waitForAbort(1)
                 xbmc.executebuiltin('Reboot')

@@ -1080,14 +1080,14 @@ def get_os_release():
             version_id = os_release_info['VERSION_ID']
         if 'VERSION' in os_release_info:
             version = os_release_info['VERSION']
-        if 'COREELEC_ARCH' in os_release_info:
-            architecture = os_release_info['COREELEC_ARCH']
-        if 'COREELEC_BUILD' in os_release_info:
-            build = os_release_info['COREELEC_BUILD']
-        if 'COREELEC_PROJECT' in os_release_info:
-            project = os_release_info['COREELEC_PROJECT']
-        if 'COREELEC_DEVICE' in os_release_info:
-            device = os_release_info['COREELEC_DEVICE']
+        if 'DISTRO_ARCH' in os_release_info:
+            architecture = os_release_info['DISTRO_ARCH']
+        if 'DISTRO_BUILD' in os_release_info:
+            build = os_release_info['DISTRO_BUILD']
+        if 'DISTRO_PROJECT' in os_release_info:
+            project = os_release_info['DISTRO_PROJECT']
+        if 'DISTRO_DEVICE' in os_release_info:
+            device = os_release_info['DISTRO_DEVICE']
         if 'BUILDER_NAME' in os_release_info:
             builder_name = os_release_info['BUILDER_NAME']
         if 'BUILDER_VERSION' in os_release_info:

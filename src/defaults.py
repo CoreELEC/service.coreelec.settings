@@ -69,7 +69,7 @@ system = {
     'KERNEL_CMD': '/proc/cmdline',
     'SET_CLOCK_CMD': '/sbin/hwclock --systohc --utc',
     'XBMC_RESET_FILE': '%s/reset_soft' % CONFIG_CACHE,
-    'COREELEC_RESET_FILE': '%s/reset_hard' % CONFIG_CACHE,
+    'DISTRO_RESET_FILE': '%s/reset_hard' % CONFIG_CACHE,
     'KEYBOARD_INFO': '/usr/share/X11/xkb/rules/base.xml',
     'UDEV_KEYBOARD_INFO': '%s/xkb/layout' % CONFIG_CACHE,
     'NOX_KEYBOARD_INFO': '/usr/lib/keymaps',
