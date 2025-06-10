@@ -754,7 +754,7 @@ msgstr "PIN锁"
 
 msgctxt "#32193"
 msgid "Enable @DISTRONAME@ Settings PIN Lock"
-msgstr "启用@DISTRONAME@设置PIN码锁定"
+msgstr "启用@DISTRONAME@设置PIN码锁"
 
 msgctxt "#32194"
 msgid "Change @DISTRONAME@ Settings PIN Lock"
