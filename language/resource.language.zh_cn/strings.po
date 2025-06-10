@@ -4,11 +4,17 @@
 # Addon Provider: CoreELEC
 msgid ""
 msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: wabisabi926\n"
+"Language-Team: \n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.5\n"
 
 msgctxt "#600"
 msgid "@DISTRONAME@ Settings"
@@ -46,10 +52,16 @@ msgctxt "#608"
 msgid "Architecture: "
 msgstr "硬件结构："
 
+msgctxt "#609"
+msgid "CoreELEC is created by a global team of Linux and Kodi enthusiasts who contribute time and effort to manage the project, write code, and provide support. We have fun making it. We hope you have fun using it!"
+msgstr "CoreELEC由一群全球 Linux 和 Kodi 爱好者组成的团队创建，他们贡献时间和精力管理项目、编写代码并提供支持。我们在创造它的过程中乐在其中，也希望您在使用时能享受乐趣！"
+
+msgctxt "#610"
+msgid "[B]Support[/B] is provided via our forum:[CR]https://discourse.coreelec.org[CR][CR][B]Documentation[/B] can be read at our website:[CR]https://coreelec.org[CR][CR][B]Wiki[/B] can be read at our website:[CR]https://wiki.coreelec.org[CR][CR][B]Code[/B] can be found on GitHub:[CR]https://github.com/CoreELEC[CR][CR]"
+msgstr "[B]支持[/B]可通过我们的论坛获取：[CR]https://discourse.coreelec.org[CR][CR][B]文档[/B]可在我们的网站查阅：[CR]https://coreelec.org[CR][CR][B]维基[/B]可在我们的网站阅读：[CR]https://wiki.coreelec.org[CR][CR][B]代码[/B]可在 GitHub 获取：[CR]https://github.com/CoreELEC[CR][CR］"
+
 msgctxt "#700"
-msgid ""
-"Configure a hostname, keyboard type, perform a reset, update, or backups and"
-" restores"
+msgid "Configure a hostname, keyboard type, perform a reset, update, or backups and restores"
 msgstr "配置主机名，键盘类型，执行重置，更新或备份和恢复"
 
 msgctxt "#701"
@@ -57,8 +69,7 @@ msgid "Configure network startup options, NTP and VPNs"
 msgstr "配置网络启动选项，NTP和VPN"
 
 msgctxt "#702"
-msgid ""
-"Manage the Ethernet, Wireless and VPN connections available to the system"
+msgid "Manage the Ethernet, Wireless and VPN connections available to the system"
 msgstr "管理系统可用的以太网，无线和VPN连接"
 
 msgctxt "#703"
@@ -69,14 +80,16 @@ msgctxt "#704"
 msgid "Configure and pair Bluetooth devices"
 msgstr "配置和配对蓝牙设备"
 
+msgctxt "#705"
+msgid "Useful information like version and architecture details, support and documentation links."
+msgstr "有用信息，如版本和架构详情、支持和文档链接。"
+
 msgctxt "#707"
 msgid "Configure updates"
 msgstr "配置更新源"
 
 msgctxt "#710"
-msgid ""
-"Configure the Hostname of your @DISTRONAME@ system. This will be used for "
-"the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
+msgid "Configure the Hostname of your @DISTRONAME@ system. This will be used for the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
 msgstr "配置@DISTRONAME@ 系统的主机名。 这将用于Windows中的HTPC \\\\主机名和Mac OS Finder中的SMB服务器名称"
 
 msgctxt "#711"
@@ -92,72 +105,59 @@ msgid "Configure the physical keyboard type"
 msgstr "配置物理键盘类型"
 
 msgctxt "#714"
-msgid ""
-"@DISTRONAME@ can be configured for automatic or manual updates. Automatic "
-"updates are available on stable releases and stable release candidates. "
-"Automatic update self-disables on beta and development builds"
+msgid "@DISTRONAME@ can be configured for automatic or manual updates. Automatic updates are available on stable releases and stable release candidates. Automatic update self-disables on beta and development builds"
 msgstr "@DISTRONAME@ 可以配置为自动或手动更新。 自动更新可用于稳定版本和稳定版本候选版本。 自动更新在测试版和开发版本上自行禁用"
 
 msgctxt "#715"
-msgid ""
-"Set to ON and an on-screen notification will be displayed when a new update "
-"is available"
+msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
 msgstr "设置为开启，当新的更新可用时，将在屏幕上显示通知"
 
 msgctxt "#718"
-msgid ""
-"Send boot config files from /flash, kodi.log, kernel log and Samba configs "
-"to https://paste.coreelec.org, and display the short URL"
+msgid "Send boot config files from /flash, kodi.log, kernel log and Samba configs to https://paste.coreelec.org, and display the short URL"
 msgstr "将启动配置文件从/flash， kodi.log，内核日志和Samba配置发送到https://paste.coreelec.org，并显示短URL"
 
 msgctxt "#719"
-msgid ""
-"Send boot config files from /flash, kodi_crash.log, kernel log and Samba "
-"configs to https://paste.coreelec.org, and display the short URL"
+msgid "Send boot config files from /flash, kodi_crash.log, kernel log and Samba configs to https://paste.coreelec.org, and display the short URL"
 msgstr "将启动配置文件从/flash，kodi_crash.log，内核日志和Samba配置发送到https://paste.coreelec.org，并显示短URL"
 
 msgctxt "#720"
 msgid "Set to ON to enable the Bluetooth service"
-msgstr ""
+msgstr "设置为ON可启用蓝牙服务"
 
 msgctxt "#721"
 msgid "Send CoreELEC debug info without logs to https://paste.coreelec.org, and display the short URL"
-msgstr ""
+msgstr "向https://paste.coreelec.org发送不带日志的CoreELEC调试信息，并显示短链接"
 
 msgctxt "#722"
-msgid ""
-"Create a tar archive containing all @DISTRONAME@ and Kodi configuration "
-"settings, databases and thumbnail content. Backup files will be stored in "
-"/storage/backup/"
+msgid "Create a tar archive containing all @DISTRONAME@ and Kodi configuration settings, databases and thumbnail content. Backup files will be stored in /storage/backup/"
 msgstr "创建一个包含所有@DISTRONAME@和Kodi配置设置，数据库和缩略图内容的tar归档文件。 备份文件将存储在/storage/backup/中"
 
 msgctxt "#723"
-msgid ""
-"Restore a tar archive backup previously created using the backup option "
-"above"
+msgid "Restore a tar archive backup previously created using the backup option above"
 msgstr "恢复先前使用上述备份选项创建的tar归档备份"
 
 msgctxt "#724"
 msgid ""
 "[COLOR FF00FF00]SOFT RESET[/COLOR]\n"
 "Permanently reset @DISTRONAME@ configuration to defaults (resets also Kodi to default including your library. your media - music/videos/etc are not touched)"
-msgstr "[COLOR FF00FF00]软重置[/COLOR]\n将@DISTRONAME@配置永久重置为默认值（也可将Kodi重置为默认值，包括您的媒体库，而不会触及媒体 - 音乐/视频等）"
+msgstr ""
+"[COLOR FF00FF00]软重置[/COLOR]\n"
+"将@DISTRONAME@配置永久重置为默认值（也可将Kodi重置为默认值，包括您的媒体库，而不会触及媒体 - 音乐/视频等）"
 
 msgctxt "#725"
 msgid ""
 "[COLOR FFFF0000]HARD RESET[/COLOR]\n"
 "Permanently reset @DISTRONAME@ and Kodi configuration to defaults (everything in your storage partition will be deleted)"
-msgstr "[COLOR FFFF0000]硬重置[/COLOR]\n将@DISTRONAME@和Kodi配置永久重置为默认值（存储分区中的所有内容都将被删除）"
+msgstr ""
+"[COLOR FFFF0000]硬重置[/COLOR]\n"
+"将@DISTRONAME@和Kodi配置永久重置为默认值（存储分区中的所有内容都将被删除）"
 
 msgctxt "#726"
 msgid "Enable or disable support for Wireless (WLAN) networks"
 msgstr "启用或禁用对无线（WLAN）网络的支持"
 
 msgctxt "#727"
-msgid ""
-"Enable a 'tethered' Wireless Access Point. This requires your wireless card "
-"(and driver) to support bridging and access point mode. Not all cards are "
-"capable."
+msgid "Enable a 'tethered' Wireless Access Point. This requires your wireless card (and driver) to support bridging and access point mode. Not all cards are capable."
 msgstr "启用“系留”无线接入点。 这要求您的无线网卡（和驱动程序）支持桥接和接入点模式。 并非所有的卡都可以。"
 
 msgctxt "#728"
@@ -185,10 +185,7 @@ msgid "Configure the 3rd time (NTP) server"
 msgstr "配置第3个（NTP）服务器"
 
 msgctxt "#736"
-msgid ""
-"Set to ON to delay Kodi startup until the network is available. Use this if "
-"the OS is booting into Kodi before the network is up and central MySQL "
-"databases are accessible."
+msgid "Set to ON to delay Kodi startup until the network is available. Use this if the OS is booting into Kodi before the network is up and central MySQL databases are accessible."
 msgstr "设置为ON可延迟Kodi启动，直到网络可用。 如果在网络启动之前操作系统启动到Kodi并且可以访问中央MySQL数据库，请使用此选项。"
 
 msgctxt "#737"
@@ -200,8 +197,7 @@ msgid "Set to ON to enable the embedded Samba (SMB) filesharing service"
 msgstr "设置为ON以启用嵌入式Samba（SMB）文件共享服务"
 
 msgctxt "#739"
-msgid ""
-"Set to ON to require username/password access to local Samba fileshares"
+msgid "Set to ON to require username/password access to local Samba fileshares"
 msgstr "设置为ON以要求用户名/密码访问本地Samba文件共享"
 
 msgctxt "#740"
@@ -213,20 +209,15 @@ msgid "Set the password for Samba sharing"
 msgstr "设置Samba共享的密码"
 
 msgctxt "#742"
-msgid ""
-"Set to ON to enable the embedded SSH server. The SSH console can be accessed"
-" with username 'root' and password '@ROOT_PASSWORD@'."
+msgid "Set to ON to enable the embedded SSH server. The SSH console can be accessed with username 'root' and password '@ROOT_PASSWORD@'."
 msgstr "设置为ON以启用嵌入式SSH服务器。 SSH控制台可以使用用户名'root'和密码'@ROOT_PASSWORD@'访问。"
 
 msgctxt "#743"
-msgid ""
-"Set to ON if you have copied private SSH keys to your HTPC and would like to"
-" improve security by disabling SSH username and password authentication."
+msgid "Set to ON if you have copied private SSH keys to your HTPC and would like to improve security by disabling SSH username and password authentication."
 msgstr "如果您已将专用SSH密钥复制到您的HTPC并希望通过禁用SSH用户名和密码身份验证来提高安全性，请将其设置为ON。"
 
 msgctxt "#744"
-msgid ""
-"Set to ON to enable the Avahi (Zeroconf/Bonjour) network discovery service"
+msgid "Set to ON to enable the Avahi (Zeroconf/Bonjour) network discovery service"
 msgstr "设置为ON以启用Avahi（Zeroconf / Bonjour）网络发现服务"
 
 msgctxt "#745"
@@ -239,33 +230,26 @@ msgstr "为SSH设定密码"
 
 msgctxt "#747"
 msgid "Enable a PIN for @DISTRONAME@ Settings access"
-msgstr ""
+msgstr "启用访问@DISTRONAME@设置的PIN码"
 
 msgctxt "#748"
 msgid "Change the PIN Lock for @DISTRONAME@ Settings access"
-msgstr ""
+msgstr "更改访问@DISTRONAME@设置的PIN锁"
 
 msgctxt "#749"
-msgid ""
-"Overrride the Wireless Regulatory Domain so radio properties (channels and "
-"transmit power) comply with local laws or match the country configuration of"
-" your router."
-msgstr ""
+msgid "Overrride the Wireless Regulatory Domain so radio properties (channels and transmit power) comply with local laws or match the country configuration of your router."
+msgstr "覆盖无线监管域，使无线电属性（信道和传输功率）符合当地法律或与路由器的国家/地区配置相匹配。"
 
 msgctxt "#750"
 msgid "750"
 msgstr "750"
 
 msgctxt "#751"
-msgid ""
-"With OBEX filetransfer you can send files, for example movies or pictures "
-"over bluetooth to @DISTRONAME@."
+msgid "With OBEX filetransfer you can send files, for example movies or pictures over bluetooth to @DISTRONAME@."
 msgstr "借助OBEX文件传输，您可以将文件（例如电影或图片）通过蓝牙发送至@DISTRONAME@。"
 
 msgctxt "#752"
-msgid ""
-"Here you can set the folder location where OBEX file transfer should store "
-"incoming files"
+msgid "Here you can set the folder location where OBEX file transfer should store incoming files"
 msgstr "在这里您可以设置OBEX文件传输应该存储传入文件的文件夹位置"
 
 msgctxt "#753"
@@ -281,14 +265,11 @@ msgid "Auto share external drives / partitions"
 msgstr "自动共享外部驱动器/分区"
 
 msgctxt "#756"
-msgid ""
-"Disable older SMB protocols by specifying the minimum supported protocol."
+msgid "Disable older SMB protocols by specifying the minimum supported protocol."
 msgstr "通过指定最低支持的协议来禁用旧的SMB协议。"
 
 msgctxt "#757"
-msgid ""
-"Disable more recent SMB protocols for backward compatability with legacy "
-"clients."
+msgid "Disable more recent SMB protocols for backward compatability with legacy clients."
 msgstr "禁用更新的SMB协议以实现与旧客户端的向后兼容。"
 
 msgctxt "#758"
@@ -312,27 +293,128 @@ msgid "Select an available version"
 msgstr "选择一个可用的版本"
 
 msgctxt "#771"
-msgid ""
-"The firewall blocks unwanted network traffic. Home (default) allows traffic "
-"from private network ranges (192.168.x.x, 172.16.x.x and 10.x.x.x) only. "
-"Public blocks all traffic from all networks. Custom uses rules in "
-"/storage/.config/iptables. Off disables the firewall."
+msgid "The firewall blocks unwanted network traffic. Home (default) allows traffic from private network ranges (192.168.x.x, 172.16.x.x and 10.x.x.x) only. Public blocks all traffic from all networks. Custom uses rules in /storage/.config/iptables. Off disables the firewall."
 msgstr "防火墙阻止不需要的网络流量。 主页（默认）仅允许来自专用网络范围（192.168.x.x，172.16.x.x和10.x.x.x）的流量。 公共阻止来自所有网络的所有流量。 自定义使用/storage/.config/iptables中的规则。 关闭将禁用防火墙。"
 
 msgctxt "#772"
-msgid ""
-"Checking for a new version will submit the installed Distribution, Project, "
-"CPU Arch and Version to the update server. This data is also used to report "
-"basic statistics for the project. To continue checking for updates while "
-"opting-out of stats reporting, disable this option."
+msgid "Checking for a new version will submit the installed Distribution, Project, CPU Arch and Version to the update server. This data is also used to report basic statistics for the project. To continue checking for updates while opting-out of stats reporting, disable this option."
 msgstr "检查新版本会将已安装的分发，项目，CPU Arch和版本提交给更新服务器。此数据还用于报告项目的基本统计信息。要在选择退出统计信息报告时继续检查更新，请禁用此选项。"
 
 msgctxt "#773"
-msgid ""
-"Set the idle timeout (in minutes) before devices will be disconnected "
-"(defaults to 0 for no timeout). Applies to devices where \"Enable Standby\" "
-"has been activated in the LibreELEC device connection context menu."
-msgstr ""
+msgid "Set the idle timeout (in minutes) before devices will be disconnected (defaults to 0 for no timeout). Applies to devices where \"Enable Standby\" has been activated in the @DISTRONAME@ device connection context menu."
+msgstr "设置设备断开连接前的空闲超时（分钟）（默认为 0，表示无超时）。适用于在 @DISTRONAME@ 设备连接上下文菜单中激活了 \"启用待机 \"的设备。"
+
+msgctxt "#774"
+msgid "Automatic reconnect previously paired device after booting"
+msgstr "启动后自动重新连接之前已配对的设备"
+
+msgctxt "#775"
+msgid "Automatic change audio output to PULSE when a audio device get connected"
+msgstr "连接音频设备时，自动将音频输出更改为PULSE"
+
+msgctxt "#780"
+msgid "Configure hardware settings"
+msgstr "配置硬件设置"
+
+msgctxt "#781"
+msgid "Set fan mode (off/auto/manual)"
+msgstr "设置风扇模式（关闭/自动/手动）"
+
+msgctxt "#782"
+msgid "Set fan speed level"
+msgstr "设置风扇速度级别"
+
+msgctxt "#785"
+msgid "Modify Vendor Bootloader to support all wake-up features such as CEC, Wake-On-LAN, IR, and GPIO wake-up from suspend or power off state!"
+msgstr "修改供应商引导加载程序，以支持从挂起或关机状态唤醒的所有功能，如CEC（消费电子控制）、网络唤醒（Wake-On-LAN）、红外遥控（IR）和GPIO唤醒！"
+
+msgctxt "#786"
+msgid "Set the IR remote control power button code"
+msgstr "设置红外遥控器电源按钮代码"
+
+msgctxt "#787"
+msgid "Enable/Disable Wake-on-LAN"
+msgstr "启用/禁用网络唤醒功能"
+
+msgctxt "#788"
+msgid "Enable/Disable USB Power when device is off/suspend"
+msgstr "设备关闭/暂停时启用/禁用USB电源"
+
+msgctxt "#789"
+msgid "Change device LED behavior"
+msgstr "更改设备LED行为模式"
+
+msgctxt "#790"
+msgid "Enable/Disable VESA display modes"
+msgstr "启用/禁用VESA显示模式"
+
+msgctxt "#791"
+msgid "Set CPU governor for all cores"
+msgstr "为所有CPU核心设置电源管理策略"
+
+msgctxt "#792"
+msgid "Enable/Disable HDD parking on power off/suspend"
+msgstr "启用 / 禁用硬盘在关机 / 挂起时的磁头归位功能"
+
+msgctxt "#793"
+msgid "Time in seconds to wait for the HDD to spin down when parking"
+msgstr "磁头归位时等待硬盘完全停止旋转的超时时间（秒）"
+
+msgctxt "#794"
+msgid "Time in minutes/hours until the HDD should enter suspend mode"
+msgstr "硬盘进入休眠模式的超时时间（分钟 / 小时）"
+
+msgctxt "#900"
+msgid "Configure eMMC speed mode"
+msgstr "配置eMMC存储的速度模式"
+
+msgctxt "#901"
+msgid "Configure WiFi SoC SDIO speed"
+msgstr "配置WiFi系统级芯片SDIO接口速率"
+
+msgctxt "#902"
+msgid "Enable/Disable SPI interface"
+msgstr "启用/禁用SPI接口"
+
+msgctxt "#903"
+msgid "Choose IR protocol type for meson-remote"
+msgstr "为meson遥控器选择红外协议类型"
+
+msgctxt "#904"
+msgid "Configure DVB GPIO support"
+msgstr "配置数字电视广播（DVB）的GPIO支持"
+
+msgctxt "#905"
+msgid "Configure Wired Network Interface"
+msgstr "配置有线网络接口"
+
+msgctxt "#906"
+msgid "Choose if IP1001 is assembled"
+msgstr "选择IP1001（硬件类型）是否已组装"
+
+msgctxt "#907"
+msgid "Switch between using the USB3 interface or the PCIE interface on m.2 connector"
+msgstr "在M.2接口上选择使用USB3接口还是PCIe接口"
+
+msgctxt "#908"
+msgid "Choose assembled Smartchip device"
+msgstr "选择已组装的智能芯片设备"
+
+msgctxt "#909"
+msgid "Set to ON to enable service"
+msgstr "设置为ON以启用服务"
+
+msgctxt "#910"
+msgid "Set to ON to send invitation to the @DISTRONAME@ developers for remote debugging"
+msgstr "设置为ON以向CoreELEC开发人员发送远程调试邀请"
+
+msgctxt "#911"
+msgid "Select the SSH key used for access control"
+msgstr "选择用于访问控制的SSH密钥"
+
+msgctxt "#912"
+msgid "Forum username to identify the connection"
+msgstr "用于标识连接的论坛用户名"
 
 msgctxt "#32001"
 msgid "Services"
@@ -345,6 +427,10 @@ msgstr "系统"
 msgctxt "#32003"
 msgid "Interface"
 msgstr "界面"
+
+msgctxt "#32004"
+msgid "Hardware"
+msgstr "硬件"
 
 msgctxt "#32005"
 msgid "Updates"
@@ -364,7 +450,7 @@ msgstr "选择操作"
 
 msgctxt "#32013"
 msgid "OS Updates"
-msgstr ""
+msgstr "系统更新"
 
 msgctxt "#32014"
 msgid "Automatic Updates"
@@ -400,41 +486,39 @@ msgstr "提交系统统计信息"
 
 msgctxt "#32022"
 msgid "Firmware Updates"
-msgstr ""
+msgstr "固件更新"
 
 msgctxt "#32023"
 msgid "Updating will occur once the system is rebooted."
-msgstr ""
+msgstr "系统重新启动后即可更新。"
 
 msgctxt "#32024"
 msgid "Bootloader EEPROM"
-msgstr ""
+msgstr "引导加载程序EEPROM"
 
 msgctxt "#32025"
-msgid ""
-"Update the Raspberry Pi Bootloader EEPROM to the latest version. This option"
-" is automatically disabled after rebooting. Reboot the system to apply the "
-"update."
-msgstr ""
+msgid "Update the Raspberry Pi Bootloader EEPROM to the latest version. This option is automatically disabled after rebooting. Reboot the system to apply the update."
+msgstr "将树莓派引导加载程序EEPROM更新到最新版本。 重新启动后此选项将自动禁用。 重新启动系统以应用更新。"
 
 msgctxt "#32026"
 msgid "VIA USB3 Firmware"
-msgstr ""
+msgstr "VIA USB3固件"
 
 msgctxt "#32027"
-msgid ""
-"Update the Raspberry Pi VIA USB3 firmware to the latest version. This option"
-" is automatically disabled after rebooting. Reboot the system to apply the "
-"update."
-msgstr ""
+msgid "Update the Raspberry Pi VIA USB3 firmware to the latest version. This option is automatically disabled after rebooting. Reboot the system to apply the update."
+msgstr "将树莓派VIA USB3固件更新到最新版本。 重新启动后此选项将自动禁用。 重新启动系统以应用更新。"
 
 msgctxt "#32028"
 msgid "update from %s to %s"
-msgstr ""
+msgstr "从 %s 更新到 %s"
 
 msgctxt "#32029"
 msgid "up to date: %s"
-msgstr ""
+msgstr "最新：%s"
+
+msgctxt "#32030"
+msgid "Update To Next Stable"
+msgstr "更新到下一稳定版"
 
 msgctxt "#32100"
 msgid "Connections"
@@ -646,15 +730,15 @@ msgstr "不可用的URL"
 
 msgctxt "#32192"
 msgid "PIN lock"
-msgstr ""
+msgstr "PIN锁"
 
 msgctxt "#32193"
 msgid "Enable @DISTRONAME@ Settings PIN Lock"
-msgstr ""
+msgstr "启用@DISTRONAME@设置PIN码锁"
 
 msgctxt "#32194"
 msgid "Change @DISTRONAME@ Settings PIN Lock"
-msgstr ""
+msgstr "更改@DISTRONAME@设置PIN锁"
 
 msgctxt "#32196"
 msgid "About"
@@ -705,9 +789,7 @@ msgid "SSH Password"
 msgstr "SSH密码"
 
 msgctxt "#32210"
-msgid ""
-"The default SSH password is widely known and considered "
-"insecure.[CR][CR]Setting a personal password is recommended."
+msgid "The default SSH password is widely known and considered insecure.[CR][CR]Setting a personal password is recommended."
 msgstr "默认的SSH密码已广为人知，因此它并不安全[CR][CR]建议为SSH设定一个自己的密码"
 
 msgctxt "#32212"
@@ -764,63 +846,59 @@ msgstr "出现错误[CR]SSH密码尚未更改"
 
 msgctxt "#32226"
 msgid "Enter new 4 digit PIN"
-msgstr ""
+msgstr "输入新的4位数PIN 码"
 
 msgctxt "#32227"
 msgid "Re-enter PIN"
-msgstr ""
+msgstr "重新输入PIN码"
 
 msgctxt "#32228"
 msgid "Error - PIN codes did not match!"
-msgstr ""
+msgstr "错误 - PIN码不匹配！"
 
 msgctxt "#32229"
 msgid "@DISTRONAME@ Settings PIN lock not set.[CR][CR]Please try again."
-msgstr ""
+msgstr "@DISTRONAME@ 设置PIN锁未设置。[CR][CR]请重试。"
 
 msgctxt "#32230"
 msgid "@DISTRONAME@ Settings PIN lock set."
-msgstr ""
+msgstr "@DISTRONAME@设置PIN锁已设置。"
 
 msgctxt "#32231"
 msgid "Your @DISTRONAME@ Settings PIN lock has been set to:"
-msgstr ""
+msgstr "您的@DISTRONAME@设置PIN锁已设置为："
 
 msgctxt "#32232"
 msgid "Error - PIN code not 4 digits!"
-msgstr ""
+msgstr "错误 - PIN码不是4位数字！"
 
 msgctxt "#32233"
 msgid "@DISTRONAME@ Settings Locked[CR]Enter 4 digit PIN"
-msgstr ""
+msgstr "@DISTRONAME@设置已锁定[CR]输入4位数PIN"
 
 msgctxt "#32234"
 msgid "Incorrect PIN!"
-msgstr ""
+msgstr "PIN码不正确！"
 
 msgctxt "#32235"
 msgid " attempts remaining."
-msgstr ""
+msgstr "剩余尝试次数。"
 
 msgctxt "#32236"
-msgid ""
-"You have entered an incorrect PIN too many times.[CR][CR]You will need to "
-"wait 5 minutes before trying again."
-msgstr ""
+msgid "You have entered an incorrect PIN too many times.[CR][CR]You will need to wait 5 minutes before trying again."
+msgstr "您输入错误PIN码的次数过多。[CR][CR]您需要等待 5 分钟才能重试。"
 
 msgctxt "#32237"
 msgid "@DISTRONAME@ Settings Locked!"
-msgstr ""
+msgstr "@DISTRONAME@设置已锁定！"
 
 msgctxt "#32238"
-msgid ""
-"Time remaining before PIN can be entered: %02d:%02d[CR][CR]Too many previous"
-" failed attempts."
-msgstr ""
+msgid "Time remaining before PIN can be entered: %02d:%02d[CR][CR]Too many previous failed attempts."
+msgstr "输入PIN之前的剩余时间：%02d:%02d[CR][CR]之前失败的尝试次数过多。"
 
 msgctxt "#32240"
 msgid "Wireless Regulatory Domain"
-msgstr ""
+msgstr "无线监管领域"
 
 msgctxt "#32300"
 msgid "Welcome to @DISTRONAME@"
@@ -831,11 +909,7 @@ msgid "Welcome"
 msgstr "欢迎"
 
 msgctxt "#32302"
-msgid ""
-"This wizard will guide you through the process of setting up your new "
-"@DISTRONAME@ installation - setting your location, timezone and connecting "
-"you to the internet.[CR][CR]These settings can be changed later by "
-"navigating to Programs > @DISTRONAME@ Settings."
+msgid "This wizard will guide you through the process of setting up your new @DISTRONAME@ installation - setting your location, timezone and connecting you to the internet.[CR][CR]These settings can be changed later by navigating to Programs > @DISTRONAME@ Settings."
 msgstr "该向导将引导您完成设置新的@DISTRONAME@安装过程-设置您的位置，时区并将您连接到互联网。.[CR][CR]这些设置稍后可以通过导航到程序>@DISTRONAME@设置进行更改。"
 
 msgctxt "#32303"
@@ -843,11 +917,7 @@ msgid "Next"
 msgstr "下一个"
 
 msgctxt "#32304"
-msgid ""
-"To be identified easily on the network, your new @DISTRONAME@ machine needs "
-"a name.[CR][CR]Try to choose something meaningful - like the room it's in - "
-"so you'll know what it is when you see it on the network.[CR][CR]This name "
-"is used when configuring network services, like file sharing using samba."
+msgid "To be identified easily on the network, your new @DISTRONAME@ machine needs a name.[CR][CR]Try to choose something meaningful - like the room it's in - so you'll know what it is when you see it on the network.[CR][CR]This name is used when configuring network services, like file sharing using samba."
 msgstr "要在网络上轻松识别，您的新@DISTRONAME@机器需要一个名称。[CR][CR]尝试选择一些有意义的东西 - 比如它所在的房间 - 这样当你在网络上看见它的时候你就能知道它是什么。.[CR][CR]此名称用于配置网络服务，如使用samba进行文件共享。"
 
 msgctxt "#32305"
@@ -855,16 +925,12 @@ msgid "Networking"
 msgstr "网络"
 
 msgctxt "#32306"
-msgid ""
-"In order to download backdrops, banners and thumbnails for your movies and "
-"TV shows and to stream online content from sites like YouTube, @DISTRONAME@ "
-"needs to be connected the Internet.[CR][CR]An Internet connection is also "
-"required for @DISTRONAME@ to automatically update itself."
+msgid "In order to download backdrops, banners and thumbnails for your movies and TV shows and to stream online content from sites like YouTube, @DISTRONAME@ needs to be connected the Internet.[CR][CR]An Internet connection is also required for @DISTRONAME@ to automatically update itself."
 msgstr "为了下载电影和电视节目的背景，横幅和缩略图，以及从YouTube等网站传输在线内容，@DISTRONAME@需要连接互联网。[CR][CR] @DISTRONAME@也需要互联网连接来自动更新。"
 
 msgctxt "#32307"
 msgid "Previous"
-msgstr ""
+msgstr "上一个"
 
 msgctxt "#32308"
 msgid "Hostname:"
@@ -876,26 +942,18 @@ msgstr "以下网络当前可用："
 
 msgctxt "#32310"
 msgid "Language:"
-msgstr ""
+msgstr "语言："
 
 msgctxt "#32311"
 msgid "Sharing and Remote Access"
 msgstr "共享和远程访问"
 
 msgctxt "#32312"
-msgid ""
-"@DISTRONAME@ also supports SSH for remote access. This is for advanced users"
-" who wish to interact with @DISTRONAME@'s underlying operating system. The "
-"default user is [COLOR blue]root[/COLOR] and the default password is [COLOR "
-"blue]@ROOT_PASSWORD@[/COLOR]."
+msgid "@DISTRONAME@ also supports SSH for remote access. This is for advanced users who wish to interact with @DISTRONAME@'s underlying operating system. The default user is [COLOR blue]root[/COLOR] and the default password is [COLOR blue]@ROOT_PASSWORD@[/COLOR]."
 msgstr "@DISTRONAME@还支持SSH远程访问。这适用于希望与@DISTRONAME@的底层操作系统交互的高级用户。默认用户是[COLOR blue]root[/COLOR]，默认密码是 [COLOR blue]@ROOT_PASSWORD@[/COLOR]。"
 
 msgctxt "#32313"
-msgid ""
-"In order to share your files between your computers @DISTRONAME@ has "
-"incorporated a samba server. This samba server can be integrated into your "
-"local network by accessing it in a familiar way with Finder or Windows "
-"Explorer."
+msgid "In order to share your files between your computers @DISTRONAME@ has incorporated a samba server. This samba server can be integrated into your local network by accessing it in a familiar way with Finder or Windows Explorer."
 msgstr "为了在您的计算机之间共享您的文件@DISTRONAME@已经包含了一个samba服务器。 通过使用Finder或Windows资源管理器以熟悉的方式访问此samba服务器可以集成到您的本地网络中。"
 
 msgctxt "#32316"
@@ -906,13 +964,17 @@ msgctxt "#32317"
 msgid "Thank you"
 msgstr "谢谢您"
 
+msgctxt "#32318"
+msgid "Your @DISTRONAME@ installation is now complete and you are about to enter Kodi where you can set up your media libraries. For help with this, there is a guide available at wiki.kodi.tv[CR][CR]@DISTRONAME@ is developed by a dedicated team of developers who work purely in their spare time.[CR][CR]Finally, we hope you enjoy using @DISTRONAME@ as much as we've enjoyed building it. If you need any more help, you can find links to our support forum along with latest news at our website."
+msgstr "您的CoreELEC安装现已完成，即将进入Kodi界面，你可以在其中设置媒体库。如需帮助，可访问wiki.kodi.tv获取指南。[CR][CR]@DISTRONAME@由一群专注的开发者团队开发，他们完全利用业余时间投入工作。[CR][CR]最后，希望你享受使用@DISTRONAME@的过程，如同我们享受构建它的过程一样。如果需要更多帮助，你可以在我们的网站上找到支持论坛链接和最新动态。"
+
 msgctxt "#32319"
 msgid "Cron"
-msgstr "Cron"
+msgstr "计划任务"
 
 msgctxt "#32320"
 msgid "Enable Cron"
-msgstr "启用Cron"
+msgstr "启用计划任务"
 
 msgctxt "#32323"
 msgid "Reset to Defaults"
@@ -963,9 +1025,7 @@ msgid "No Bluetooth adapter found."
 msgstr "未找到蓝牙适配器。"
 
 msgctxt "#32339"
-msgid ""
-"No Bluetooth device found. Please put your Bluetooth device into discovery "
-"mode[CR]and start the scan"
+msgid "No Bluetooth device found. Please put your Bluetooth device into discovery mode[CR]and start the scan"
 msgstr "找不到蓝牙设备。 请将您的蓝牙设备置于发现模式[CR]并开始扫描"
 
 msgctxt "#32343"
@@ -1053,9 +1113,7 @@ msgid "There is not enough free storage space to continue!"
 msgstr "没有足够的空闲存储空间来继续！"
 
 msgctxt "#32380"
-msgid ""
-"Restoring system settings requires a reboot. Are you sure you want to "
-"restore?"
+msgid "Restoring system settings requires a reboot. Are you sure you want to restore?"
 msgstr "恢复系统设置需要重启。 你确定要恢复吗？"
 
 msgctxt "#32381"
@@ -1100,11 +1158,15 @@ msgstr "设置插件尚未准备就绪，请稍后重试。"
 
 msgctxt "#32391"
 msgid "Upload configs and other debug info without logs, and view the short URL"
-msgstr ""
+msgstr "上传配置和其他调试信息（不带日志），并查看短链接"
 
 msgctxt "#32393"
 msgid "** SAFE MODE! ** SAFE MODE! ** SAFE MODE! **"
 msgstr "** 安全模式！ ** 安全模式！ ** 安全模式！ **"
+
+msgctxt "#32394"
+msgid "@DISTRONAME@ has temporarily started in safe mode due to repeated Kodi crashes.[CR][CR]You may now investigate the cause of the crashes by enabling ssh or Samba.[CR][CR]Your original Kodi installation can be accessed via \"/storage/.kodi.FAILED\" and the Samba \"Kodi-Failed\" share.[CR][CR]Rebooting will return to your original Kodi installation.[CR][CR]Go to https://discourse.coreelec.org if you require further assistance. When posting to the forum include the link to your crash log which can be viewed by clicking the crash log option in Settings > CoreELEC > System > Submit Log."
+msgstr "由于Kodi频繁崩溃，@DISTRONAME@ 已临时进入安全模式。[CR][CR]您现在可以通过启用SSH或Samba调查崩溃原因。[CR][CR]您可以通过 “/storage/.kodi.FAILED”和 Samba “Kodi-Failed” 共享访问您的原始Kodi安装。[CR][CR]重新启动将返回到您的原始Kodi安装。[CR][CR]如需进一步帮助，请访问https://discourse.coreelec.org。在论坛发帖时，请包含崩溃日志链接，您可通过以下路径查看日志：设置 > CoreELEC > 系统 > 提交日志。"
 
 msgctxt "#32395"
 msgid "Firewall"
@@ -1120,7 +1182,7 @@ msgstr "关"
 
 msgctxt "#32398"
 msgid "Home"
-msgstr "Home"
+msgstr "主界面"
 
 msgctxt "#32399"
 msgid "Public"
@@ -1128,4 +1190,212 @@ msgstr "公共"
 
 msgctxt "#32400"
 msgid "Idle Timeout"
-msgstr ""
+msgstr "空闲超时"
+
+msgctxt "#32401"
+msgid "Connect paired devices"
+msgstr "连接配对设备"
+
+msgctxt "#32402"
+msgid "Switch audio device on connection"
+msgstr "连接时切换音频设备"
+
+msgctxt "#32500"
+msgid "Fan"
+msgstr "风扇"
+
+msgctxt "#32501"
+msgid "Power"
+msgstr "电源"
+
+msgctxt "#32502"
+msgid "Display"
+msgstr "显示器"
+
+msgctxt "#32503"
+msgid "Performance"
+msgstr "性能"
+
+msgctxt "#32504"
+msgid "CEC"
+msgstr "CEC"
+
+msgctxt "#32505"
+msgid "HDD"
+msgstr "硬盘"
+
+msgctxt "#32506"
+msgid "Device Tree"
+msgstr "设备树"
+
+msgctxt "#32510"
+msgid "Fan Mode"
+msgstr "风扇模式"
+
+msgctxt "#32511"
+msgid "Speed Level"
+msgstr "速度级别"
+
+msgctxt "#32515"
+msgid "Inject BL301 Blob"
+msgstr "注入BL301 Blob"
+
+msgctxt "#32516"
+msgid "IR Remote Power Code"
+msgstr "红外遥控电源代码"
+
+msgctxt "#32517"
+msgid "Wake-on-LAN"
+msgstr "网络唤醒"
+
+msgctxt "#32518"
+msgid "USB Power"
+msgstr "USB电源"
+
+msgctxt "#32519"
+msgid "System LED"
+msgstr "系统指示灯"
+
+msgctxt "#32520"
+msgid "VESA modes"
+msgstr "VESA模式"
+
+msgctxt "#32521"
+msgid "CPU governor"
+msgstr "CPU调控器"
+
+msgctxt "#32522"
+msgid "Parking"
+msgstr "磁头归位"
+
+msgctxt "#32523"
+msgid "Parking Time"
+msgstr "磁头归位时间"
+
+msgctxt "#32525"
+msgid "eMMC Speed Mode"
+msgstr "eMMC速度模式"
+
+msgctxt "#32526"
+msgid "WiFi SoC SDIO Speed"
+msgstr "WiFi系统级芯片SDIO接口速率"
+
+msgctxt "#32527"
+msgid "Red LED"
+msgstr "红色指示灯"
+
+msgctxt "#32528"
+msgid "SPI Interface"
+msgstr "SPI（串行外设）接口"
+
+msgctxt "#32529"
+msgid "IR Protocol Type"
+msgstr "红外协议类型"
+
+msgctxt "#32530"
+msgid "DVB GPIO Support"
+msgstr "DVB GPIO支持"
+
+msgctxt "#32531"
+msgid "Wired Network Interface"
+msgstr "有线网络接口"
+
+msgctxt "#32532"
+msgid "Green LED"
+msgstr "绿色指示灯"
+
+msgctxt "#32533"
+msgid "IP1001 Ethernet Transceiver"
+msgstr "IP1001以太网收发器"
+
+msgctxt "#32534"
+msgid "VIM3 USB3/PCIE Switch"
+msgstr "VIM3 USB3/PCIe切换器"
+
+msgctxt "#32535"
+msgid "Smartchip WiFi Driver"
+msgstr "智能芯片WiFi驱动程序"
+
+msgctxt "#33510"
+msgid "Warning!"
+msgstr "警告！"
+
+msgctxt "#33511"
+msgid "Continue"
+msgstr "继续"
+
+msgctxt "#33512"
+msgid "Finished!"
+msgstr "结束"
+
+msgctxt "#33513"
+msgid "Notice!"
+msgstr "通知！"
+
+msgctxt "#33514"
+msgid "Error!"
+msgstr "错误！"
+
+msgctxt "#33515"
+msgid "Inject Bootloader BL301 Blob..."
+msgstr "注入引导加载程序BL301 Blob..."
+
+msgctxt "#33516"
+msgid "[B][COLOR red]Note: This will modify the firmware on your device.[/COLOR][/B][CR]The BL301 bootloader blob has been customized by the CoreELEC Team to support all features used to wake a device from a suspend or power off state!"
+msgstr "[B][COLOR red]注意：这将修改您设备上的固件。[/COLOR][/B][CR]BL301 引导加载程序 blob 由 CoreELEC 团队定制，支持用于从挂起或关机状态唤醒设备的所有功能！"
+
+msgctxt "#33517"
+msgid "Finished update of the BL301 on internal eMMC.[CR]A reboot is now required!"
+msgstr "已完成内部eMMC上的BL 301更新。[CR]现在需要重新启动！"
+
+msgctxt "#33518"
+msgid "Error [%d] has occurred while using the 'inject_bl301' tool![CR]See '/storage/inject_bl301.log' for details."
+msgstr "使用 \"inject_bl301 \"工具时发生错误 [%d]！[CR]详情请查看\"/storage/inject_bl301.log\"。"
+
+msgctxt "#33519"
+msgid "System is not supported by BL301 injection![CR]See '/storage/inject_bl301.log' for details."
+msgstr "BL 301注入不支持系统！[CR]有关详细信息，请参见“/storage/inject_bl301.log”。"
+
+msgctxt "#33520"
+msgid "Update of BL301 on eMMC is not needed."
+msgstr "无需在eMMC上更新BL301。"
+
+msgctxt "#33521"
+msgid "[B][COLOR red]Note: This will remove the bl301 injection on your device.[/COLOR][CR]The injected BL301 bootloader blob will be removed by the backup done automatically before injection.[/B]"
+msgstr "[B][COLOR RED]注意：这将删除设备上的BL301注入。[/COLOR][CR]注入的BL301引导加载程序Blob将由注入前自动完成的备份删除。[/B]"
+
+msgctxt "#33522"
+msgid "Finished remove of the BL301 on internal eMMC.[CR]A reboot is now required!"
+msgstr "已完成删除内部eMMC上的BL 301。[CR]现在需要重新启动！"
+
+msgctxt "#33523"
+msgid "Finished update of /flash/dtb.img.[CR]A reboot is now required!"
+msgstr "已完成 /flash/dtb.img的更新。[CR]现在需要重新启动！"
+
+msgctxt "#33524"
+msgid "[COLOR red]Are you sure to change this value?[/COLOR][CR]Please enter confirmation code '%s'"
+msgstr "[COLOR red]您确定要更改此值吗？[/COLOR][CR]请输入确认代码'%s'"
+
+msgctxt "#33525"
+msgid "Terminal sharing"
+msgstr "终端共享"
+
+msgctxt "#33526"
+msgid "Enable terminal sharing"
+msgstr "启用终端共享"
+
+msgctxt "#33527"
+msgid "Send invitation to @DISTRONAME@ developers"
+msgstr "向@DISTRONAME@开发人员发送邀请"
+
+msgctxt "#33528"
+msgid "Hint: enable this option only when requested by team @DISTRONAME@"
+msgstr "提示：仅当团队请求时才启用此选项@DISTRONAME@"
+
+msgctxt "#33529"
+msgid "Access control key"
+msgstr "访问控制密钥"
+
+msgctxt "#33530"
+msgid "Connection name"
+msgstr "连接名称"
