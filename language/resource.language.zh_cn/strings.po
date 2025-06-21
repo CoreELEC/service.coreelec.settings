@@ -54,7 +54,7 @@ msgstr "硬件结构："
 
 msgctxt "#609"
 msgid "CoreELEC is created by a global team of Linux and Kodi enthusiasts who contribute time and effort to manage the project, write code, and provide support. We have fun making it. We hope you have fun using it!"
-msgstr "CoreELEC由一群全球 Linux 和 Kodi 爱好者组成的团队创建，他们贡献时间和精力管理项目、编写代码并提供支持。我们在创造它的过程中乐在其中，也希望您在使用时能享受乐趣！"
+msgstr "CoreELEC由一群全球 Linux 和 Kodi 爱好者组成的团队创建，他们贡献时间和精力来管理项目、编写代码并提供支持。我们在创造它的过程中乐在其中，也希望您在使用时能享受乐趣！"
 
 msgctxt "#610"
 msgid "[B]Support[/B] is provided via our forum:[CR]https://discourse.coreelec.org[CR][CR][B]Documentation[/B] can be read at our website:[CR]https://coreelec.org[CR][CR][B]Wiki[/B] can be read at our website:[CR]https://wiki.coreelec.org[CR][CR][B]Code[/B] can be found on GitHub:[CR]https://github.com/CoreELEC[CR][CR]"
