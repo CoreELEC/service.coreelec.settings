@@ -1312,7 +1312,7 @@ msgstr "公共"
 
 msgctxt "#32400"
 msgid "Idle Timeout"
-msgstr "闲置超时"
+msgstr "空闲超时"
 
 msgctxt "#32401"
 msgid "Connect paired devices"
