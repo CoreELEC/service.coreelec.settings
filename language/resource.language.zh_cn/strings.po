@@ -58,7 +58,7 @@ msgstr "CoreELEC由一群全球 Linux 和 Kodi 爱好者组成的团队创建，
 
 msgctxt "#610"
 msgid "[B]Support[/B] is provided via our forum:[CR]https://discourse.coreelec.org[CR][CR][B]Documentation[/B] can be read at our website:[CR]https://coreelec.org[CR][CR][B]Wiki[/B] can be read at our website:[CR]https://wiki.coreelec.org[CR][CR][B]Code[/B] can be found on GitHub:[CR]https://github.com/CoreELEC[CR][CR]"
-msgstr "[B]支持[/B]可通过我们的论坛获取：[CR]https://discourse.coreelec.org[CR][CR][B]文档[/B]可在我们的网站查阅：[CR]https://coreelec.org[CR][CR][B]维基[/B]可在我们的网站阅读：[CR]https://wiki.coreelec.org[CR][CR][B]代码[/B]可在 GitHub 获取：[CR]https://github.com/CoreELEC[CR][CR］"
+msgstr "[B]支持[/B]可通过我们的论坛获取：[CR]https://discourse.coreelec.org[CR][CR][B]文档[/B]可在我们的网站查阅：[CR]https://coreelec.org[CR][CR][B]维基[/B]可在我们的网站阅读：[CR]https://wiki.coreelec.org[CR][CR][B]代码[/B]可在 GitHub 获取：[CR]https://github.com/CoreELEC[CR][CR]"
 
 msgctxt "#700"
 msgid "Configure a hostname, keyboard type, perform a reset, update, or backups and restores"
