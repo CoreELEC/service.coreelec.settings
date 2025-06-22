@@ -1271,6 +1271,7 @@ msgstr ""
 
 msgctxt "#32524"
 msgid "Idle Time"
+msgstr ""
 
 msgctxt "#32525"
 msgid "eMMC Speed Mode"
