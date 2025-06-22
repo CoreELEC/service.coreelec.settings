@@ -918,7 +918,7 @@ msgstr "输入 PIN 之前的剩余时间：%02d:%02d[CR][CR]之前失败的尝�
 
 msgctxt "#32240"
 msgid "Wireless Regulatory Domain"
-msgstr "无线监管领域"
+msgstr "无线监管域"
 
 msgctxt "#32300"
 msgid "Welcome to @DISTRONAME@"
