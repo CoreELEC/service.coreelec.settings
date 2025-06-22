@@ -1272,6 +1272,10 @@ msgctxt "#32523"
 msgid "Parking Time"
 msgstr "磁头归位时间"
 
+msgctxt "#32524"
+msgid "Idle Time"
+msgstr "空闲时间"
+
 msgctxt "#32525"
 msgid "eMMC Speed Mode"
 msgstr "eMMC 速度模式"
