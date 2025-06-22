@@ -92,7 +92,7 @@ msgstr "配置和配对蓝牙设备"
 
 msgctxt "#705"
 msgid "Useful information like version and architecture details, support and documentation links."
-msgstr "有用信息，如版本和架构详情、支持和文档链接。"
+msgstr "有用的信息，如版本和架构详情、支持和文档链接。"
 
 msgctxt "#707"
 msgid "Configure updates"
@@ -169,7 +169,7 @@ msgid ""
 "media - music/videos/etc are not touched)"
 msgstr ""
 "[COLOR FF00FF00]软重置[/COLOR]\n"
-"将@DISTRONAME@ 配置永久重置为默认值（也可将 Kodi 重置为默认值，包括您的媒体库，而不会触及媒体 - 音乐/视频等）"
+"将@DISTRONAME@ 的配置永久重置为默认值（也可将 Kodi 重置为默认值，包括您的媒体库，而不会触及媒体 - 音乐/视频等）"
 
 msgctxt "#725"
 msgid ""
@@ -178,7 +178,7 @@ msgid ""
 "deleted)"
 msgstr ""
 "[COLOR FFFF0000]硬重置[/COLOR]\n"
-"将@DISTRONAME@ 和 Kodi 配置永久重置为默认值（存储分区中的所有内容都将被删除）"
+"将@DISTRONAME@ 和 Kodi 的配置永久重置为默认值（存储分区中的所有内容都将被删除）"
 
 msgctxt "#726"
 msgid "Enable or disable support for Wireless (WLAN) networks"
@@ -223,7 +223,7 @@ msgstr ""
 
 msgctxt "#737"
 msgid "Time in seconds to wait for an established network connection."
-msgstr "等待已建立的网络连接的时间（以秒为单位）。"
+msgstr "等待网络连接的超时时间（秒）。"
 
 msgctxt "#738"
 msgid "Set to ON to enable the embedded Samba (SMB) filesharing service"
@@ -255,7 +255,7 @@ msgstr "如果您已将专用 SSH 密钥复制到您的 HTPC 并希望通过禁�
 
 msgctxt "#744"
 msgid "Set to ON to enable the Avahi (Zeroconf/Bonjour) network discovery service"
-msgstr "设置为“开启”以启用 Avahi（Zeroconf / Bonjour 网络发现服务"
+msgstr "设置为“开启”以启用 Avahi（Zeroconf / Bonjour） 网络发现服务"
 
 msgctxt "#745"
 msgid "Set to ON to enable the cron daemon"
@@ -557,7 +557,7 @@ msgstr "提交系统统计信息"
 
 msgctxt "#32022"
 msgid "Firmware Updates"
-msgstr "固件更新"
+msgstr "固件升级"
 
 msgctxt "#32023"
 msgid "Updating will occur once the system is rebooted."
