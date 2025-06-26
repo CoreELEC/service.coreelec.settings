@@ -56,7 +56,7 @@ class system:
                         'value': '',
                         'action': 'set_hostname',
                         'type': 'text',
-                        'validate': '^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$',
+                        'validate': r'^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$',
                         'InfoText': 710,
                         }},
                     },
@@ -678,7 +678,7 @@ class system:
                 answer = xbmcDialog.ok('Restore', txt[0], txt[1], txt[2])
                 return
             restore_file_name = restore_file_path.split('/')[-1]
-            match = re.match('.*(?P<time_stamp>\d{14}).*\.tar', restore_file_path)
+            match = re.match(r'.*(?P<time_stamp>\d{14}).*\.tar', restore_file_path)
             if match != None:
                 restore_file_name = match.group('time_stamp') + '.tar'
             else:
