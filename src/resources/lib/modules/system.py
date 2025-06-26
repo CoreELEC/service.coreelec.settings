@@ -834,6 +834,7 @@ class system:
             return timezone_countries
         except Exception as e:
             self.oe.dbg_log('system::filter_timezone_country', 'ERROR: (%s)' % repr(e), self.oe.LOGERROR)
+            return []
 
     def filter_timezone_city(self, city=None, country_code=None):
         try:
