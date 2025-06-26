@@ -815,7 +815,7 @@ class system:
         try:
             self.oe.dbg_log('system::filter_timezone_country', 'enter_function', self.oe.LOGDEBUG)
             iso3166_tab = '/usr/share/zoneinfo/iso3166.tab'
-            timezone_countries = [x.replace('\n', '') for x in open(iso3166_tab, 'r') if not x.startswith('#')]
+            timezone_countries = [x.replace('\n', '') for x in open(iso3166_tab, 'r', encoding='utf-8') if not x.startswith('#')]
             timezone_country = ''
             timezone_country_code = ''
             if not country is None:
