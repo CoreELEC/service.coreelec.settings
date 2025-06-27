@@ -344,11 +344,11 @@ msgstr "Establecer el regulador de la CPU para todos los núcleos"
 
 msgctxt "#792"
 msgid "Enable/Disable HDD parking on power off/suspend"
-msgstr "Activar/Desactivar el aparcamiento del disco duro al apagar/suspender"
+msgstr "Activar/Desactivar inactividad del disco duro al apagar/suspender"
 
 msgctxt "#793"
 msgid "Time in seconds to wait for the HDD to spin down when parking"
-msgstr "Tiempo en segundos de espera para que el disco duro se detenga al aparcar"
+msgstr "Especificar cuánto tiempo permanecerá inactivo el disco duro antes de apagarse"
 
 msgctxt "#794"
 msgid "Time in minutes/hours until the HDD should enter suspend mode"
@@ -529,7 +529,7 @@ msgstr "Redes cableadas"
 
 msgctxt "#32105"
 msgid "Active"
-msgstr "Activa"
+msgstr "Activo"
 
 msgctxt "#32106"
 msgid "Username"
@@ -605,15 +605,15 @@ msgstr "Servidores NTP"
 
 msgctxt "#32124"
 msgid "Timeserver #1"
-msgstr "Servidor de tiempo 1"
+msgstr "Servidor #1"
 
 msgctxt "#32125"
 msgid "Timeserver #2"
-msgstr "Servidor de tiempo 2"
+msgstr "Servidor #2"
 
 msgctxt "#32126"
 msgid "Timeserver #3"
-msgstr "Servidor de tiempo 3"
+msgstr "Servidor #3"
 
 msgctxt "#32127"
 msgid "DNS Domains"
@@ -1265,11 +1265,11 @@ msgstr "Regulador de la CPU"
 
 msgctxt "#32522"
 msgid "Parking"
-msgstr "Aparcamiento"
+msgstr "Apagar disco"
 
 msgctxt "#32523"
 msgid "Parking Time"
-msgstr "Tiempo de aparcamiento"
+msgstr "Apagar disco duro tras"
 
 msgctxt "#32524"
 msgid "Idle Time"
