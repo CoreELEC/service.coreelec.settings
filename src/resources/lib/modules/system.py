@@ -56,7 +56,7 @@ class system:
                         'value': '',
                         'action': 'set_hostname',
                         'type': 'text',
-                        'validate': '^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$',
+                        'validate': r'^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$',
                         'InfoText': 710,
                         }},
                     },
@@ -678,7 +678,7 @@ class system:
                 answer = xbmcDialog.ok('Restore', txt[0], txt[1], txt[2])
                 return
             restore_file_name = restore_file_path.split('/')[-1]
-            match = re.match('.*(?P<time_stamp>\d{14}).*\.tar', restore_file_path)
+            match = re.match(r'.*(?P<time_stamp>\d{14}).*\.tar', restore_file_path)
             if match != None:
                 restore_file_name = match.group('time_stamp') + '.tar'
             else:
@@ -815,7 +815,7 @@ class system:
         try:
             self.oe.dbg_log('system::filter_timezone_country', 'enter_function', self.oe.LOGDEBUG)
             iso3166_tab = '/usr/share/zoneinfo/iso3166.tab'
-            timezone_countries = [x.replace('\n', '') for x in open(iso3166_tab, 'r') if not x.startswith('#')]
+            timezone_countries = [x.replace('\n', '') for x in open(iso3166_tab, 'r', encoding='utf-8') if not x.startswith('#')]
             timezone_country = ''
             timezone_country_code = ''
             if not country is None:
@@ -834,6 +834,7 @@ class system:
             return timezone_countries
         except Exception as e:
             self.oe.dbg_log('system::filter_timezone_country', 'ERROR: (%s)' % repr(e), self.oe.LOGERROR)
+            return []
 
     def filter_timezone_city(self, city=None, country_code=None):
         try:
