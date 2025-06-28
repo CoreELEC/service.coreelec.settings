@@ -345,16 +345,14 @@ class system:
                         self.oe.dbg_log('system::load_values', 'current timezone country: %s, %s' % (timezone_country, timezone_country_code))
 
             if value == "":
-                timezone_url = 'https://time.coreelec.org'
+                timezone_url = 'https://time.coreelec.org/api/v3'
                 timezone_data = self.oe.load_url(timezone_url)
                 if not timezone_data is None:
-                    try:
-                        timezone_json = json.loads(timezone_data)
-                        value = timezone_json['timezone']
-                        if not value == "":
-                            self.oe.dbg_log('system::load_values', 'using WorldTimeAPI timezone city: %s' % value)
-                    except KeyError:
-                        self.oe.dbg_log('system::load_values', 'value: not found')
+                    value = timezone_data
+                    if not value == "":
+                        self.oe.dbg_log('system::load_values', 'using web timezone: %s' % value)
+                else:
+                    value = ""
 
                 if not value == "":
                     timezone_country_code, timezone_cities = self.filter_timezone_city(value, None)
