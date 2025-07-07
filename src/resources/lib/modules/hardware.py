@@ -27,7 +27,13 @@ class hardware:
     power_compatible_devices = [
         'khadas_vim4',
         'khadas_vim1s',
+        'odroid_c4',
+        'odroid_c5',
         'odroid_n2',
+        'libre_computer_alta',
+        'libre_computer_solitude',
+        'radxa_zero',
+        'radxa_zero2',
     ]
 
     remotes = [
