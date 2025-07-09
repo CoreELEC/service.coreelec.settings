@@ -12,6 +12,7 @@ pgi.install_as_gi()
 from gi.repository import GLib
 from dbus.mainloop.glib import DBusGMainLoop
 
+lock = threading.Lock()
 
 class xdbus:
 
@@ -30,8 +31,9 @@ class xdbus:
     def start_service(self):
         try:
             self.oe.dbg_log('xdbus::start_service', 'enter_function', self.oe.LOGDEBUG)
-            self.dbusMonitor = dbusMonitor(self.oe)
-            self.dbusMonitor.start()
+            with lock:
+                self.dbusMonitor = dbusMonitor(self.oe)
+                self.dbusMonitor.start()
             self.oe.dbg_log('xdbus::start_service', 'exit_function', self.oe.LOGDEBUG)
         except Exception as e:
             self.oe.dbg_log('xdbus::start_service', 'ERROR: (' + repr(e) + ')', self.oe.LOGERROR)
@@ -40,8 +42,9 @@ class xdbus:
         try:
             self.oe.dbg_log('xdbus::stop_service', 'enter_function', self.oe.LOGDEBUG)
             if hasattr(self, 'dbusMonitor'):
-                self.dbusMonitor.stop()
-                del self.dbusMonitor
+                with lock:
+                    self.dbusMonitor.stop()
+                    del self.dbusMonitor
             self.oe.dbg_log('xdbus::stop_service', 'exit_function', self.oe.LOGDEBUG)
         except Exception as e:
             self.oe.dbg_log('xdbus::stop_service', 'ERROR: (' + repr(e) + ')')
@@ -71,13 +74,6 @@ class dbusMonitor(threading.Thread):
             DBusGMainLoop(set_as_default=True)
             self.mainLoop = GLib.MainLoop()
             threading.Thread.__init__(self)
-            self.oe.dbg_log('xdbus::dbusMonitor::__init__', 'exit_function', self.oe.LOGDEBUG)
-        except Exception as e:
-            self.oe.dbg_log('xdbus::dbusMonitor::__init__', 'ERROR: (' + repr(e) + ')', self.oe.LOGERROR)
-
-    def run(self):
-        try:
-            self.oe.dbg_log('xdbus::dbusMonitor::run', 'enter_function', self.oe.LOGDEBUG)
 
             self.dbusSystemBus.request_name("com.service.coreelec.settings.xdbus.stoploop")
             busName = dbus.service.BusName("com.service.coreelec.settings.xdbus.stoploop", bus=self.dbusSystemBus)
@@ -89,6 +85,13 @@ class dbusMonitor(threading.Thread):
                     monitor = module.monitor(self.oe, module)
                     monitor.add_signal_receivers()
                     self.monitors.append(monitor)
+            self.oe.dbg_log('xdbus::dbusMonitor::__init__', 'exit_function', self.oe.LOGDEBUG)
+        except Exception as e:
+            self.oe.dbg_log('xdbus::dbusMonitor::__init__', 'ERROR: (' + repr(e) + ')', self.oe.LOGERROR)
+
+    def run(self):
+        try:
+            self.oe.dbg_log('xdbus::dbusMonitor::run', 'enter_function', self.oe.LOGDEBUG)
             try:
                 self.oe.dbg_log('xdbus Monitor started.', '', self.oe.LOGINFO)
                 self.mainLoop.run()
