@@ -154,7 +154,7 @@ msgid ""
 "Permanently reset @DISTRONAME@ configuration to defaults (resets also Kodi to default including your library. your media - music/videos/etc are not touched)"
 msgstr ""
 "[COLOR FF00FF00]软重置[/COLOR]\n"
-"将@DISTRONAME@ 的配置永久重置为默认值（也可将 Kodi 重置为默认值，包括您的媒体库，而不会触及媒体 - 音乐/视频等）"
+"将@DISTRONAME@ 的配置永久重置为默认值（也可将 Kodi 重置为默认值，包括您的媒体库，但不会影响媒体 - 音乐/视频等）"
 
 msgctxt "#725"
 msgid ""
@@ -170,7 +170,7 @@ msgstr "启用或禁用对无线（WLAN）网络的支持"
 
 msgctxt "#727"
 msgid "Enable a 'tethered' Wireless Access Point. This requires your wireless card (and driver) to support bridging and access point mode. Not all cards are capable."
-msgstr "启用“共享”无线接入点。 这要求您的无线网卡（和驱动程序）支持桥接和接入点模式。 并非所有的卡都可以。"
+msgstr "启用“共享”无线接入点。 这要求您的无线网卡（和驱动程序）支持桥接和接入点模式。 并非所有的网卡都支持。"
 
 msgctxt "#728"
 msgid "Configure the Access Point SSID"
@@ -310,7 +310,7 @@ msgid ""
 "The firewall blocks unwanted network traffic. Home (default) allows traffic from private network ranges (192.168.x.x, 172.16.x.x and 10.x.x.x) only. Public blocks all traffic "
 "from all networks. Custom uses rules in /storage/.config/iptables. Off disables the firewall."
 msgstr ""
-"防火墙阻止不需要的网络流量。 主页（默认）仅允许来自专用网络范围（192.168.x.x，172.16.x.x和10.x.x.x）的流量。 公共阻止来自所有网络的所有流量。 自定义使用 /storage/.config/"
+"防火墙阻止不需要的网络流量。 主页（默认）仅允许来自专用网络范围（192.168.x.x，172.16.x.x 和 10.x.x.x）的流量。 公共阻止来自所有网络的所有流量。 自定义使用 /storage/.config/"
 "iptables 中的规则。 关闭将禁用防火墙。"
 
 msgctxt "#772"
@@ -497,11 +497,11 @@ msgstr "系统更新"
 
 msgctxt "#32014"
 msgid "Automatic Updates"
-msgstr "自动升级"
+msgstr "自动更新"
 
 msgctxt "#32015"
 msgid "Update Channel"
-msgstr "升级渠道"
+msgstr "更新渠道"
 
 msgctxt "#32016"
 msgid "Show Custom Channels"
@@ -725,7 +725,7 @@ msgstr "编辑"
 
 msgctxt "#32180"
 msgid "Would you like to update @DISTRONAME@ now?"
-msgstr "你想要现在升级@DISTRONAME@ 吗？"
+msgstr "你想要现在更新@DISTRONAME@ 吗？"
 
 msgctxt "#32181"
 msgid "Filename"
@@ -1309,7 +1309,7 @@ msgid "Speed Level"
 msgstr "速度级别"
 
 # 1. BL30：Amlogic 芯片（如 S905/S922 系列）安全启动流程中的第二阶段引导加载程序（Boot Loader 30），属于 TrustZone 安全环境的一部分。
-# 2. Blob：二进制大对象（Binary Large Object），此处指 BL30 的二进制固件文件（通常为bl30.bin）
+# 2. Blob：二进制大对象（Binary Large Object），此处指 BL30 的二进制固件文件（通常为 bl30.bin）
 msgctxt "#32515"
 msgid "Inject BL30 Blob"
 msgstr "注入 BL30 二进制镜像"
@@ -1467,7 +1467,7 @@ msgctxt "#33521"
 msgid ""
 "[B][COLOR red]Note: This will remove the BL30 injection on your device.[/COLOR][CR]The injected BL30 bootloader blob will be removed by the backup done automatically before "
 "injection.[/B]"
-msgstr "[B][COLOR red]注：这将删除设备上的 BL30 注入。[/COLOR][CR]注入的 BL30 引导加载程序blob将通过注入前自动完成的备份删除。[/B]"
+msgstr "[B][COLOR red]注：这将删除设备上的 BL30 注入。[/COLOR][CR]注入的 BL30 引导加载程序 blob 将通过注入前自动完成的备份删除。[/B]"
 
 msgctxt "#33522"
 msgid "Finished remove of the BL30 on internal eMMC.[CR]A reboot is now required!"
