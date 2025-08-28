@@ -375,7 +375,7 @@ msgstr "为所有 CPU 核心设置电源管理策略"
 
 msgctxt "#792"
 msgid "Enable/Disable HDD parking on power off/suspend"
-msgstr "启用 / 禁用硬盘在关机 / 挂起时的磁头归位功能"
+msgstr "启用/禁用硬盘在关机 / 挂起时的磁头归位功能"
 
 msgctxt "#793"
 msgid "Time in seconds to wait for the HDD to spin down when parking"
@@ -383,7 +383,7 @@ msgstr "磁头归位时等待硬盘完全停止旋转的超时时间（秒）"
 
 msgctxt "#794"
 msgid "Time in minutes/hours until the HDD should enter suspend mode"
-msgstr "硬盘进入休眠模式的超时时间（分钟 / 小时）"
+msgstr "硬盘进入休眠模式的超时时间（分钟/小时）"
 
 msgctxt "#795"
 msgid "Select country location."
@@ -437,7 +437,7 @@ msgstr "设置为“开启”以启用服务"
 
 msgctxt "#910"
 msgid "Set to ON to send invitation to the @DISTRONAME@ developers for remote debugging"
-msgstr "设置为“开启”以向 CoreELEC 开发人员发送远程调试邀请"
+msgstr "设置为“开启”以向 @DISTRONAME@ 开发人员发送远程调试邀请"
 
 msgctxt "#911"
 msgid "Select the SSH key used for access control"
