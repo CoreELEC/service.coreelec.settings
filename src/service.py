@@ -5,6 +5,7 @@
 # Copyright (C) 2020-present Team CoreELEC (https://coreelec.org)
 
 import oe
+import dbus_utils
 import xbmc
 import xbmcgui
 import time
@@ -117,6 +118,7 @@ class cxbmcm(xbmc.Monitor):
 
 
 xbmcm = cxbmcm()
+dbus_utils.LOOP_THREAD.start()
 oe.load_modules()
 oe.start_service()
 monitor = service_thread(oe.__oe__)
@@ -151,3 +153,7 @@ if hasattr(oe, 'winOeMain') and hasattr(oe.winOeMain, 'visible'):
 
 oe.stop_service()
 monitor.stop()
+dbus_utils.LOOP_THREAD.stop()
+del dbus_utils.LOOP_THREAD
+del dbus_utils.LOOP
+del dbus_utils.BUS
