@@ -455,6 +455,7 @@
                             <height>20</height>
                             <font>font12</font>
                             <textcolor>red</textcolor>
+                            <scroll>true</scroll>
                             <visible>String.IsEqual(ListItem.Property(State), online) | String.IsEqual(ListItem.Property(State), ready)</visible>
                             <label>$ADDON[service.coreelec.settings 602]: [COLOR=white]$INFO[ListItem.Property(Address)][/COLOR]</label>
                         </control>
@@ -617,6 +618,7 @@
                             <height>20</height>
                             <font>font12</font>
                             <textcolor>red</textcolor>
+                            <scroll>true</scroll>
                             <visible>String.IsEqual(ListItem.Property(State), online) | String.IsEqual(ListItem.Property(State), ready)</visible>
                             <label>$ADDON[service.coreelec.settings 602]: [COLOR=white]$INFO[ListItem.Property(Address)][/COLOR]</label>
                         </control>
