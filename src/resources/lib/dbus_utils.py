@@ -141,3 +141,4 @@ asyncio.set_event_loop(LOOP)
 BUS = ravel.system_bus()
 BUS.attach_asyncio(LOOP)
 LOOP_THREAD = LoopThread(LOOP)
+LOOP_THREAD.daemon = True  # Ensure Python exits even if thread is blocked

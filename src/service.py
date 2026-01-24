@@ -153,7 +153,10 @@ if hasattr(oe, 'winOeMain') and hasattr(oe.winOeMain, 'visible'):
 
 oe.stop_service()
 monitor.stop()
-dbus_utils.LOOP_THREAD.stop()
-del dbus_utils.LOOP_THREAD
-del dbus_utils.LOOP
-del dbus_utils.BUS
+try:
+    dbus_utils.LOOP_THREAD.stop()
+    del dbus_utils.LOOP_THREAD
+    del dbus_utils.LOOP
+    del dbus_utils.BUS
+except Exception:
+    pass
