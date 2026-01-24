@@ -949,7 +949,10 @@ class connman(modules.Module):
     def stop_service(self):
         try:
             if hasattr(self, 'agent'):
-                self.agent.unregister_agent()
+                # Only unregister if connman is actually running, otherwise D-Bus
+                # will try to auto-activate it and hang
+                if dbus_connman.system_has_connman():
+                    self.agent.unregister_agent()
         except Exception:
             pass
         if hasattr(self, 'dbusConnmanManager'):

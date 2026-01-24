@@ -219,3 +219,7 @@ def technology_wifi_set_tethering_identifier(identifier):
 
 def technology_wifi_set_tethering_passphrase(passphrase):
     return technology_set_property(PATH_TECH_WIFI, 'TetheringPassphrase', (dbussy.DBUS.Signature('s'), passphrase))
+
+
+def system_has_connman():
+    return BUS_NAME in dbus_utils.list_names()

@@ -95,7 +95,10 @@ class bluetooth(modules.Module):
     def stop_service(self):
         try:
             if hasattr(self, 'dbusBluezAdapter') and self.dbusBluezAdapter is not None:
-                self.bluez_agent.unregister_agent()
+                # Only unregister if bluez is actually running, otherwise D-Bus
+                # will try to auto-activate it and hang for 25 seconds
+                if dbus_bluez.system_has_bluez():
+                    self.bluez_agent.unregister_agent()
         except Exception:
             pass
         if hasattr(self, 'discovery_thread'):
