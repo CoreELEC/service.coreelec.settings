@@ -140,7 +140,10 @@ class bluetooth(modules.Module):
 
     @log.log_function()
     def start_discovery(self):
-        if self.discovering:
+        # Check BlueZ's actual state, not our cached flag
+        # BlueZ can stop discovery on its own (timeout, or during certain operations)
+        if dbus_bluez.adapter_get_discovering(self.dbusBluezAdapter):
+            self.discovering = True
             return
 
         self.discovering = True
