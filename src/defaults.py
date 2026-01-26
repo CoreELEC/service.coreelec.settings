@@ -82,6 +82,7 @@ system = {
     'XBMC_THUMBNAILS': XBMC_THUMBNAILS,
     'BACKUP_DESTINATION': '/storage/backup/',
     'RESTORE_DIR': '/storage/.restore/',
+    'JOURNALD_CONFIG_FILE': '/storage/.cache/journald.conf.d/00_settings.conf'
     }
 
 updates = {

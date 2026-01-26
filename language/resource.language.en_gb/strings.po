@@ -1217,6 +1217,34 @@ msgctxt "#32402"
 msgid "Switch audio device on connection"
 msgstr ""
 
+msgctxt "#32410"
+msgid "Logging"
+msgstr ""
+
+msgctxt "#32411"
+msgid "Use Persistent Logs"
+msgstr ""
+
+msgctxt "#32412"
+msgid "Use Persistent Journal and Log files instead of default volatile ones. Reboot to apply changes."
+msgstr ""
+
+msgctxt "#32413"
+msgid "Journal Size"
+msgstr ""
+
+msgctxt "#32414"
+msgid "Set max. size of persistent journal. Reboot to apply changes."
+msgstr ""
+
+msgctxt "#32415"
+msgid "Disable journald Rate Limit"
+msgstr ""
+
+msgctxt "#32416"
+msgid "Reboot to apply changes."
+msgstr ""
+
 msgctxt "#32500"
 msgid "Fan"
 msgstr ""
@@ -1291,6 +1319,7 @@ msgstr ""
 
 msgctxt "#32524"
 msgid "Idle Time"
+msgstr ""
 
 msgctxt "#32525"
 msgid "eMMC Speed Mode"
