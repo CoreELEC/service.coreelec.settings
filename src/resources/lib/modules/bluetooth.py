@@ -209,11 +209,8 @@ class bluetooth(modules.Module):
     def pair_device(self, path):
         try:
             dbus_bluez.device_pair(path)
-            listItem = oe.winOeMain.getControl(oe.listObject['btlist']).getSelectedItem()
-            if listItem is None:
-                return
-            self.trust_device(listItem.getProperty('entry'))
-            self.connect_device(listItem.getProperty('entry'))
+            self.trust_device(path)
+            self.connect_device(path)
             self.menu_connections()
         except DBusError as e:
             self.dbus_error_handler(e)
