@@ -217,6 +217,12 @@ class bluetooth(modules.Module):
             self.menu_connections()
         except DBusError as e:
             self.dbus_error_handler(e)
+            # Remove device to clean up partial pairing state
+            # This helps with devices that need multiple pairing attempts
+            try:
+                dbus_bluez.adapter_remove_device(self.dbusBluezAdapter, path)
+            except Exception:
+                pass
 
     @log.log_function()
     def trust_device(self, path):
