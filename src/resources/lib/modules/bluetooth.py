@@ -127,6 +127,13 @@ class bluetooth(modules.Module):
                     self.bluez_agent.unregister_agent()
         except Exception:
             pass
+        if hasattr(self, 'connection_thread'):
+            try:
+                self.connection_thread.stop()
+                self.connection_thread.join(timeout=2)
+                del self.connection_thread
+            except (AttributeError, Exception):
+                pass
         if hasattr(self, 'discovery_thread'):
             try:
                 self.discovery_thread.stop()
@@ -139,6 +146,13 @@ class bluetooth(modules.Module):
 
     @log.log_function()
     def exit(self):
+        if hasattr(self, 'connection_thread'):
+            try:
+                self.connection_thread.stop()
+                self.connection_thread.join(timeout=2)
+                del self.connection_thread
+            except (AttributeError, Exception):
+                pass
         if hasattr(self, 'discovery_thread'):
             try:
                 self.discovery_thread.stop()
@@ -163,23 +177,32 @@ class bluetooth(modules.Module):
     def init_adapter(self):
         dbus_bluez.adapter_set_alias(self.dbusBluezAdapter, hostname.get_hostname())
         dbus_bluez.adapter_set_powered(self.dbusBluezAdapter, True)
+        if oe.get_service_option('bluez', 'CONNECT_PAIRED', '1') == '1':
+            if not hasattr(self, 'connection_thread') or not self.connection_thread.is_alive():
+                self.connection_thread = connectionThread(self)
+                self.connection_thread.start()
 
     @log.log_function()
     def start_discovery(self):
+        oe.set_busy(1)
         # Check BlueZ's actual state, not our cached flag
         # BlueZ can stop discovery on its own (timeout, or during certain operations)
         if dbus_bluez.adapter_get_discovering(self.dbusBluezAdapter):
             self.discovering = True
+            oe.set_busy(0)
             return
 
         self.discovering = True
         dbus_bluez.adapter_start_discovery(self.dbusBluezAdapter)
+        oe.set_busy(0)
 
     @log.log_function()
     def stop_discovery(self):
+        oe.set_busy(1)
         if self.discovering:
             dbus_bluez.adapter_stop_discovery(self.dbusBluezAdapter)
             self.discovering = False
+        oe.set_busy(0)
 
     # ###################################################################
     # # Bluetooth Device
@@ -236,6 +259,7 @@ class bluetooth(modules.Module):
 
     @log.log_function()
     def pair_device(self, path):
+        oe.set_busy(1)
         try:
             dbus_bluez.device_pair(path)
             self.trust_device(path)
@@ -249,18 +273,25 @@ class bluetooth(modules.Module):
                 dbus_bluez.adapter_remove_device(self.dbusBluezAdapter, path)
             except Exception:
                 pass
+        finally:
+            oe.set_busy(0)
 
     @log.log_function()
     def trust_device(self, path):
+        oe.set_busy(1)
         dbus_bluez.device_set_trusted(path, True)
+        oe.set_busy(0)
 
     @log.log_function()
     def connect_device(self, path):
+        oe.set_busy(1)
         try:
             dbus_bluez.device_connect(path)
             self.menu_connections()
         except DBusError as e:
             self.dbus_error_handler(e)
+        finally:
+            oe.set_busy(0)
 
     @log.log_function()
     def disconnect_device(self, listItem=None):
@@ -272,11 +303,14 @@ class bluetooth(modules.Module):
 
     @log.log_function()
     def disconnect_device_by_path(self, path):
+        oe.set_busy(1)
         try:
             dbus_bluez.device_disconnect(path)
             self.menu_connections()
         except DBusError as e:
             self.dbus_error_handler(e)
+        finally:
+            oe.set_busy(0)
 
     @log.log_function()
     def remove_device(self, listItem=None):
@@ -284,11 +318,13 @@ class bluetooth(modules.Module):
             listItem = oe.winOeMain.getControl(oe.listObject['btlist']).getSelectedItem()
         if listItem is None:
             return
+        oe.set_busy(1)
         log.log(f"remove_device->entry: {listItem.getProperty('entry')}", log.DEBUG)
         path = listItem.getProperty('entry')
         dbus_bluez.adapter_remove_device(self.dbusBluezAdapter, path)
         self.disable_device_standby(listItem)
         self.menu_connections()
+        oe.set_busy(0)
 
     # ###################################################################
     # # Bluetooth Error Handler
@@ -297,6 +333,7 @@ class bluetooth(modules.Module):
     @log.log_function()
     def dbus_error_handler(self, error):
         log.log(f'error message: {repr(error.message)}', log.DEBUG)
+        oe.set_busy(0)
         oe.notify('Bluetooth error', error.message.split('.')[0], 'bt')
         if hasattr(self, 'pinkey_window'):
             self.close_pinkey_window()
@@ -313,6 +350,8 @@ class bluetooth(modules.Module):
 
     @log.log_function()
     def menu_connections(self, focusItem=None):
+        if oe.is_busy():
+            return
         self.discover_devices()
         if self.dbusBluezAdapter is not None and (not hasattr(self, 'discovery_thread') or self.discovery_thread.stopped):
             if hasattr(self, 'discovery_thread') and self.discovery_thread.stopped:
@@ -512,9 +551,11 @@ class bluetooth(modules.Module):
         if self.dbusBluezAdapter:
             devices = oe.read_setting('bluetooth', 'standby')
             if devices:
+                oe.input_request = True
                 for device in devices.split(','):
                     if dbus_bluez.device_get_connected(device):
                         self.disconnect_device_by_path(device)
+                oe.input_request = False
 
 
 ####################################################################
@@ -644,11 +685,17 @@ class Bluez_Listener(dbus_bluez.Listener):
 
     @log.log_function()
     def on_properties_changed(self, interface, changed, invalidated, path):
-        # Handle audio device switching on connect/disconnect
+        # Handle audio device switching and notifications on connect/disconnect
         if 'Connected' in changed:
+            try:
+                name = dbus_bluez.device_get_name(path)
+            except Exception:
+                name = path
             if changed['Connected']:
+                oe.notify('Bluetooth', f'Connected to {name}', 'bt')
                 self._handle_audio_connect(path)
             else:
+                oe.notify('Bluetooth', f'Disconnected from {name}', 'bt')
                 self._handle_audio_disconnect(path)
 
         if self.parent.visible:
@@ -678,7 +725,51 @@ class Obex_Listener(dbus_obex.Listener):
     @log.log_function()
     def __init__(self, parent):
         self.parent = weakref.proxy(parent)
+        self.transfer_progress = None
+        self.transfer_start = None
         super().__init__()
+
+    @log.log_function()
+    def on_transfer_changed(self, interface, changed, invalidated, path):
+        if 'Status' in changed:
+            status = changed['Status']
+            if status == 'active':
+                self.transfer_start = time.monotonic()
+                self.transfer_progress = xbmcgui.DialogProgress()
+                self.transfer_progress.create('Bluetooth', oe._(32383))
+            elif status == 'complete':
+                if self.transfer_progress is not None:
+                    self.transfer_progress.close()
+                    self.transfer_progress = None
+                xbmcDialog = xbmcgui.Dialog()
+                answer = xbmcDialog.yesno('Bluetooth', oe._(32382))
+                if answer == 1:
+                    if hasattr(self.parent, 'download_file') and self.parent.download_file:
+                        download_dir = self.parent.D_OBEXD_ROOT or '/storage/downloads/'
+                        xbmc.executebuiltin(f'PlayMedia({download_dir}{self.parent.download_file})')
+            elif status == 'error':
+                if self.transfer_progress is not None:
+                    self.transfer_progress.close()
+                    self.transfer_progress = None
+        if 'Transferred' in changed and self.transfer_progress is not None:
+            if self.transfer_progress.iscanceled():
+                try:
+                    dbus_obex.transfer_cancel(path)
+                except Exception:
+                    pass
+                self.transfer_progress.close()
+                self.transfer_progress = None
+                return
+            transferred = changed['Transferred']
+            if hasattr(self.parent, 'download_size') and self.parent.download_size > 0:
+                percent = int(transferred / 1024 / self.parent.download_size * 100)
+            else:
+                percent = 0
+            elapsed = time.monotonic() - self.transfer_start if self.transfer_start else 1
+            speed = transferred / 1024 / max(elapsed, 1)
+            self.transfer_progress.update(
+                percent,
+                f'{transferred / 1024:.0f} KB / {speed:.1f} KB/s')
 
 
 ####################################################################
@@ -694,8 +785,10 @@ class Bluez_Agent(dbus_bluez.Agent):
 
     @log.log_function()
     def authorize_service(self, device, uuid):
+        oe.input_request = True
         xbmcDialog = xbmcgui.Dialog()
         answer = xbmcDialog.yesno('Bluetooth', f'Authorize service {uuid}?')
+        oe.input_request = False
         if answer == 1:
             oe.dictModules['bluetooth'].trust_device(device)
         else:
@@ -703,15 +796,19 @@ class Bluez_Agent(dbus_bluez.Agent):
 
     @log.log_function()
     def request_pincode(self, device):
+        oe.input_request = True
         xbmcKeyboard = xbmc.Keyboard('', 'Enter PIN code')
         xbmcKeyboard.doModal()
         pincode = xbmcKeyboard.getText()
+        oe.input_request = False
         return pincode
 
     @log.log_function()
     def request_passkey(self, device):
+        oe.input_request = True
         xbmcDialog = xbmcgui.Dialog()
         passkey = int(xbmcDialog.numeric(0, 'Enter passkey (number in 0-999999)', '0'))
+        oe.input_request = False
         return passkey
 
     @log.log_function()
@@ -731,8 +828,10 @@ class Bluez_Agent(dbus_bluez.Agent):
 
     @log.log_function()
     def request_confirmation(self, device, passkey):
+        oe.input_request = True
         xbmcDialog = xbmcgui.Dialog()
         answer = xbmcDialog.yesno('Bluetooth', f'Confirm passkey {passkey}')
+        oe.input_request = False
         if answer == 1:
             oe.dictModules['bluetooth'].trust_device(device)
         else:
@@ -740,8 +839,10 @@ class Bluez_Agent(dbus_bluez.Agent):
 
     @log.log_function()
     def request_authorization(self, device):
+        oe.input_request = True
         xbmcDialog = xbmcgui.Dialog()
         answer = xbmcDialog.yesno('Bluetooth', 'Accept pairing?')
+        oe.input_request = False
         if answer == 1:
             oe.dictModules['bluetooth'].trust_device(device)
         else:
@@ -765,9 +866,11 @@ class Obex_Agent(dbus_obex.Agent):
         super().__init__()
 
     def authorize_push(self, transfer):
+        oe.input_request = True
         xbmcDialog = xbmcgui.Dialog()
         properties = dbus_obex.transfer_get_all_properties(transfer)
         answer = xbmcDialog.yesno('Bluetooth', f"{oe._(32381)}\n\n{properties['Name']}")
+        oe.input_request = False
         log.log(f'answer={repr(answer)}', log.DEBUG)
         if answer != 1:
             self.reject('Not Authorized')
@@ -779,6 +882,32 @@ class Obex_Agent(dbus_obex.Agent):
         else:
             self.parent.download_type = None
         return properties['Name']
+
+
+class connectionThread(threading.Thread):
+
+    def __init__(self, parent):
+        super().__init__()
+        self.parent = weakref.proxy(parent)
+        self._stop_event = threading.Event()
+        self.daemon = True
+
+    def stop(self):
+        self._stop_event.set()
+
+    @log.log_function()
+    def run(self):
+        devices = self.parent.get_devices()
+        for path, props in devices.items():
+            if self._stop_event.is_set() or oe.xbmcm.abortRequested():
+                break
+            if props.get('Paired') and not props.get('Connected'):
+                try:
+                    log.log(f'Auto-connecting paired device: {path}', log.DEBUG)
+                    dbus_bluez.device_connect(path)
+                except Exception as e:
+                    log.log(f'Failed to auto-connect {path}: {e}', log.DEBUG)
+                oe.xbmcm.waitForAbort(1)
 
 
 class discoveryThread(threading.Thread):

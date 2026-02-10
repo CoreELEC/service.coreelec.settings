@@ -56,20 +56,26 @@ class Agent(dbus_utils.Agent):
 class Listener(object):
 
     def __init__(self):
-        pass
-        # dbussy doesn't currenltly support listening for non specific signals
-        # dbus_utils.BUS.listen_signal(
-        #     interface=INTERFACE_TRANSFER,
-        #     fallback=True,
-        #     func=self._on_transfer_changed,
-        #     path='/')
+        dbus_utils.BUS.listen_propchanged(
+            interface=dbussy.DBUS.INTERFACE_PROPERTIES,
+            fallback=True,
+            func=self._on_transfer_changed,
+            path='/')
 
-    # @ravel.signal(name='PropertiesChanged', in_signature='sa{sv}as', arg_keys=('interface', 'changed', 'invalidated'), path_keyword='path', bus_keyword=BUS_NAME)
-    # async def _on_transfer_changed(self, interface, changed, invalidated, path):
-    #     interface = dbus_utils.convert_from_dbussy(interface)
-    #     changed = dbus_utils.convert_from_dbussy(changed)
-    #     invalidated = dbus_utils.convert_from_dbussy(invalidated)
-    #     await self.on_transfer_changed(interface, changed, invalidated, path)
+    @ravel.signal(name='PropertiesChanged', in_signature='sa{sv}as',
+                  arg_keys=('interface', 'changed', 'invalidated'), path_keyword='path')
+    def _on_transfer_changed(self, interface, changed, invalidated, path):
+        interface = dbus_utils.convert_from_dbussy(interface)
+        if interface != INTERFACE_TRANSFER:
+            return
+        changed = dbus_utils.convert_from_dbussy(changed)
+        invalidated = dbus_utils.convert_from_dbussy(invalidated)
+        self.on_transfer_changed(interface, changed, invalidated, path)
+
 
 def transfer_get_all_properties(path):
     return dbus_utils.call_method(BUS_NAME, path, dbussy.DBUS.INTERFACE_PROPERTIES, 'GetAll', INTERFACE_TRANSFER)
+
+
+def transfer_cancel(path):
+    return dbus_utils.call_method(BUS_NAME, path, INTERFACE_TRANSFER, 'Cancel')

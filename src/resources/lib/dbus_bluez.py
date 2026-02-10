@@ -27,6 +27,8 @@ class Agent(dbus_utils.Agent):
     def manager_register_agent(self):
         dbus_utils.call_method(BUS_NAME, PATH_BLUEZ, INTERFACE_AGENT_MANAGER,
                                'RegisterAgent', PATH_AGENT, 'KeyboardDisplay')
+        dbus_utils.call_method(BUS_NAME, PATH_BLUEZ, INTERFACE_AGENT_MANAGER,
+                               'RequestDefaultAgent', PATH_AGENT)
 
     def manager_unregister_agent(self):
         dbus_utils.call_method(BUS_NAME, PATH_BLUEZ, INTERFACE_AGENT_MANAGER,
@@ -183,6 +185,10 @@ def device_get_property(path, name):
 
 def device_get_connected(path):
     return device_get_property(path, 'Connected')
+
+
+def device_get_name(path):
+    return device_get_property(path, 'Name')
 
 
 def device_connect(path):
