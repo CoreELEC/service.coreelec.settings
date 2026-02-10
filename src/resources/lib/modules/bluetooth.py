@@ -85,11 +85,37 @@ class bluetooth(modules.Module):
 
     @log.log_function()
     def start_service(self):
+        self._restore_audio_on_start()
         self.bluez_agent = Bluez_Agent(self)
         self.obex_agent = Obex_Agent(self)
         self.bluez_listener = Bluez_Listener(self)
         self.obex_listener = Obex_Listener(self)
         self.find_adapter()
+
+    def _restore_audio_on_start(self):
+        """Restore audio settings if a previous session ended with BT audio active."""
+        saved_device = oe.read_setting('bluetooth', 'default_audio_device')
+        if saved_device:
+            log.log(f'Restoring audio device on start: {saved_device}', log.DEBUG)
+            oe.jsonrpc({
+                'method': 'Settings.SetSettingValue',
+                'params': {
+                    'setting': 'audiooutput.audiodevice',
+                    'value': saved_device,
+                },
+            })
+            oe.write_setting('bluetooth', 'default_audio_device', '')
+        saved_passthrough = oe.read_setting('bluetooth', 'passthrough')
+        if saved_passthrough:
+            log.log(f'Restoring audio passthrough on start: {saved_passthrough}', log.DEBUG)
+            oe.jsonrpc({
+                'method': 'Settings.SetSettingValue',
+                'params': {
+                    'setting': 'audiooutput.passthrough',
+                    'value': int(saved_passthrough),
+                },
+            })
+            oe.write_setting('bluetooth', 'passthrough', '')
 
     @log.log_function()
     def stop_service(self):
@@ -501,6 +527,103 @@ class Bluez_Listener(dbus_bluez.Listener):
         self.parent = weakref.proxy(parent)
         super().__init__()
 
+    def _get_device_class(self, path):
+        try:
+            return dbus_bluez.device_get_property(path, 'Class')
+        except Exception:
+            return 0
+
+    def _is_audio_device(self, path):
+        device_class = self._get_device_class(path)
+        # Bit 21 = audio rendering capability (speaker/headphones)
+        return bool(device_class and (device_class & (1 << 21)))
+
+    def _handle_audio_connect(self, path):
+        if oe.get_service_option('bluez', 'SWITCH_AUDIO_DEVICE', '1') != '1':
+            return
+        if not self._is_audio_device(path):
+            return
+        log.log(f'Bluetooth audio device connected: {path}', log.DEBUG)
+        # Get current audio device
+        result = oe.jsonrpc({
+            'method': 'Settings.GetSettingValue',
+            'params': {'setting': 'audiooutput.audiodevice'},
+        })
+        if result is not None:
+            current_device = result.get('value', '')
+        else:
+            current_device = ''
+        # Save current device if not already on PULSE
+        if 'PULSE' not in current_device:
+            oe.write_setting('bluetooth', 'default_audio_device', current_device)
+        # Get and save current passthrough state
+        pt_result = oe.jsonrpc({
+            'method': 'Settings.GetSettingValue',
+            'params': {'setting': 'audiooutput.passthrough'},
+        })
+        if pt_result is not None:
+            passthrough = pt_result.get('value', 0)
+            if passthrough:
+                oe.write_setting('bluetooth', 'passthrough', str(passthrough))
+        # Switch audio to PulseAudio Bluetooth
+        oe.jsonrpc({
+            'method': 'Settings.SetSettingValue',
+            'params': {
+                'setting': 'audiooutput.audiodevice',
+                'value': 'PULSE:Default|Bluetooth Audio (PULSEAUDIO)',
+            },
+        })
+        # Disable passthrough if it was on (with 1s delay as in old code)
+        if pt_result is not None and pt_result.get('value', 0):
+            time.sleep(1)
+            oe.jsonrpc({
+                'method': 'Settings.SetSettingValue',
+                'params': {
+                    'setting': 'audiooutput.passthrough',
+                    'value': 0,
+                },
+            })
+        log.log('Switched audio output to Bluetooth', log.DEBUG)
+
+    def _handle_audio_disconnect(self, path):
+        if not self._is_audio_device(path):
+            return
+        log.log(f'Bluetooth audio device disconnected: {path}', log.DEBUG)
+        saved_device = oe.read_setting('bluetooth', 'default_audio_device')
+        if not saved_device:
+            return
+        # Check if currently on PULSE before restoring
+        result = oe.jsonrpc({
+            'method': 'Settings.GetSettingValue',
+            'params': {'setting': 'audiooutput.audiodevice'},
+        })
+        if result is not None:
+            current_device = result.get('value', '')
+        else:
+            current_device = ''
+        if 'PULSE' in current_device:
+            oe.jsonrpc({
+                'method': 'Settings.SetSettingValue',
+                'params': {
+                    'setting': 'audiooutput.audiodevice',
+                    'value': saved_device,
+                },
+            })
+            oe.write_setting('bluetooth', 'default_audio_device', '')
+            log.log(f'Restored audio output to: {saved_device}', log.DEBUG)
+        # Restore passthrough if it was saved
+        saved_passthrough = oe.read_setting('bluetooth', 'passthrough')
+        if saved_passthrough:
+            oe.jsonrpc({
+                'method': 'Settings.SetSettingValue',
+                'params': {
+                    'setting': 'audiooutput.passthrough',
+                    'value': int(saved_passthrough),
+                },
+            })
+            oe.write_setting('bluetooth', 'passthrough', '')
+            log.log('Restored audio passthrough', log.DEBUG)
+
     @log.log_function()
     def on_interfaces_added(self, path, interfaces):
         if dbus_bluez.INTERFACE_ADAPTER in interfaces:
@@ -521,6 +644,13 @@ class Bluez_Listener(dbus_bluez.Listener):
 
     @log.log_function()
     def on_properties_changed(self, interface, changed, invalidated, path):
+        # Handle audio device switching on connect/disconnect
+        if 'Connected' in changed:
+            if changed['Connected']:
+                self._handle_audio_connect(path)
+            else:
+                self._handle_audio_disconnect(path)
+
         if self.parent.visible:
             properties = [
                 'Paired',
