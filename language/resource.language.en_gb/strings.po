@@ -300,6 +300,10 @@ msgctxt "#775"
 msgid "Automatic change audio output to PULSE when a audio device get connected"
 msgstr ""
 
+msgctxt "#776"
+msgid "Show notification when a Bluetooth device connects or disconnects (excludes remotes and game controllers)"
+msgstr ""
+
 msgctxt "#780"
 msgid "Configure hardware settings"
 msgstr ""
@@ -1215,6 +1219,10 @@ msgstr ""
 
 msgctxt "#32402"
 msgid "Switch audio device on connection"
+msgstr ""
+
+msgctxt "#32403"
+msgid "Show connection notifications"
 msgstr ""
 
 msgctxt "#32410"

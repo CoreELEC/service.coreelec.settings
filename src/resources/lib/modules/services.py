@@ -362,6 +362,18 @@ class services:
                                 },
                             'InfoText': 775,
                             },
+                        'notify_connected': {
+                            'order': 7,
+                            'name': 32403,
+                            'value': None,
+                            'action': 'notify_connected',
+                            'type': 'bool',
+                            'parent': {
+                                'entry': 'enabled',
+                                'value': ['1'],
+                                },
+                            'InfoText': 776,
+                            },
                         },
                     },
                 }
@@ -516,6 +528,11 @@ class services:
                     if not value:
                         value = '1'
                     self.struct['bluez']['settings']['switch_audio_device']['value'] = value
+
+                    value = self.oe.read_setting('bluetooth', 'notify_connected')
+                    if not value:
+                        value = '1'
+                    self.struct['bluez']['settings']['notify_connected']['value'] = value
                 else:
                     self.struct['bluez']['hidden'] = 'true'
 
@@ -675,6 +692,7 @@ class services:
             options = {}
             options['CONNECT_PAIRED'] = '%s' % self.struct['bluez']['settings']['connect_paired']['value']
             options['SWITCH_AUDIO_DEVICE'] = '%s' % self.struct['bluez']['settings']['switch_audio_device']['value']
+            options['NOTIFY_CONNECTED'] = '%s' % self.struct['bluez']['settings']['notify_connected']['value']
             if self.struct['bluez']['settings']['enabled']['value'] != '1':
                 state = 0
                 self.struct['bluez']['settings']['obex_enabled']['hidden'] = True
@@ -748,6 +766,19 @@ class services:
         except Exception as e:
             self.oe.set_busy(0)
             self.oe.dbg_log('services::switch_audio_device', 'ERROR: (' + repr(e) + ')', self.oe.LOGERROR)
+
+    def notify_connected(self, **kwargs):
+        try:
+            self.oe.dbg_log('services::notify_connected', 'enter_function', self.oe.LOGDEBUG)
+            self.oe.set_busy(1)
+            if 'listItem' in kwargs:
+                self.set_value(kwargs['listItem'])
+            self.oe.write_setting('bluetooth', 'notify_connected', self.struct['bluez']['settings']['notify_connected']['value'])
+            self.oe.set_busy(0)
+            self.oe.dbg_log('services::notify_connected', 'exit_function', self.oe.LOGDEBUG)
+        except Exception as e:
+            self.oe.set_busy(0)
+            self.oe.dbg_log('services::notify_connected', 'ERROR: (' + repr(e) + ')', self.oe.LOGERROR)
 
     def exit(self):
         try:
