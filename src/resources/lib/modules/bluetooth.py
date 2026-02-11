@@ -579,6 +579,18 @@ class Bluez_Listener(dbus_bluez.Listener):
         # Bit 21 = audio rendering capability (speaker/headphones)
         return bool(device_class and (device_class & (1 << 21)))
 
+    def _is_notify_device(self, path):
+        """Check if device warrants connect/disconnect notifications.
+        Skips peripherals like remotes and game controllers that reconnect
+        frequently. Notifies for audio, phone, computer, imaging, etc."""
+        device_class = self._get_device_class(path)
+        if not device_class:
+            return True
+        # Major device class is bits 12-8
+        major_class = (device_class >> 8) & 0x1F
+        # 5 = Peripheral (remotes, game controllers, joysticks)
+        return major_class != 5
+
     def _handle_audio_connect(self, path):
         if oe.get_service_option('bluez', 'SWITCH_AUDIO_DEVICE', '1') != '1':
             return
@@ -687,15 +699,23 @@ class Bluez_Listener(dbus_bluez.Listener):
     def on_properties_changed(self, interface, changed, invalidated, path):
         # Handle audio device switching and notifications on connect/disconnect
         if 'Connected' in changed:
-            try:
-                name = dbus_bluez.device_get_name(path)
-            except Exception:
-                name = path
             if changed['Connected']:
-                oe.notify('Bluetooth', f'Connected to {name}', 'bt')
+                if (oe.get_service_option('bluez', 'NOTIFY_CONNECTED', '1') == '1'
+                        and self._is_notify_device(path)):
+                    try:
+                        name = dbus_bluez.device_get_name(path)
+                    except Exception:
+                        name = path
+                    oe.notify('Bluetooth', f'Connected to {name}', 'bt')
                 self._handle_audio_connect(path)
             else:
-                oe.notify('Bluetooth', f'Disconnected from {name}', 'bt')
+                if (oe.get_service_option('bluez', 'NOTIFY_CONNECTED', '1') == '1'
+                        and self._is_notify_device(path)):
+                    try:
+                        name = dbus_bluez.device_get_name(path)
+                    except Exception:
+                        name = path
+                    oe.notify('Bluetooth', f'Disconnected from {name}', 'bt')
                 self._handle_audio_disconnect(path)
 
         if self.parent.visible:
