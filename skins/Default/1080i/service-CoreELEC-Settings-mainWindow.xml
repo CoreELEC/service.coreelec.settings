@@ -236,8 +236,19 @@
                                 <width>1256</width>
                                 <height>63</height>
                                 <textcolor>white</textcolor>
+                                <scroll>true</scroll>
+                                <info>ListItem.Property(display_label)</info>
+                                <visible>!String.IsEqual(ListItem.Property(Typ), bool) + !String.IsEqual(ListItem.Property(Typ), button) + !String.IsEmpty(ListItem.Property(display_label))</visible>
+                            </control>
+                            <control type="label">
+                                <align>right</align>
+                                <aligny>center</aligny>
+                                <textoffsetx>40</textoffsetx>
+                                <width>1256</width>
+                                <height>63</height>
+                                <textcolor>white</textcolor>
                                 <info>ListItem.Property(value)</info>
-                                <visible>!String.IsEqual(ListItem.Property(Typ), bool) + !String.IsEqual(ListItem.Property(Typ), button)</visible>
+                                <visible>!String.IsEqual(ListItem.Property(Typ), bool) + !String.IsEqual(ListItem.Property(Typ), button) + String.IsEmpty(ListItem.Property(display_label))</visible>
                             </control>
                         </control>
                         <!-- section name / seperator -->
@@ -322,8 +333,19 @@
                                 <width>1256</width>
                                 <height>63</height>
                                 <textcolor>white</textcolor>
+                                <scroll>true</scroll>
+                                <info>ListItem.Property(display_label)</info>
+                                <visible>!String.IsEqual(ListItem.Property(Typ), bool) + !String.IsEqual(ListItem.Property(Typ), button) + !String.IsEmpty(ListItem.Property(display_label))</visible>
+                            </control>
+                            <control type="label">
+                                <align>right</align>
+                                <textoffsetx>40</textoffsetx>
+                                <aligny>center</aligny>
+                                <width>1256</width>
+                                <height>63</height>
+                                <textcolor>white</textcolor>
                                 <info>ListItem.Property(value)</info>
-                                <visible>!String.IsEqual(ListItem.Property(Typ), bool) + !String.IsEqual(ListItem.Property(Typ), button)</visible>
+                                <visible>!String.IsEqual(ListItem.Property(Typ), bool) + !String.IsEqual(ListItem.Property(Typ), button) + String.IsEmpty(ListItem.Property(display_label))</visible>
                             </control>
                         </control>
                         <!-- section name / seperator -->

@@ -147,7 +147,17 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                             if 'validate' in setting:
                                 dictProperties['validate'] = setting['validate']
                             if 'values' in setting:
-                                dictProperties['values'] = '|'.join(setting['values'])
+                                # Use ~~~ as separator to avoid conflicts with | in device values
+                                dictProperties['values'] = '~~~'.join(setting['values'])
+                                # Set display_label for multivalue settings
+                                if setting['type'] == 'multivalue':
+                                    current_value = setting['value']
+                                    for item in setting['values']:
+                                        if '###' in item:
+                                            label, value = item.split('###', 1)
+                                            if value == current_value:
+                                                dictProperties['display_label'] = label
+                                                break
                             if isinstance(setting['name'], str):
                                 name = setting['name']
                             else:
@@ -249,9 +259,12 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                 if strTyp == 'multivalue':
                     items1 = []
                     items2 = []
-                    for item in selectedItem.getProperty('values').split('|'):
-                        if item != ':':
-                            boo = item.split(':')
+                    current_label = None
+                    # Use ~~~ as separator to avoid conflicts with | in device values
+                    for item in selectedItem.getProperty('values').split('~~~'):
+                        if item != '###':
+                            # Split on ### to separate label from value (: appears in labels)
+                            boo = item.split('###', 1)
                             if len(boo) > 1:
                                 i1 = boo[0]
                                 i2 = boo[1]
@@ -264,15 +277,21 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                         if i2 == strValue:
                             items1.insert(0, i1)
                             items2.insert(0, i2)
+                            current_label = i1  # Remember the label for current value
                         else:
                             # move current on top of the list
                             items1.append(i1)
                             items2.append(i2)
+                    # Set the label for display outside the selection box
+                    if current_label:
+                        selectedItem.setProperty('display_label', current_label)
                     select_window = xbmcgui.Dialog()
                     title = selectedItem.getProperty('menuname')
                     result = select_window.select(title, items1)
                     if result >= 0:
                         selectedItem.setProperty('value', items2[result])
+                        # Also set the display label for UI (value is used for actual setting)
+                        selectedItem.setProperty('display_label', items1[result])
                 elif strTyp == 'text':
                     xbmcKeyboard = xbmc.Keyboard(strValue)
                     result_is_valid = False

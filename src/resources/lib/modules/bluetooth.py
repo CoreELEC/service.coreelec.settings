@@ -86,11 +86,60 @@ class bluetooth(modules.Module):
     @log.log_function()
     def start_service(self):
         self._restore_audio_on_start()
+        self._save_default_audio_device()
         self.bluez_agent = Bluez_Agent(self)
         self.obex_agent = Obex_Agent(self)
         self.bluez_listener = Bluez_Listener(self)
         self.obex_listener = Obex_Listener(self)
         self.find_adapter()
+
+    def _save_default_audio_device(self):
+        """Save the default audio device for restoration on BT disconnect.
+
+        Strategy:
+        1. Check for user-configured device setting (future feature)
+        2. If we have a saved device from previous session, keep it
+        3. If current device is not Bluetooth, save it
+        4. If currently on Bluetooth, fall back to passthrough device (HDMI/ALSA)
+        """
+        # Check if user has configured a preferred device
+        user_configured = oe.read_setting('bluetooth', 'restore_audio_device')
+        if user_configured:
+            # Save user-configured device as the default to restore to
+            oe.write_setting('bluetooth', 'default_audio_device', user_configured)
+            log.log(f'Set default_audio_device to user-configured: {user_configured}', log.INFO)
+            return
+
+        # If we have a saved device from previous session, keep it
+        saved_device = oe.read_setting('bluetooth', 'default_audio_device')
+        if saved_device:
+            log.log(f'Keeping previously saved audio device: {saved_device}', log.INFO)
+            return
+
+        # Get current audio device
+        result = oe.jsonrpc({
+            'method': 'Settings.GetSettingValue',
+            'params': {'setting': 'audiooutput.audiodevice'},
+        })
+        if result is not None:
+            current_device = result.get('value', '')
+
+            # If not on Bluetooth, save current device
+            if current_device and 'PULSE' not in current_device:
+                oe.write_setting('bluetooth', 'default_audio_device', current_device)
+                log.log(f'Saved current audio device: {current_device}', log.INFO)
+                return
+
+        # Fallback: Currently on Bluetooth, use passthrough device (typically HDMI)
+        pt_result = oe.jsonrpc({
+            'method': 'Settings.GetSettingValue',
+            'params': {'setting': 'audiooutput.passthroughdevice'},
+        })
+        if pt_result is not None:
+            fallback_device = pt_result.get('value', '')
+            if fallback_device:
+                oe.write_setting('bluetooth', 'default_audio_device', fallback_device)
+                log.log(f'Currently on BT at startup, using passthrough device as fallback: {fallback_device}', log.INFO)
 
     def _restore_audio_on_start(self):
         """Restore audio settings if a previous session ended with BT audio active."""
@@ -108,14 +157,33 @@ class bluetooth(modules.Module):
         saved_passthrough = oe.read_setting('bluetooth', 'passthrough')
         if saved_passthrough:
             log.log(f'Restoring audio passthrough on start: {saved_passthrough}', log.DEBUG)
-            oe.jsonrpc({
-                'method': 'Settings.SetSettingValue',
-                'params': {
-                    'setting': 'audiooutput.passthrough',
-                    'value': int(saved_passthrough),
-                },
-            })
+            try:
+                # Convert string to boolean (passthrough is a boolean setting)
+                passthrough_value = bool(int(saved_passthrough))
+                oe.jsonrpc({
+                    'method': 'Settings.SetSettingValue',
+                    'params': {
+                        'setting': 'audiooutput.passthrough',
+                        'value': passthrough_value,
+                    },
+                })
+            except (ValueError, TypeError) as e:
+                log.log(f'Failed to restore passthrough (invalid value): {saved_passthrough}', log.ERROR)
             oe.write_setting('bluetooth', 'passthrough', '')
+        saved_channels = oe.read_setting('bluetooth', 'channels')
+        if saved_channels:
+            log.log(f'Restoring audio channels on start: {saved_channels}', log.DEBUG)
+            try:
+                oe.jsonrpc({
+                    'method': 'Settings.SetSettingValue',
+                    'params': {
+                        'setting': 'audiooutput.channels',
+                        'value': int(saved_channels),
+                    },
+                })
+            except (ValueError, TypeError) as e:
+                log.log(f'Failed to restore channels (invalid value): {saved_channels}', log.ERROR)
+            oe.write_setting('bluetooth', 'channels', '')
 
     @log.log_function()
     def stop_service(self):
@@ -352,6 +420,11 @@ class bluetooth(modules.Module):
     def menu_connections(self, focusItem=None):
         if oe.is_busy():
             return
+        # Retry finding adapter if not available (fixes race condition on boot)
+        # Only retry here to avoid interrupting user during periodic refreshes
+        if self.dbusBluezAdapter is None:
+            log.log('Adapter not found, retrying...', log.DEBUG)
+            self.find_adapter()
         self.discover_devices()
         if self.dbusBluezAdapter is not None and (not hasattr(self, 'discovery_thread') or self.discovery_thread.stopped):
             if hasattr(self, 'discovery_thread') and self.discovery_thread.stopped:
@@ -593,10 +666,14 @@ class Bluez_Listener(dbus_bluez.Listener):
 
     def _handle_audio_connect(self, path):
         if oe.get_service_option('bluez', 'SWITCH_AUDIO_DEVICE', '1') != '1':
+            log.log('Audio switching disabled in settings', log.INFO)
             return
-        if not self._is_audio_device(path):
+        device_class = self._get_device_class(path)
+        is_audio = self._is_audio_device(path)
+        log.log(f'BT device connected: {path}, class={device_class}, is_audio={is_audio}', log.INFO)
+        if not is_audio:
             return
-        log.log(f'Bluetooth audio device connected: {path}', log.DEBUG)
+        log.log(f'Bluetooth audio device connected, switching audio settings', log.INFO)
         # Get current audio device
         result = oe.jsonrpc({
             'method': 'Settings.GetSettingValue',
@@ -607,7 +684,9 @@ class Bluez_Listener(dbus_bluez.Listener):
         else:
             current_device = ''
         # Save current device if not already on PULSE
-        if 'PULSE' not in current_device:
+        # But don't overwrite if user has configured a restore device
+        user_configured = oe.read_setting('bluetooth', 'restore_audio_device')
+        if 'PULSE' not in current_device and not user_configured:
             oe.write_setting('bluetooth', 'default_audio_device', current_device)
         # Get and save current passthrough state
         pt_result = oe.jsonrpc({
@@ -617,13 +696,31 @@ class Bluez_Listener(dbus_bluez.Listener):
         if pt_result is not None:
             passthrough = pt_result.get('value', 0)
             if passthrough:
-                oe.write_setting('bluetooth', 'passthrough', str(passthrough))
+                oe.write_setting('bluetooth', 'passthrough', str(int(passthrough)))
+        # Get and save current channels setting
+        ch_result = oe.jsonrpc({
+            'method': 'Settings.GetSettingValue',
+            'params': {'setting': 'audiooutput.channels'},
+        })
+        if ch_result is not None:
+            channels = ch_result.get('value', -1)
+            # Only save if not already 2.0 (value 1)
+            if channels != 1:
+                oe.write_setting('bluetooth', 'channels', str(int(channels)))
         # Switch audio to PulseAudio Bluetooth
         oe.jsonrpc({
             'method': 'Settings.SetSettingValue',
             'params': {
                 'setting': 'audiooutput.audiodevice',
                 'value': 'PULSE:Default|Bluetooth Audio (PULSEAUDIO)',
+            },
+        })
+        # Set channels to 2.0 (value 1 in Kodi)
+        oe.jsonrpc({
+            'method': 'Settings.SetSettingValue',
+            'params': {
+                'setting': 'audiooutput.channels',
+                'value': 1,
             },
         })
         # Disable passthrough if it was on (with 1s delay as in old code)
@@ -633,17 +730,19 @@ class Bluez_Listener(dbus_bluez.Listener):
                 'method': 'Settings.SetSettingValue',
                 'params': {
                     'setting': 'audiooutput.passthrough',
-                    'value': 0,
+                    'value': False,
                 },
             })
-        log.log('Switched audio output to Bluetooth', log.DEBUG)
+        log.log('Switched audio output to Bluetooth with 2.0 channels and passthrough disabled', log.INFO)
 
     def _handle_audio_disconnect(self, path):
         if not self._is_audio_device(path):
             return
-        log.log(f'Bluetooth audio device disconnected: {path}', log.DEBUG)
+        log.log(f'Bluetooth audio device disconnected, restoring settings: {path}', log.INFO)
         saved_device = oe.read_setting('bluetooth', 'default_audio_device')
+        log.log(f'Saved device to restore: {saved_device}', log.INFO)
         if not saved_device:
+            log.log('No saved device to restore', log.INFO)
             return
         # Check if currently on PULSE before restoring
         result = oe.jsonrpc({
@@ -654,7 +753,9 @@ class Bluez_Listener(dbus_bluez.Listener):
             current_device = result.get('value', '')
         else:
             current_device = ''
+        log.log(f'Current audio device: {current_device}', log.INFO)
         if 'PULSE' in current_device:
+            log.log(f'Restoring audio device to: {saved_device}', log.INFO)
             oe.jsonrpc({
                 'method': 'Settings.SetSettingValue',
                 'params': {
@@ -663,19 +764,44 @@ class Bluez_Listener(dbus_bluez.Listener):
                 },
             })
             oe.write_setting('bluetooth', 'default_audio_device', '')
-            log.log(f'Restored audio output to: {saved_device}', log.DEBUG)
+            log.log(f'Audio device restored successfully', log.INFO)
+        else:
+            log.log(f'Not on PULSE, skipping audio device restore', log.INFO)
+        # Restore channels if it was saved
+        saved_channels = oe.read_setting('bluetooth', 'channels')
+        if saved_channels:
+            try:
+                oe.jsonrpc({
+                    'method': 'Settings.SetSettingValue',
+                    'params': {
+                        'setting': 'audiooutput.channels',
+                        'value': int(saved_channels),
+                    },
+                })
+                oe.write_setting('bluetooth', 'channels', '')
+                log.log(f'Restored audio channels to: {saved_channels}', log.DEBUG)
+            except (ValueError, TypeError) as e:
+                log.log(f'Failed to restore channels: {e}', log.ERROR)
+                oe.write_setting('bluetooth', 'channels', '')
         # Restore passthrough if it was saved
         saved_passthrough = oe.read_setting('bluetooth', 'passthrough')
         if saved_passthrough:
-            oe.jsonrpc({
-                'method': 'Settings.SetSettingValue',
-                'params': {
-                    'setting': 'audiooutput.passthrough',
-                    'value': int(saved_passthrough),
-                },
-            })
-            oe.write_setting('bluetooth', 'passthrough', '')
-            log.log('Restored audio passthrough', log.DEBUG)
+            try:
+                # Convert string to boolean (passthrough is a boolean setting)
+                passthrough_value = bool(int(saved_passthrough))
+                log.log(f'Restoring passthrough to: {passthrough_value}', log.INFO)
+                oe.jsonrpc({
+                    'method': 'Settings.SetSettingValue',
+                    'params': {
+                        'setting': 'audiooutput.passthrough',
+                        'value': passthrough_value,
+                    },
+                })
+                oe.write_setting('bluetooth', 'passthrough', '')
+                log.log('Passthrough restored successfully', log.INFO)
+            except (ValueError, TypeError) as e:
+                log.log(f'Failed to restore passthrough: {e}', log.ERROR)
+                oe.write_setting('bluetooth', 'passthrough', '')
 
     @log.log_function()
     def on_interfaces_added(self, path, interfaces):
