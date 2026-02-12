@@ -305,7 +305,7 @@ msgid "Show notification when a Bluetooth device connects or disconnects (exclud
 msgstr ""
 
 msgctxt "#777"
-msgid "Specify which audio device to restore when Bluetooth disconnects. Leave empty to auto-detect. Example: ALSA:hdmi:CARD=AMLAUGESOUND,DEV=0|AML-AUGESOUND"
+msgid "Specify which audio device to restore when Bluetooth disconnects. Leave empty to auto-detect. Example: ALSA: AML-AUGESOUND, HDMI"
 msgstr ""
 
 msgctxt "#780"
