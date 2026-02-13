@@ -639,6 +639,8 @@ class Bluez_Listener(dbus_bluez.Listener):
     @log.log_function()
     def __init__(self, parent):
         self.parent = weakref.proxy(parent)
+        self._last_connect_event = {}  # path -> timestamp for debounce
+        self._last_disconnect_event = {}  # path -> timestamp for debounce
         super().__init__()
 
     def _get_device_class(self, path):
@@ -683,11 +685,16 @@ class Bluez_Listener(dbus_bluez.Listener):
             current_device = result.get('value', '')
         else:
             current_device = ''
-        # Save current device if not already on PULSE
-        # But don't overwrite if user has configured a restore device
+        # Save the device to restore on disconnect
         user_configured = oe.read_setting('bluetooth', 'restore_audio_device')
-        if 'PULSE' not in current_device and not user_configured:
+        if user_configured:
+            # User has configured a preferred restore device - always use it
+            oe.write_setting('bluetooth', 'default_audio_device', user_configured)
+            log.log(f'Set default_audio_device from user config: {user_configured}', log.INFO)
+        elif 'PULSE' not in current_device:
+            # No user preference - save current non-BT device
             oe.write_setting('bluetooth', 'default_audio_device', current_device)
+            log.log(f'Saved current audio device: {current_device}', log.INFO)
         # Get and save current passthrough state
         pt_result = oe.jsonrpc({
             'method': 'Settings.GetSettingValue',
@@ -741,32 +748,32 @@ class Bluez_Listener(dbus_bluez.Listener):
         log.log(f'Bluetooth audio device disconnected, restoring settings: {path}', log.INFO)
         saved_device = oe.read_setting('bluetooth', 'default_audio_device')
         log.log(f'Saved device to restore: {saved_device}', log.INFO)
-        if not saved_device:
-            log.log('No saved device to restore', log.INFO)
-            return
-        # Check if currently on PULSE before restoring
-        result = oe.jsonrpc({
-            'method': 'Settings.GetSettingValue',
-            'params': {'setting': 'audiooutput.audiodevice'},
-        })
-        if result is not None:
-            current_device = result.get('value', '')
-        else:
-            current_device = ''
-        log.log(f'Current audio device: {current_device}', log.INFO)
-        if 'PULSE' in current_device:
-            log.log(f'Restoring audio device to: {saved_device}', log.INFO)
-            oe.jsonrpc({
-                'method': 'Settings.SetSettingValue',
-                'params': {
-                    'setting': 'audiooutput.audiodevice',
-                    'value': saved_device,
-                },
+        if saved_device:
+            # Check if currently on PULSE before restoring
+            result = oe.jsonrpc({
+                'method': 'Settings.GetSettingValue',
+                'params': {'setting': 'audiooutput.audiodevice'},
             })
+            if result is not None:
+                current_device = result.get('value', '')
+            else:
+                current_device = ''
+            log.log(f'Current audio device: {current_device}', log.INFO)
+            if 'PULSE' in current_device:
+                log.log(f'Restoring audio device to: {saved_device}', log.INFO)
+                oe.jsonrpc({
+                    'method': 'Settings.SetSettingValue',
+                    'params': {
+                        'setting': 'audiooutput.audiodevice',
+                        'value': saved_device,
+                    },
+                })
+                log.log(f'Audio device restored successfully', log.INFO)
+            else:
+                log.log(f'Not on PULSE, skipping audio device restore', log.INFO)
             oe.write_setting('bluetooth', 'default_audio_device', '')
-            log.log(f'Audio device restored successfully', log.INFO)
         else:
-            log.log(f'Not on PULSE, skipping audio device restore', log.INFO)
+            log.log('No saved device to restore, will still attempt channels/passthrough', log.INFO)
         # Restore channels if it was saved
         saved_channels = oe.read_setting('bluetooth', 'channels')
         if saved_channels:
@@ -825,24 +832,37 @@ class Bluez_Listener(dbus_bluez.Listener):
     def on_properties_changed(self, interface, changed, invalidated, path):
         # Handle audio device switching and notifications on connect/disconnect
         if 'Connected' in changed:
+            now = time.monotonic()
             if changed['Connected']:
-                if (oe.get_service_option('bluez', 'NOTIFY_CONNECTED', '1') == '1'
-                        and self._is_notify_device(path)):
-                    try:
-                        name = dbus_bluez.device_get_name(path)
-                    except Exception:
-                        name = path
-                    oe.notify('Bluetooth', f'Connected to {name}', 'bt')
-                self._handle_audio_connect(path)
+                # Debounce: ignore duplicate connect signals within 1 second
+                last = self._last_connect_event.get(path, 0)
+                if now - last < 1.0:
+                    log.log(f'Debounce: ignoring duplicate connect for {path}', log.DEBUG)
+                else:
+                    self._last_connect_event[path] = now
+                    if (oe.get_service_option('bluez', 'NOTIFY_CONNECTED', '1') == '1'
+                            and self._is_notify_device(path)):
+                        try:
+                            name = dbus_bluez.device_get_name(path)
+                        except Exception:
+                            name = path
+                        oe.notify('Bluetooth', f'Connected to {name}', 'bt')
+                    self._handle_audio_connect(path)
             else:
-                if (oe.get_service_option('bluez', 'NOTIFY_CONNECTED', '1') == '1'
-                        and self._is_notify_device(path)):
-                    try:
-                        name = dbus_bluez.device_get_name(path)
-                    except Exception:
-                        name = path
-                    oe.notify('Bluetooth', f'Disconnected from {name}', 'bt')
-                self._handle_audio_disconnect(path)
+                # Debounce: ignore duplicate disconnect signals within 1 second
+                last = self._last_disconnect_event.get(path, 0)
+                if now - last < 1.0:
+                    log.log(f'Debounce: ignoring duplicate disconnect for {path}', log.DEBUG)
+                else:
+                    self._last_disconnect_event[path] = now
+                    if (oe.get_service_option('bluez', 'NOTIFY_CONNECTED', '1') == '1'
+                            and self._is_notify_device(path)):
+                        try:
+                            name = dbus_bluez.device_get_name(path)
+                        except Exception:
+                            name = path
+                        oe.notify('Bluetooth', f'Disconnected from {name}', 'bt')
+                    self._handle_audio_disconnect(path)
 
         if self.parent.visible:
             properties = [
