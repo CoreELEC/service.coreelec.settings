@@ -672,10 +672,12 @@ class Bluez_Listener(dbus_bluez.Listener):
     def _is_notify_device(self, path):
         """Check if device warrants connect/disconnect notifications.
         Skips peripherals like remotes and game controllers that reconnect
-        frequently. Notifies for audio, phone, computer, imaging, etc."""
+        frequently. Also skips devices with unknown class (typically remotes
+        whose Class property isn't available yet).
+        Notifies for audio, phone, computer, imaging, etc."""
         device_class = self._get_device_class(path)
         if not device_class:
-            return True
+            return False
         # Major device class is bits 12-8
         major_class = (device_class >> 8) & 0x1F
         # 5 = Peripheral (remotes, game controllers, joysticks)
@@ -848,7 +850,8 @@ class Bluez_Listener(dbus_bluez.Listener):
     @log.log_function()
     def on_properties_changed(self, interface, changed, invalidated, path):
         # Handle audio device switching and notifications on connect/disconnect
-        if 'Connected' in changed:
+        # Skip during shutdown - JSON-RPC calls to Kodi can hang if it's exiting
+        if 'Connected' in changed and not oe.xbmcm.abortRequested():
             now = time.monotonic()
             if changed['Connected']:
                 # Debounce: ignore duplicate connect signals within 1 second
