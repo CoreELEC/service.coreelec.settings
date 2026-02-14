@@ -641,7 +641,22 @@ class Bluez_Listener(dbus_bluez.Listener):
         self.parent = weakref.proxy(parent)
         self._last_connect_event = {}  # path -> timestamp for debounce
         self._last_disconnect_event = {}  # path -> timestamp for debounce
+        self._audio_devices = set()  # paths of connected audio devices
+        self._seed_audio_devices()
         super().__init__()
+
+    def _seed_audio_devices(self):
+        """Populate cache with already-connected audio devices."""
+        try:
+            devices = dbus_bluez.find_devices()
+            for path, props in devices.items():
+                if props.get('Connected'):
+                    device_class = props.get('Class', 0)
+                    if device_class and (device_class & (1 << 21)):
+                        self._audio_devices.add(path)
+                        log.log(f'Seeded audio device cache: {path}', log.DEBUG)
+        except Exception as e:
+            log.log(f'Failed to seed audio device cache: {e}', log.DEBUG)
 
     def _get_device_class(self, path):
         try:
@@ -675,6 +690,7 @@ class Bluez_Listener(dbus_bluez.Listener):
         log.log(f'BT device connected: {path}, class={device_class}, is_audio={is_audio}', log.INFO)
         if not is_audio:
             return
+        self._audio_devices.add(path)
         log.log(f'Bluetooth audio device connected, switching audio settings', log.INFO)
         # Get current audio device
         result = oe.jsonrpc({
@@ -743,8 +759,9 @@ class Bluez_Listener(dbus_bluez.Listener):
         log.log('Switched audio output to Bluetooth with 2.0 channels and passthrough disabled', log.INFO)
 
     def _handle_audio_disconnect(self, path):
-        if not self._is_audio_device(path):
+        if path not in self._audio_devices:
             return
+        self._audio_devices.discard(path)
         log.log(f'Bluetooth audio device disconnected, restoring settings: {path}', log.INFO)
         saved_device = oe.read_setting('bluetooth', 'default_audio_device')
         log.log(f'Saved device to restore: {saved_device}', log.INFO)
