@@ -4,6 +4,7 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 # Copyright (C) 2020-present Team CoreELEC (https://coreelec.org)
 
+import asyncio
 import oe
 import dbus_utils
 import xbmc
@@ -151,12 +152,41 @@ if hasattr(oe, 'winOeMain') and hasattr(oe.winOeMain, 'visible'):
     if oe.winOeMain.visible == True:
         oe.winOeMain.close()
 
+try:
+    # Cancel all pending event loop tasks so threads blocked on
+    # future.result() (e.g. connectionThread doing device_connect via
+    # run_method) get unblocked and can exit.
+    def _cancel_all_tasks():
+        for task in asyncio.all_tasks(dbus_utils.LOOP):
+            task.cancel()
+    dbus_utils.LOOP.call_soon_threadsafe(_cancel_all_tasks)
+except Exception:
+    pass
 oe.stop_service()
 monitor.stop()
 try:
+    # Force the event loop to stop, then join the thread.
+    dbus_utils.LOOP.call_soon_threadsafe(dbus_utils.LOOP.stop)
     dbus_utils.LOOP_THREAD.stop()
-    del dbus_utils.LOOP_THREAD
-    del dbus_utils.LOOP
-    del dbus_utils.BUS
+except Exception:
+    pass
+# Detach the D-Bus connection from the asyncio event loop while the
+# interpreter is still fully functional. This removes the ctypes watch
+# and timeout callbacks that libdbus holds. Without this, Python's
+# module cleanup frees the ctypes callback objects while libdbus still
+# references them, causing a SIGSEGV.
+# Also clear ravel's dispatch trees so its __del__ skips calling
+# bus_remove_match (which would fail after detaching from the loop).
+try:
+    import dbussy
+    conn = dbus_utils.BUS.connection
+    if conn._dbobj is not None and conn.loop is not None:
+        dbussy.dbus.dbus_connection_set_watch_functions(
+            conn._dbobj, None, None, None, None, None)
+        dbussy.dbus.dbus_connection_set_timeout_functions(
+            conn._dbobj, None, None, None, None, None)
+        conn.loop = None
+    dbus_utils.BUS._server_dispatch = None
+    dbus_utils.BUS._client_dispatch = None
 except Exception:
     pass

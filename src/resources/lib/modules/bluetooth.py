@@ -867,7 +867,12 @@ class Bluez_Listener(dbus_bluez.Listener):
                         except Exception:
                             name = path
                         oe.notify('Bluetooth', f'Connected to {name}', 'bt')
-                    self._handle_audio_connect(path)
+                    # Run audio switching in a separate thread to keep the
+                    # D-Bus event loop responsive (bluetoothd calls Release on
+                    # our agent during shutdown and needs a timely reply).
+                    threading.Thread(
+                        target=self._handle_audio_connect, args=(path,),
+                        daemon=True).start()
             else:
                 # Debounce: ignore duplicate disconnect signals within 1 second
                 last = self._last_disconnect_event.get(path, 0)
@@ -882,7 +887,9 @@ class Bluez_Listener(dbus_bluez.Listener):
                         except Exception:
                             name = path
                         oe.notify('Bluetooth', f'Disconnected from {name}', 'bt')
-                    self._handle_audio_disconnect(path)
+                    threading.Thread(
+                        target=self._handle_audio_disconnect, args=(path,),
+                        daemon=True).start()
 
         if self.parent.visible:
             properties = [

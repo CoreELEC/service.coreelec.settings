@@ -129,7 +129,7 @@ async def call_async_method(bus_name, path, interface, method_name, *args, **kwa
 def run_method(bus_name, path, interface, method_name, *args, **kwargs):
     future = asyncio.run_coroutine_threadsafe(call_async_method(
         bus_name, path, interface, method_name, *args, **kwargs), LOOP)
-    return future.result()
+    return future.result(timeout=30)
 
 
 try:
