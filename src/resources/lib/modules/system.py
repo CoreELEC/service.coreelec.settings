@@ -337,12 +337,12 @@ class system:
                         timezone_country_code, timezone_cities = self.filter_timezone_city(value, None)
                         self.struct['timezone']['settings']['timezone']['values'] = timezone_cities
                         self.struct['timezone']['settings']['timezone']['value'] = value
-                        self.oe.dbg_log('system::load_values', 'current timezone city: %s, %s' % (value, timezone_country_code))
+                        self.oe.dbg_log('system::load_values', 'current timezone city: %s, %s' % (value, timezone_country_code), self.oe.LOGINFO)
 
                         timezone_country, timezone_countries = self.filter_timezone_country(None, timezone_country_code)
                         self.struct['timezone']['settings']['timezone_country']['values'] = timezone_countries
                         self.struct['timezone']['settings']['timezone_country']['value'] = timezone_country
-                        self.oe.dbg_log('system::load_values', 'current timezone country: %s, %s' % (timezone_country, timezone_country_code))
+                        self.oe.dbg_log('system::load_values', 'current timezone country: %s, %s' % (timezone_country, timezone_country_code), self.oe.LOGINFO)
 
             if value == "":
                 timezone_url = 'https://time.coreelec.org/api/v3'
@@ -359,12 +359,12 @@ class system:
                     self.struct['timezone']['settings']['timezone']['values'] = timezone_cities
                     self.struct['timezone']['settings']['timezone']['value'] = value
                     self.set_timezone(value)
-                    self.oe.dbg_log('system::load_values', 'current timezone city: %s, %s' % (value, timezone_country_code))
+                    self.oe.dbg_log('system::load_values', 'current timezone city: %s, %s' % (value, timezone_country_code), self.oe.LOGINFO)
 
                     timezone_country, timezone_countries = self.filter_timezone_country(None, timezone_country_code)
                     self.struct['timezone']['settings']['timezone_country']['values'] = timezone_countries
                     self.struct['timezone']['settings']['timezone_country']['value'] = timezone_country
-                    self.oe.dbg_log('system::load_values', 'current timezone country: %s, %s' % (timezone_country, timezone_country_code))
+                    self.oe.dbg_log('system::load_values', 'current timezone country: %s, %s' % (timezone_country, timezone_country_code), self.oe.LOGINFO)
                 else:
                     timezone_countries = self.filter_timezone_country(None, None)
                     self.struct['timezone']['settings']['timezone_country']['values'] = timezone_countries
