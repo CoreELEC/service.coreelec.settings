@@ -84,7 +84,7 @@ class LoopThread(threading.Thread):
     def run(self):
         try:
             self.loop.run_until_complete(self.wait())
-        except Exception:
+        except (Exception, asyncio.CancelledError):
             pass
 
     @log.log_function()
