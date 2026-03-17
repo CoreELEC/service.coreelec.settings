@@ -8,8 +8,6 @@
 # dbus_utils.py using dbussy/ravel, with signal listeners in each module
 # (bluetooth.py, connman.py) inheriting from their respective dbus_* Listener classes.
 
-lock = threading.Lock()
-
 class xdbus:
 
     ENABLED = False
