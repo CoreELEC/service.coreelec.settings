@@ -35,6 +35,7 @@ class system:
     BACKUP_DESTINATION = None
     RESTORE_DIR = None
     SET_CLOCK_CMD = None
+    JOURNALD_CONFIG_FILE = None
     menu = {'1': {
         'name': 32002,
         'menuLoader': 'load_menu',
@@ -236,7 +237,49 @@ class system:
                             },
                         },
                     },
-                }
+                'journal': {
+                    'order': 10,
+                    'name': 32410,
+                    'settings': {
+                        'journal_persistent': {
+                            'order': 1,
+                            'name': 32411,
+                            'value': '0',
+                            'action': 'do_journald',
+                            'type': 'bool',
+                            'InfoText': 32412,
+                        },
+                        'journal_size': {
+                            'order': 2,
+                            'name': 32413,
+                            'value': '30 MiB',
+                            'action': 'do_journald',
+                            'type': 'multivalue',
+                            'values': [
+                                '30 MiB', '60 MiB', '100 MiB',
+                                '150 MiB', '200 MiB', '300 MiB'
+                            ],
+                            'InfoText': 32414,
+                            'parent': {
+                                'entry': 'journal_persistent',
+                                'value': ['1'],
+                            },
+                        },
+                        'journal_rate_limit': {
+                            'order': 2,
+                            'name': 32415,
+                            'value': '1',
+                            'action': 'do_journald',
+                            'type': 'bool',
+                            'InfoText': 32416,
+                            'parent': {
+                                'entry': 'journal_persistent',
+                                'value': ['1'],
+                            },
+                        },
+                    },
+                },
+            }
 
             self.keyboard_layouts = False
             self.nox_keyboard_layouts = False
@@ -377,6 +420,11 @@ class system:
             # PIN Lock
             self.struct['pinlock']['settings']['pinlock_enable']['value'] = '1' if self.oe.PIN.isEnabled() else '0'
 
+            # Journal
+            self.get_setting('journal', 'journal_persistent')
+            self.get_setting('journal', 'journal_size')
+            self.get_setting('journal', 'journal_rate_limit')
+
         except Exception as e:
             self.oe.dbg_log('system::load_values', 'ERROR: (' + repr(e) + ')')
 
@@ -387,6 +435,11 @@ class system:
             self.oe.dbg_log('system::load_menu', 'exit_function', self.oe.LOGDEBUG)
         except Exception as e:
             self.oe.dbg_log('system::load_menu', 'ERROR: (' + repr(e) + ')')
+
+    def get_setting(self, group, setting, allowEmpty=False):
+        value = self.oe.read_setting('system', setting)
+        if not value is None and not (allowEmpty == False and value is ''):
+            self.struct[group]['settings'][setting]['value'] = value
 
     def set_value(self, listItem):
         try:
@@ -944,6 +997,31 @@ class system:
             self.oe.dbg_log('system::set_pinlock', 'exit_function', self.oe.LOGDEBUG)
         except Exception as e:
             self.oe.dbg_log('system::set_pinlock', 'ERROR: (%s)' % repr(e), self.oe.LOGERROR)
+
+    def do_journald(self, listItem=None):
+        if not listItem == None:
+            self.set_value(listItem)
+            if (self.struct['journal']['settings']['journal_persistent']['value'] == '0' and
+                    os.path.isfile(self.JOURNALD_CONFIG_FILE)):
+                try:
+                    os.remove(self.JOURNALD_CONFIG_FILE)
+                except:
+                    pass
+            else:
+                config_file = open(self.JOURNALD_CONFIG_FILE, 'w')
+                config_file.write("# SPDX-License-Identifier: GPL-2.0-or-later\n" +
+                                  "# Copyright (C) 2021-present Team LibreELEC (https://libreelec.tv)\n\n" +
+                                  "# Copyright (C) 2020-present Team CoreELEC (https://coreelec.org)\n\n" +
+                                  "# This file is generated automatically, don't modify.\n\n" +
+                                  "[Journal]\n")
+
+                size = self.struct['journal']['settings']['journal_size']['value'].replace(' MiB', 'M')
+                config_file.write(("SystemMaxUse=%s\n" % size) +
+                                  "MaxRetentionSec=0\n")
+                if self.struct['journal']['settings']['journal_rate_limit']['value'] == '1':
+                    config_file.write("RateLimitInterval=0\n" +
+                                      "RateLimitBurst=0\n")
+                config_file.close()
 
     def do_wizard(self):
         try:
