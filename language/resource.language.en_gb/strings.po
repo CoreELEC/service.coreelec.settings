@@ -917,10 +917,6 @@ msgctxt "#32240"
 msgid "Wireless Regulatory Domain"
 msgstr ""
 
-msgctxt "#32240"
-msgid "Wireless Regulatory Domain"
-msgstr ""
-
 msgctxt "#32300"
 msgid "Welcome to @DISTRONAME@"
 msgstr ""
