@@ -7,6 +7,9 @@ import ravel
 
 import dbus_utils
 
+from pathlib import Path
+import log
+
 
 BUS_NAME = 'org.bluez'
 ERROR_REJECTED = 'org.bluez.Error.Rejected'
@@ -211,12 +214,94 @@ def device_set_trusted(path, trusted):
     return device_set_property(path, 'Trusted', (dbussy.DBUS.Signature('b'), trusted))
 
 
-def find_adapter():
+def get_adapter_transport(hci_name):
+    """
+    Detect if the Bluetooth adapter (hciX) is connected via USB or UART.
+    Returns: 'USB', 'UART', 'Other', or 'Unknown'
+    """
+    sys_path = Path(f"/sys/class/bluetooth/{hci_name}")
+    if not sys_path.exists():
+        return "Unknown (not found)"
+
+    # Follow the symlink to the real device
+    try:
+        device_path = (sys_path / "device").resolve()
+    except Exception:
+        return "Unknown (no device link)"
+
+    # Walk up the parent directories and look for "usb" or "serial" in the path
+    for parent in device_path.parents:
+        parent_str = str(parent).lower() + '/'
+
+        if "/usb" in parent_str or parent.name.startswith("usb"):
+            return "USB"
+
+        if any(x in parent_str for x in ["/serial/", "/tty/", "ttyama", "ttyS", "uart", "hci_uart"]):
+            return "UART"
+
+    # Fallback: check the subsystem symlink
+    subsystem_link = device_path / "subsystem"
+    if subsystem_link.is_symlink():
+        subsystem = subsystem_link.resolve().name
+        if subsystem == "usb":
+            return "USB"
+        if subsystem in ("serial", "amba", "platform"):
+            return "UART"
+
+    return "Other"
+
+
+def find_adapter(selected):
+    # USB 00:15:83:4F:32:56
+    if system_has_bluez():
+        if selected == '':
+            objects = get_managed_objects()
+            for path, interfaces in objects.items():
+                if interfaces.get(INTERFACE_ADAPTER):
+                    adapter_props = interfaces[INTERFACE_ADAPTER]
+                    address = adapter_props.get('Address', False)
+                    hci = path.strip().split('/')[-1]
+                    transport = get_adapter_transport(hci)
+                    log.log(f'using first available adapter: {transport} {address} {hci}', log.INFO)
+                    return path
+        else:
+            selected_parts = selected.split(' ')
+            if len(selected_parts) > 1:
+                selected_address = selected_parts[1]
+            else:
+                return
+
+            objects = get_managed_objects()
+            for path, interfaces in objects.items():
+                if interfaces.get(INTERFACE_ADAPTER):
+                    adapter_props = interfaces[INTERFACE_ADAPTER]
+                    address = adapter_props.get('Address', False)
+
+                    if address == selected_address:
+                        log.log(f'using aapter {selected}', log.INFO)
+                        return path
+
+            log.log(f'not found adapter {selected}', log.INFO)
+
+
+def find_all_adapters():
+    # UART b6:10:62:74:41:d0
+    # USB 00:15:83:4F:32:56
+    adapters = ['']
+
     if system_has_bluez():
         objects = get_managed_objects()
         for path, interfaces in objects.items():
             if interfaces.get(INTERFACE_ADAPTER):
-                return path
+                adapter_props = interfaces[INTERFACE_ADAPTER]
+                address = adapter_props.get('Address', False)
+                hci = path.strip().split('/')[-1]
+                transport = get_adapter_transport(hci)
+
+                adapters.append(f'{transport} {address}')
+                log.log(f'found adapter {transport} {address} {hci}', log.INFO)
+
+    return adapters
 
 
 def find_devices():

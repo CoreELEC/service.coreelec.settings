@@ -237,7 +237,12 @@ class bluetooth(modules.Module):
 
     @log.log_function()
     def find_adapter(self):
-        self.dbusBluezAdapter = dbus_bluez.find_adapter()
+        default_adapter = oe.get_service_option('bluez', 'DEFAULT_BT_ADAPTER', '')
+        log.log(f'default adapter: {default_adapter}', log.INFO)
+
+        self.dbusBluezAdapter = dbus_bluez.find_adapter(default_adapter)
+        log.log(f'dbusBluezAdapter: {self.dbusBluezAdapter}', log.INFO)
+
         if self.dbusBluezAdapter:
             self.init_adapter()
 
