@@ -337,7 +337,7 @@ msgid "Set fan speed level"
 msgstr "设置风扇转速等级"
 
 msgctxt "#785"
-msgid "Modify Vendor Bootloader to support all wake-up features such as CEC, Wake-On-LAN, IR, 和 GPIO wake-up from suspend or power off state!"
+msgid "Modify Vendor Bootloader to support all wake-up features such as CEC, Wake-On-LAN, IR, and GPIO wake-up from suspend or power off state!"
 msgstr "修改厂商引导程序，以支持从挂起或关机状态唤醒的所有功能，如 CEC（消费电子控制）、网络唤醒（Wake-On-LAN）、红外遥控（IR）和 GPIO 唤醒！"
 
 msgctxt "#786"
@@ -1418,7 +1418,6 @@ msgstr "导出显示器 EDID"
 msgctxt "#32540"
 msgid "Use dumped display EDID"
 msgstr "使用已导出的 EDID"
-
 msgctxt "#33510"
 msgid "Warning!"
 msgstr "警告！"
