@@ -732,7 +732,7 @@ def showPopUp(title, path):
         NOTES_TITLE = title
 
         #TODO: fix so this can be done in a way that doesn't leave blank line
-        regex = '\[TITLE\](.*?)\[\/TITLE\]'
+        regex = r'\[TITLE\](.*?)\[\/TITLE\]'
         match = re.search(regex, NOTES, re.IGNORECASE)
         if match:
           NOTES_TITLE = match.group(1)
@@ -968,7 +968,7 @@ def timestamp():
 
 def split_dialog_text(text):
     ret = [''] * 3
-    txt = re.findall('.{1,60}(?:\W|$)', text)
+    txt = re.findall(r'.{1,60}(?:\W|$)', text)
     for x in range(0, 2):
         if len(txt) > x:
             ret[x] = txt[x]
