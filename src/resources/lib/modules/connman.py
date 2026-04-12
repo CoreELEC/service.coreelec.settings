@@ -345,28 +345,32 @@ class connmanService(object):
             dbus_connman.service_set_timeservers_configuration(self.servicePath,
                 get_array(self.struct['Timeservers']['settings']))
         finally:
-            return 'close'
+        		pass
+        return 'close'
 
     @log.log_function()
     def delete_network(self):
         try:
             oe.dictModules['connman'].delete_network(None)
         finally:
-            return 'close'
+        		pass
+        return 'close'
 
     @log.log_function()
     def connect_network(self):
         try:
             oe.dictModules['connman'].connect_network(None)
         finally:
-            return 'close'
+        		pass
+        return 'close'
 
     @log.log_function()
     def disconnect_network(self):
         try:
             oe.dictModules['connman'].disconnect_network(None)
         finally:
-            return 'close'
+        		pass
+        return 'close'
 
 
 ####################################################################
@@ -433,7 +437,7 @@ class connman(modules.Module):
                         'entry': 'Tethering',
                         'value': ['1'],
                     },
-                    'validate': '^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$',
+                    'validate': r'^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$',
                     'InfoText': 728,
                 },
                 'TetheringPassphrase': {
@@ -489,7 +493,7 @@ class connman(modules.Module):
                     'value': '',
                     'action': 'set_timeservers',
                     'type': 'text',
-                    'validate': '^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$|^$',
+                    'validate': r'^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$|^$',
                     'InfoText': 732,
                 },
                 '1': {
@@ -498,7 +502,7 @@ class connman(modules.Module):
                     'value': '',
                     'action': 'set_timeservers',
                     'type': 'text',
-                    'validate': '^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$|^$',
+                    'validate': r'^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$|^$',
                     'InfoText': 733,
                 },
                 '2': {
@@ -507,7 +511,7 @@ class connman(modules.Module):
                     'value': '',
                     'action': 'set_timeservers',
                     'type': 'text',
-                    'validate': '^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$|^$',
+                    'validate': r'^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$|^$',
                     'InfoText': 734,
                 },
             },
