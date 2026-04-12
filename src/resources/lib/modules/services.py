@@ -10,6 +10,9 @@ import subprocess
 import xbmc
 import xbmcgui
 import xbmcaddon
+import oe
+import log
+import dbus_bluez
 
 __scriptid__ = 'service.coreelec.settings'
 __addon__ = xbmcaddon.Addon(id=__scriptid__)
@@ -293,8 +296,20 @@ class services:
                             'type': 'bool',
                             'InfoText': 720,
                             },
-                        'obex_enabled': {
+                        'default_bt_adapter': {
                             'order': 2,
+                            'name': 33531,
+                            'action': 'set_default_bt_adapter',
+                            'type': 'multivalue',
+                            'values': [],  # Populated dynamically
+                            'parent': {
+                                'entry': 'enabled',
+                                'value': ['1'],
+                                },
+                            'InfoText': 33532,
+                            },
+                        'obex_enabled': {
+                            'order': 3,
                             'name': 32384,
                             'value': None,
                             'action': 'init_obex',
@@ -306,7 +321,7 @@ class services:
                             'InfoText': 751,
                             },
                         'obex_root': {
-                            'order': 3,
+                            'order': 4,
                             'name': 32385,
                             'value': None,
                             'action': 'init_obex',
@@ -318,7 +333,7 @@ class services:
                             'InfoText': 752,
                             },
                         'idle_timeout': {
-                            'order': 4,
+                            'order': 5,
                             'name': 32400,
                             'value': None,
                             'action': 'idle_timeout',
@@ -339,7 +354,7 @@ class services:
                             'InfoText': 773,
                             },
                         'connect_paired': {
-                            'order': 5,
+                            'order': 6,
                             'name': 32401,
                             'value': None,
                             'action': 'connect_paired',
@@ -351,7 +366,7 @@ class services:
                             'InfoText': 774,
                             },
                         'switch_audio_device': {
-                            'order': 6,
+                            'order': 7,
                             'name': 32402,
                             'value': None,
                             'action': 'switch_audio_device',
@@ -363,7 +378,7 @@ class services:
                             'InfoText': 775,
                             },
                         'notify_connected': {
-                            'order': 7,
+                            'order': 8,
                             'name': 32403,
                             'value': None,
                             'action': 'notify_connected',
@@ -375,7 +390,7 @@ class services:
                             'InfoText': 776,
                             },
                         'restore_audio_device': {
-                            'order': 8,
+                            'order': 9,
                             'name': 32404,
                             'value': '',
                             'action': 'restore_audio_device',
@@ -518,6 +533,14 @@ class services:
 
             if 'bluetooth' in self.oe.dictModules:
                 if os.path.isfile(self.oe.dictModules['bluetooth'].BLUETOOTH_DAEMON):
+                    # BT adapters
+                    default_adapter = oe.get_service_option('bluez', 'DEFAULT_BT_ADAPTER', '')
+                    log.log(f'defaul adapter: {default_adapter}', log.INFO)
+
+                    available_adapters = dbus_bluez.find_all_adapters()
+                    self.struct['bluez']['settings']['default_bt_adapter']['value'] = default_adapter
+                    self.struct['bluez']['settings']['default_bt_adapter']['values'] = available_adapters
+
                     self.struct['bluez']['settings']['enabled']['value'] = self.oe.get_service_state('bluez')
                     if os.path.isfile(self.oe.dictModules['bluetooth'].OBEX_DAEMON):
                         self.struct['bluez']['settings']['obex_enabled']['value'] = self.oe.get_service_state('obexd')
@@ -697,7 +720,7 @@ class services:
                     del self.struct['tmate']['settings']['tmate_ssh_key']['hidden']
 
             if self.struct['tmate']['settings']['tmate_autostart']['value'] == '0':
-            	  self.struct['tmate']['settings']['tmate_ssh_key']['hidden'] = True
+                self.struct['tmate']['settings']['tmate_ssh_key']['hidden'] = True
 
             self.oe.set_busy(0)
             self.oe.dbg_log('services::initialize_tmate', 'exit_function', self.oe.LOGDEBUG)
@@ -725,12 +748,36 @@ class services:
                     del self.struct['bluez']['settings']['obex_enabled']['hidden']
                 if 'hidden' in self.struct['bluez']['settings']['obex_root']:
                     del self.struct['bluez']['settings']['obex_root']['hidden']
+
+            default_adapter = self.struct['bluez']['settings']['default_bt_adapter']['value']
+            log.log(f'saving adapter {default_adapter}', log.INFO)
+            options['DEFAULT_BT_ADAPTER'] = default_adapter
+
             self.oe.set_service('bluez', options, state)
             self.oe.set_busy(0)
             self.oe.dbg_log('services::init_bluetooth', 'exit_function', self.oe.LOGDEBUG)
         except Exception as e:
             self.oe.set_busy(0)
             self.oe.dbg_log('services::init_bluetooth', 'ERROR: (' + repr(e) + ')', self.oe.LOGERROR)
+
+    def set_default_bt_adapter(self, listItem=None):
+        default_adapter = listItem.getProperty('value')
+        log.log(f'default adapter {default_adapter}', log.INFO)
+        self.struct['bluez']['settings']['default_bt_adapter']['value'] = default_adapter
+
+        self.oe.set_busy(1)
+        self.oe.set_service_option('bluez', 'DEFAULT_BT_ADAPTER', default_adapter)
+        self.oe.set_busy(0)
+
+        self.oe.execute('systemctl stop bluetooth')
+
+        # remove all settings to start clean
+        cmd = 'rm -fr /storage/.cache/bluetooth'
+        self.oe.execute(cmd)
+        self.oe.execute('systemctl restart bluetooth')
+
+        notification_str = xbmcaddon.Addon().getLocalizedString(33533)
+        self.oe.notify('bluez', notification_str, icon='icon', path=None, timeout=15000)
 
     def init_obex(self, **kwargs):
         try:

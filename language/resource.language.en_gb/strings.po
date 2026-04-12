@@ -1482,3 +1482,15 @@ msgstr ""
 msgctxt "#33530"
 msgid "Connection name"
 msgstr ""
+
+msgctxt "#33531"
+msgid "Default adapter"
+msgstr ""
+
+msgctxt "#33532"
+msgid "Select default Bluetooth adapter"
+msgstr ""
+
+msgctxt "#33533"
+msgid "Please reboot device"
+msgstr ""
