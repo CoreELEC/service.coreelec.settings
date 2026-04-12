@@ -438,7 +438,7 @@ class system:
 
     def get_setting(self, group, setting, allowEmpty=False):
         value = self.oe.read_setting('system', setting)
-        if not value is None and not (allowEmpty == False and value is ''):
+        if value is not None and (allow_empty or value is not ''):
             self.struct[group]['settings'][setting]['value'] = value
 
     def set_value(self, listItem):

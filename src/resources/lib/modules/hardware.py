@@ -462,21 +462,22 @@ class hardware:
         pass
 
     def check_compatibility(self):
+        ret = False
         try:
             self.oe.dbg_log('hardware::check_compatibility', 'enter_function', 0)
-            ret = False
             dtname = self.oe.execute('/usr/bin/dtname', get_result=1).rstrip('\x00\n')
             ret = any(substring in dtname for substring in self.struct['power']['compatible_model'])
             self.oe.dbg_log('hardware::check_compatibility', 'exit_function, ret: %s' % ret, 0)
         except Exception as e:
             self.oe.dbg_log('hardware::check_compatibility', 'ERROR: (' + repr(e) + ')')
         finally:
-            return ret
+            pass
+        return ret
 
     def get_SoC_id(self):
+        ret = 0xFF
         try:
             self.oe.dbg_log('hardware::check_SoC', 'enter_function', 0)
-            ret = 0xFF
             cpu_serial = [line for line in open("/proc/cpuinfo", 'r') if 'Serial' in line]
             cpu_id = [x.strip() for x in cpu_serial[0].split(':')][1]
             ret = int(cpu_id[:2], 16)
@@ -484,7 +485,8 @@ class hardware:
         except Exception as e:
             self.oe.dbg_log('hardware::check_SoC', 'ERROR: (' + repr(e) + ')')
         finally:
-            return ret
+            pass
+        return ret
 
     def run_inject_bl301(self, parameter=''):
         try:
@@ -516,9 +518,9 @@ class hardware:
             return lines
 
     def inject_check_compatibility(self):
+        ret = False
         try:
             self.oe.dbg_log('hardware::inject_check_compatibility', 'enter_function', 0)
-            ret = False
             platform_version = platform.release().split('.')
             self.oe.dbg_log('hardware::inject_check_compatibility', 'platform_version: %s' % platform_version, 0)
             if ((int(platform_version[0]) >= 4 and int(platform_version[1]) >= 9) or \
@@ -530,9 +532,11 @@ class hardware:
         except Exception as e:
             self.oe.dbg_log('hardware::inject_check_compatibility', 'ERROR: (' + repr(e) + ')')
         finally:
-            return ret
+            pass
+        return ret
 
     def injection_done(self):
+        ret = False
         try:
             self.oe.dbg_log('hardware::injection_done', 'enter_function', 0)
             ret = bool(os.path.exists('/run/bl301_injected'))
@@ -540,7 +544,8 @@ class hardware:
         except Exception as e:
             self.oe.dbg_log('hardware::injection_done', 'ERROR: (' + repr(e) + ')')
         finally:
-            return ret
+            pass
+        return ret
 
     def load_values(self):
         try:
