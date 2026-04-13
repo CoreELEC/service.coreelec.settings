@@ -337,7 +337,7 @@ msgid "Set fan speed level"
 msgstr "设置风扇转速等级"
 
 msgctxt "#785"
-msgid "Modify Vendor Bootloader to support all wake-up features such as CEC, Wake-On-LAN, IR, 和 GPIO wake-up from suspend or power off state!"
+msgid "Modify Vendor Bootloader to support all wake-up features such as CEC, Wake-On-LAN, IR, and GPIO wake-up from suspend or power off state!"
 msgstr "修改厂商引导程序，以支持从挂起或关机状态唤醒的所有功能，如 CEC（消费电子控制）、网络唤醒（Wake-On-LAN）、红外遥控（IR）和 GPIO 唤醒！"
 
 msgctxt "#786"
@@ -1139,11 +1139,11 @@ msgid "Submit Log"
 msgstr "提交日志"
 
 msgctxt "#32377"
-msgid "Upload latest Kodi log and configs, 和 view the short URL"
+msgid "Upload latest Kodi log and configs, and view the short URL"
 msgstr "上传最新的 Kodi 日志和配置，并查看短链接"
 
 msgctxt "#32378"
-msgid "Upload latest Kodi crash log and configs, 和 view the short URL"
+msgid "Upload latest Kodi crash log and configs, and view the short URL"
 msgstr "上传最新的 Kodi 崩溃日志和配置，并查看短链接"
 
 msgctxt "#32379"
@@ -1195,7 +1195,7 @@ msgid "Settings addon is not yet ready, please try again later."
 msgstr "设置插件尚未准备就绪，请稍后重试。"
 
 msgctxt "#32391"
-msgid "Upload configs and other debug info without logs, 和 view the short URL"
+msgid "Upload configs and other debug info without logs, and view the short URL"
 msgstr "上传配置和其他调试信息（不带日志），并查看短链接"
 
 msgctxt "#32393"
@@ -1418,7 +1418,6 @@ msgstr "导出显示器 EDID"
 msgctxt "#32540"
 msgid "Use dumped display EDID"
 msgstr "使用已导出的 EDID"
-
 msgctxt "#33510"
 msgid "Warning!"
 msgstr "警告！"
@@ -1502,3 +1501,15 @@ msgstr "访问控制密钥"
 msgctxt "#33530"
 msgid "Connection name"
 msgstr "连接名称"
+
+msgctxt "#33531"
+msgid "Default adapter"
+msgstr "默认适配器"
+
+msgctxt "#33532"
+msgid "Select default Bluetooth adapter"
+msgstr "选择默认蓝牙适配器"
+
+msgctxt "#33533"
+msgid "Please reboot device"
+msgstr "请重启设备"
