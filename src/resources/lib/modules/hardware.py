@@ -377,6 +377,15 @@ class hardware:
                             'type': 'multivalue',
                             'values': ['ondemand', 'performance'],
                             },
+                        'gpu_governor': {
+                            'order': 2,
+                            'name': 32541,
+                            'InfoText': 916,
+                            'value': '',
+                            'action': 'set_gpu_governor',
+                            'type': 'multivalue',
+                            'values': [],
+                            },
                         },
                     },
                 'hdd': {
@@ -424,11 +433,23 @@ class hardware:
             if not 'hidden' in self.struct['fan']:
                 self.initialize_fan()
             self.set_cpu_governor()
+            self.set_gpu_governor()
             self.set_disk_park()
             self.set_disk_idle()
             self.oe.dbg_log('hardware::start_service', 'exit_function', 0)
         except Exception as e:
             self.oe.dbg_log('hardware::start_service', 'ERROR: (' + repr(e) + ')')
+
+    def find_gpu_governor(self):
+        for path in glob.glob('/sys/devices/platform/*/devfreq/*'):
+            governor = os.path.join(path, 'governor')
+            available = os.path.join(path, 'available_governors')
+
+            if os.path.isfile(governor) and os.path.isfile(available):
+                if self.oe.load_file(available).strip():
+                    return governor, available
+
+        return None, None
 
     def stop_service(self):
         try:
@@ -709,6 +730,23 @@ class hardware:
 
                 self.struct['performance']['settings']['cpu_governor']['value'] = value
 
+            gpu_governor, gpu_available = self.find_gpu_governor()
+
+            if gpu_governor is None:
+                self.struct['performance']['settings']['gpu_governor']['hidden'] = 'true'
+            else:
+                if 'hidden' in self.struct['performance']['settings']['gpu_governor']:
+                    del self.struct['performance']['settings']['gpu_governor']['hidden']
+
+                self.struct['performance']['settings']['gpu_governor']['values'] = \
+                    self.oe.load_file(gpu_available).split()
+
+                value = self.oe.read_setting('hardware', 'gpu_governor')
+                if value is None:
+                    value = self.oe.load_file(gpu_governor).strip()
+
+                self.struct['performance']['settings']['gpu_governor']['value'] = value
+
             value = self.oe.read_setting('hardware', 'disk_park')
             if not value is None:
                 self.struct['hdd']['settings']['disk_park']['value'] = value
@@ -941,6 +979,42 @@ class hardware:
             self.oe.dbg_log('hardware::set_cpu_governor', 'exit_function', 0)
         except Exception as e:
             self.oe.dbg_log('hardware::set_cpu_governor', 'ERROR: (%s)' % repr(e), 4)
+        finally:
+            self.oe.set_busy(0)
+
+    def set_gpu_governor(self, listItem=None):
+        try:
+            self.oe.dbg_log('hardware::set_gpu_governor', 'enter_function', 0)
+            self.oe.set_busy(1)
+
+            if listItem is not None:
+                self.set_value(listItem)
+
+            governor, available = self.find_gpu_governor()
+
+            if governor is None:
+                return
+
+            value = self.struct['performance']['settings']['gpu_governor']['value']
+
+            if not value:
+                return
+
+            if value not in self.oe.load_file(available).split():
+                return
+
+            if os.access(governor, os.W_OK):
+                with open(governor, 'w') as gpu_governor_ctl:
+                    gpu_governor_ctl.write(value)
+
+            self.oe.dbg_log('hardware::set_gpu_governor', 'exit_function', 0)
+
+        except Exception as e:
+            self.oe.dbg_log(
+                'hardware::set_gpu_governor',
+                'ERROR: (%s)' % repr(e),
+                4
+            )
         finally:
             self.oe.set_busy(0)
 
