@@ -450,6 +450,10 @@ msgctxt "#915"
 msgid "Use a previously dumped EDID"
 msgstr "使用已导出的 EDID 信息"
 
+msgctxt "#916"
+msgid "Set GPU governor"
+msgstr "设置 GPU 调控器"
+
 msgctxt "#32001"
 msgid "Services"
 msgstr "服务"
@@ -1418,6 +1422,11 @@ msgstr "导出显示器 EDID"
 msgctxt "#32540"
 msgid "Use dumped display EDID"
 msgstr "使用已导出的 EDID"
+
+msgctxt "#32541"
+msgid "GPU governor"
+msgstr "GPU 调控器"
+
 msgctxt "#33510"
 msgid "Warning!"
 msgstr "警告！"
