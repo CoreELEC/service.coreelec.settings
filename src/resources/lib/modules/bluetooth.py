@@ -936,13 +936,13 @@ class Obex_Listener(dbus_obex.Listener):
             if status == 'active':
                 self.transfer_start = time.monotonic()
                 self.transfer_progress = xbmcgui.DialogProgress()
-                self.transfer_progress.create('Bluetooth', oe._(32383))
+                self.transfer_progress.create(oe._(32331), oe._(32383))
             elif status == 'complete':
                 if self.transfer_progress is not None:
                     self.transfer_progress.close()
                     self.transfer_progress = None
                 xbmcDialog = xbmcgui.Dialog()
-                answer = xbmcDialog.yesno('Bluetooth', oe._(32382))
+                answer = xbmcDialog.yesno(oe._(32331), oe._(32382))
                 if answer == 1:
                     if hasattr(self.parent, 'download_file') and self.parent.download_file:
                         download_dir = self.parent.D_OBEXD_ROOT or '/storage/downloads/'
@@ -987,7 +987,7 @@ class Bluez_Agent(dbus_bluez.Agent):
     def authorize_service(self, device, uuid):
         oe.input_request = True
         xbmcDialog = xbmcgui.Dialog()
-        answer = xbmcDialog.yesno('Bluetooth', f'Authorize service {uuid}?')
+        answer = xbmcDialog.yesno(oe._(32331), oe._(33552) % uuid)
         oe.input_request = False
         if answer == 1:
             oe.dictModules['bluetooth'].trust_device(device)
@@ -1030,7 +1030,7 @@ class Bluez_Agent(dbus_bluez.Agent):
     def request_confirmation(self, device, passkey):
         oe.input_request = True
         xbmcDialog = xbmcgui.Dialog()
-        answer = xbmcDialog.yesno('Bluetooth', f'Confirm passkey {passkey}')
+        answer = xbmcDialog.yesno(oe._(32331), oe._(33553) % passkey)
         oe.input_request = False
         if answer == 1:
             oe.dictModules['bluetooth'].trust_device(device)
@@ -1041,7 +1041,7 @@ class Bluez_Agent(dbus_bluez.Agent):
     def request_authorization(self, device):
         oe.input_request = True
         xbmcDialog = xbmcgui.Dialog()
-        answer = xbmcDialog.yesno('Bluetooth', 'Accept pairing?')
+        answer = xbmcDialog.yesno(oe._(32331), oe._(33554))
         oe.input_request = False
         if answer == 1:
             oe.dictModules['bluetooth'].trust_device(device)
@@ -1069,7 +1069,7 @@ class Obex_Agent(dbus_obex.Agent):
         oe.input_request = True
         xbmcDialog = xbmcgui.Dialog()
         properties = dbus_obex.transfer_get_all_properties(transfer)
-        answer = xbmcDialog.yesno('Bluetooth', f"{oe._(32381)}\n\n{properties['Name']}")
+        answer = xbmcDialog.yesno(oe._(32331), f"{oe._(32381)}\n\n{properties['Name']}")
         oe.input_request = False
         log.log(f'answer={repr(answer)}', log.DEBUG)
         if answer != 1:

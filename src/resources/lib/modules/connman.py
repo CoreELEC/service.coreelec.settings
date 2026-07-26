@@ -313,7 +313,7 @@ class connmanService(object):
     def set_value_checkdhcp(self, listItem):
         if self.struct['IPv4']['settings']['Method']['value'] == 'dhcp':
             ok_window = xbmcgui.Dialog()
-            answer = ok_window.ok('Not allowed', 'IPv4 method is set to DHCP.\n\nChanging this option is not allowed')
+            answer = ok_window.ok(oe._(33550), oe._(33551))
             return
         self.struct[listItem.getProperty('category')]['settings'][listItem.getProperty('entry')]['value'] = listItem.getProperty('value')
         self.struct[listItem.getProperty('category')]['settings'][listItem.getProperty('entry')]['changed'] = True

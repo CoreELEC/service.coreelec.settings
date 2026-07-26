@@ -1500,3 +1500,95 @@ msgstr ""
 msgctxt "#33533"
 msgid "Please reboot device"
 msgstr ""
+
+msgctxt "#33534"
+msgid "CoreELEC Update"
+msgstr ""
+
+msgctxt "#33535"
+msgid "An update is available, would you like to download it now?"
+msgstr ""
+
+msgctxt "#33536"
+msgid "An update has been downloaded, would you like to reboot now to apply it?"
+msgstr ""
+
+msgctxt "#33537"
+msgid "Update RPi Bootloader"
+msgstr ""
+
+msgctxt "#33538"
+msgid "Update RPi USB3 Firmware"
+msgstr ""
+
+msgctxt "#33539"
+msgid "Should this backup include the thumbnails folder(s)?"
+msgstr ""
+
+msgctxt "#33540"
+msgid "Include"
+msgstr ""
+
+msgctxt "#33541"
+msgid "Exclude"
+msgstr ""
+
+msgctxt "#33542"
+msgid "CoreELEC Backup"
+msgstr ""
+
+msgctxt "#33543"
+msgid "Restore"
+msgstr ""
+
+msgctxt "#33544"
+msgid "Pasting log files"
+msgstr ""
+
+msgctxt "#33545"
+msgid "Pasting..."
+msgstr ""
+
+msgctxt "#33546"
+msgid "Paste complete"
+msgstr ""
+
+msgctxt "#33547"
+msgid "Log files pasted to %s"
+msgstr ""
+
+msgctxt "#33548"
+msgid "Failed paste"
+msgstr ""
+
+msgctxt "#33549"
+msgid "Failed to paste log files, try again"
+msgstr ""
+
+msgctxt "#33550"
+msgid "Not allowed"
+msgstr ""
+
+msgctxt "#33551"
+msgid "IPv4 method is set to DHCP.\n\nChanging this option is not allowed"
+msgstr ""
+
+msgctxt "#33552"
+msgid "Authorize service %s?"
+msgstr ""
+
+msgctxt "#33553"
+msgid "Confirm passkey %s"
+msgstr ""
+
+msgctxt "#33554"
+msgid "Accept pairing?"
+msgstr ""
+
+msgctxt "#33555"
+msgid "%s Reset"
+msgstr ""
+
+msgctxt "#33556"
+msgid "Custom URL is not valid, or currently inaccessible.\n\n%s"
+msgstr ""

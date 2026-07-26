@@ -638,7 +638,7 @@ class system:
         try:
             self.oe.dbg_log('system::ask_sure_reset', 'enter_function', self.oe.LOGDEBUG)
             xbmcDialog = xbmcgui.Dialog()
-            answer = xbmcDialog.yesno(part + ' Reset', self.oe._(32326), self.oe._(32328))
+            answer = xbmcDialog.yesno(self.oe._(33555) % part, self.oe._(32326), self.oe._(32328))
             if answer == 1:
                 if self.oe.reboot_counter(30, self.oe._(32323)) == 1:
                     return 1
@@ -655,7 +655,7 @@ class system:
             self.total_backup_size = 1
             self.done_backup_size = 1
             xbmcDialog = xbmcgui.Dialog()
-            includeThumbnails = 1 == xbmcDialog.yesno('CoreELEC Backup', 'Should this backup include the thumbnails folder(s)?', yeslabel='Include', nolabel='Exclude')
+            includeThumbnails = 1 == xbmcDialog.yesno(self.oe._(33542), self.oe._(33539), yeslabel=self.oe._(33540), nolabel=self.oe._(33541))
 
             try:
                 self.oe.set_busy(1)
@@ -681,7 +681,7 @@ class system:
                     if self.total_backup_size > free_space:
                         txt = self.oe.split_dialog_text(self.oe._(32379))
                         xbmcDialog = xbmcgui.Dialog()
-                        answer = xbmcDialog.ok('Backup', '%s\n%s\n%s' % (txt[0], txt[1], txt[2]))
+                        answer = xbmcDialog.ok(self.oe._(32371), '%s\n%s\n%s' % (txt[0], txt[1], txt[2]))
                         return 0
                 except:
                     pass
@@ -726,7 +726,7 @@ class system:
             if not os.path.isfile(restore_file_path):
                 txt = self.oe.split_dialog_text(self.oe._(32374))
                 xbmcDialog = xbmcgui.Dialog()
-                answer = xbmcDialog.ok('Restore', txt[0], txt[1], txt[2])
+                answer = xbmcDialog.ok(self.oe._(33543), txt[0], txt[1], txt[2])
                 return
             restore_file_name = restore_file_path.split('/')[-1]
             match = re.match(r'.*(?P<time_stamp>\d{14}).*\.tar', restore_file_path)
@@ -751,11 +751,11 @@ class system:
             else:
                 txt = self.oe.split_dialog_text(self.oe._(32379))
                 xbmcDialog = xbmcgui.Dialog()
-                answer = xbmcDialog.ok('Restore', '%s\n%s\n%s' % (txt[0], txt[1], txt[2]))
+                answer = xbmcDialog.ok(self.oe._(33543), '%s\n%s\n%s' % (txt[0], txt[1], txt[2]))
             if copy_success == 1:
                 txt = self.oe.split_dialog_text(self.oe._(32380))
                 xbmcDialog = xbmcgui.Dialog()
-                answer = xbmcDialog.yesno('Restore', '%s\n%s\n%s' % (txt[0], txt[1], txt[2]))
+                answer = xbmcDialog.yesno(self.oe._(33543), '%s\n%s\n%s' % (txt[0], txt[1], txt[2]))
                 if answer == 1:
                     if self.oe.reboot_counter(10, self.oe._(32371)) == 1:
                         self.oe.winOeMain.close()
@@ -797,7 +797,7 @@ class system:
             self.oe.dbg_log('system::do_send_logs', 'enter_function', self.oe.LOGDEBUG)
 
             paste_dlg = xbmcgui.DialogProgress()
-            paste_dlg.create('Pasting log files', 'Pasting...')
+            paste_dlg.create(self.oe._(33544), self.oe._(33545))
 
             result = self.oe.execute(log_cmd, get_result=1)
 
@@ -807,9 +807,9 @@ class system:
                 link = result.find('http')
                 if link != -1:
                     self.oe.dbg_log('system::do_send_logs', result[link:], self.oe.LOGWARNING)
-                    done_dlg.ok('Paste complete', 'Log files pasted to %s' % result[link:])
+                    done_dlg.ok(self.oe._(33546), self.oe._(33547) % result[link:])
                 else:
-                    done_dlg.ok('Failed paste', 'Failed to paste log files, try again')
+                    done_dlg.ok(self.oe._(33548), self.oe._(33549))
 
             self.oe.dbg_log('system::do_send_logs', 'exit_function', self.oe.LOGDEBUG)
         except Exception as e:

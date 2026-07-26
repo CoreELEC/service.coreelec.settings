@@ -118,11 +118,11 @@ msgstr "当下一个稳定版本发布时，更新到下一个稳定版本，不
 
 msgctxt "#718"
 msgid "Send boot config files from /flash, kodi.log, kernel log and Samba configs to https://paste.coreelec.org, and display the short URL"
-msgstr "上传 /flash 启动配置、kodi.log、内核日志与 Samba 配置至 https://paste.coreelec.org，并显示短链接"
+msgstr "上传 /flash 启动配置、kodi.log、内核日志与 Samba 配置至 https://paste.coreelec.org，并显示短 URL"
 
 msgctxt "#719"
 msgid "Send boot config files from /flash, kodi_crash.log, kernel log and Samba configs to https://paste.coreelec.org, and display the short URL"
-msgstr "上传 /flash 启动配置、kodi_crash.log、内核日志与 Samba 配置至 https://paste.coreelec.org，并显示短链接"
+msgstr "上传 /flash 启动配置、kodi_crash.log、内核日志与 Samba 配置至 https://paste.coreelec.org，并显示短 URL"
 
 msgctxt "#720"
 msgid "Set to ON to enable the Bluetooth service"
@@ -130,7 +130,7 @@ msgstr "设置为“开启”可启用蓝牙服务"
 
 msgctxt "#721"
 msgid "Send CoreELEC debug info without logs to https://paste.coreelec.org, and display the short URL"
-msgstr "上传不含日志的 CoreELEC 调试信息至 https://paste.coreelec.org，并显示短链接"
+msgstr "上传不含日志的 CoreELEC 调试信息至 https://paste.coreelec.org，并显示短 URL"
 
 msgctxt "#722"
 msgid "Create a tar archive containing all @DISTRONAME@ and Kodi configuration settings, databases and thumbnail content. Backup files will be stored in /storage/backup/"
@@ -286,11 +286,11 @@ msgstr "选择一个更新渠道"
 
 msgctxt "#761"
 msgid "Enable to allow entering a custom update url"
-msgstr "启用以允许输入自定义更新链接"
+msgstr "启用以允许输入自定义更新 URL"
 
 msgctxt "#762"
 msgid "Enter a custom update url (url should be the root of the update files)"
-msgstr "输入自定义更新链接（链接需为更新文件根目录）"
+msgstr "输入自定义更新 URL（URL 需为更新文件根目录）"
 
 msgctxt "#770"
 msgid "Select an available version"
@@ -764,7 +764,7 @@ msgstr "系统名称"
 
 msgctxt "#32191"
 msgid "Invalid URL"
-msgstr "无效链接"
+msgstr "无效 URL"
 
 msgctxt "#32192"
 msgid "PIN lock"
@@ -1144,11 +1144,11 @@ msgstr "提交日志"
 
 msgctxt "#32377"
 msgid "Upload latest Kodi log and configs, and view the short URL"
-msgstr "上传最新的 Kodi 日志和配置，并查看短链接"
+msgstr "上传最新的 Kodi 日志和配置，并查看短 URL"
 
 msgctxt "#32378"
 msgid "Upload latest Kodi crash log and configs, and view the short URL"
-msgstr "上传最新的 Kodi 崩溃日志和配置，并查看短链接"
+msgstr "上传最新的 Kodi 崩溃日志和配置，并查看短 URL"
 
 msgctxt "#32379"
 msgid "There is not enough free storage space to continue!"
@@ -1200,7 +1200,7 @@ msgstr "设置插件尚未准备就绪，请稍后重试。"
 
 msgctxt "#32391"
 msgid "Upload configs and other debug info without logs, and view the short URL"
-msgstr "上传配置和其他调试信息（不带日志），并查看短链接"
+msgstr "上传配置和其他调试信息（不带日志），并查看短 URL"
 
 msgctxt "#32393"
 msgid "** SAFE MODE! ** SAFE MODE! ** SAFE MODE! **"
@@ -1522,3 +1522,95 @@ msgstr "选择默认蓝牙适配器"
 msgctxt "#33533"
 msgid "Please reboot device"
 msgstr "请重启设备"
+
+msgctxt "#33534"
+msgid "CoreELEC Update"
+msgstr "CoreELEC 更新"
+
+msgctxt "#33535"
+msgid "An update is available, would you like to download it now?"
+msgstr "有可用的更新，是否立即下载？"
+
+msgctxt "#33536"
+msgid "An update has been downloaded, would you like to reboot now to apply it?"
+msgstr "更新已下载完成，是否立即重启以应用更新？"
+
+msgctxt "#33537"
+msgid "Update RPi Bootloader"
+msgstr "更新树莓派引导加载程序"
+
+msgctxt "#33538"
+msgid "Update RPi USB3 Firmware"
+msgstr "更新树莓派 USB3 固件"
+
+msgctxt "#33539"
+msgid "Should this backup include the thumbnails folder(s)?"
+msgstr "此备份是否包含缩略图文件夹？"
+
+msgctxt "#33540"
+msgid "Include"
+msgstr "包含"
+
+msgctxt "#33541"
+msgid "Exclude"
+msgstr "排除"
+
+msgctxt "#33542"
+msgid "CoreELEC Backup"
+msgstr "CoreELEC 备份"
+
+msgctxt "#33543"
+msgid "Restore"
+msgstr "恢复"
+
+msgctxt "#33544"
+msgid "Pasting log files"
+msgstr "正在粘贴日志文件"
+
+msgctxt "#33545"
+msgid "Pasting..."
+msgstr "正在粘贴..."
+
+msgctxt "#33546"
+msgid "Paste complete"
+msgstr "粘贴完成"
+
+msgctxt "#33547"
+msgid "Log files pasted to %s"
+msgstr "日志文件已粘贴到 %s"
+
+msgctxt "#33548"
+msgid "Failed paste"
+msgstr "粘贴失败"
+
+msgctxt "#33549"
+msgid "Failed to paste log files, try again"
+msgstr "粘贴日志文件失败，请重试"
+
+msgctxt "#33550"
+msgid "Not allowed"
+msgstr "不允许"
+
+msgctxt "#33551"
+msgid "IPv4 method is set to DHCP.\n\nChanging this option is not allowed"
+msgstr "IPv4 方式已设置为 DHCP。\n\n不允许更改此选项"
+
+msgctxt "#33552"
+msgid "Authorize service %s?"
+msgstr "是否授权服务 %s？"
+
+msgctxt "#33553"
+msgid "Confirm passkey %s"
+msgstr "确认密钥 %s"
+
+msgctxt "#33554"
+msgid "Accept pairing?"
+msgstr "是否接受配对？"
+
+msgctxt "#33555"
+msgid "%s Reset"
+msgstr "%s 重置"
+
+msgctxt "#33556"
+msgid "Custom URL is not valid, or currently inaccessible.\n\n%s"
+msgstr "自定义 URL 无效或当前无法访问。\n\n%s"
