@@ -125,8 +125,6 @@
                         <height>75</height>
                         <label />
                         <textoffsetx>45</textoffsetx>
-                        <texturefocus border="40" colordiffuse="button_focus">button-fo.png</texturefocus>
-                        <texturenofocus colordiffuse="71FFFFFF" border="40">button-nofo.png</texturenofocus>
                     </control>
                     <control type="radiobutton" id="1407">
                         <left>570</left>
@@ -135,16 +133,12 @@
                         <height>75</height>
                         <label />
                         <textoffsetx>45</textoffsetx>
-                        <texturefocus border="40" colordiffuse="button_focus">button-fo.png</texturefocus>
-                        <texturenofocus colordiffuse="71FFFFFF" border="40">button-nofo.png</texturenofocus>
                     </control>
                     <control type="button" id="1401">
                         <left>280</left>
                         <top>440</top>
                         <width>300</width>
                         <height>75</height>
-                        <texturefocus border="40" colordiffuse="button_focus">button-fo.png</texturefocus>
-                        <texturenofocus colordiffuse="71FFFFFF" border="40">button-nofo.png</texturenofocus>
                         <label />
                         <font>font13_title</font>
                         <textcolor>white</textcolor>
@@ -155,8 +149,6 @@
                         <top>440</top>
                         <width>300</width>
                         <height>75</height>
-                        <texturefocus border="40" colordiffuse="button_focus">button-fo.png</texturefocus>
-                        <texturenofocus colordiffuse="71FFFFFF" border="40">button-nofo.png</texturenofocus>
                         <label />
                         <font>font13_title</font>
                         <textcolor>white</textcolor>
@@ -434,8 +426,6 @@
                 <width>300</width>
                 <height>75</height>
                 <visible>true</visible>
-                <texturefocus border="40" colordiffuse="button_focus">button-fo.png</texturefocus>
-                <texturenofocus colordiffuse="71FFFFFF" border="40">button-nofo.png</texturenofocus>
                 <label />
                 <font>font13_title</font>
                 <textcolor>white</textcolor>
@@ -450,8 +440,6 @@
                 <width>300</width>
                 <height>75</height>
                 <visible>true</visible>
-                <texturefocus border="40" colordiffuse="button_focus">button-fo.png</texturefocus>
-                <texturenofocus colordiffuse="71FFFFFF" border="40">button-nofo.png</texturenofocus>
                 <label />
                 <font>font13_title</font>
                 <textcolor>white</textcolor>
