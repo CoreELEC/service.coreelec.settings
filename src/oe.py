@@ -739,7 +739,7 @@ def showPopUp(title, path):
           NOTES = re.sub(regex, "", NOTES)
 
         CLdialog = xbmcgui.Dialog()
-        CLdialog.textviewer(NOTES_TITLE, NOTES, 1)
+        CLdialog.textviewer(NOTES_TITLE, NOTES, True)
     except Exception as e:
         dbg_log('oe::openChangeLog', 'ERROR: (' + repr(e) + ')')
 
