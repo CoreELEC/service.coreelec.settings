@@ -451,14 +451,10 @@ def load_file(filename):
         dbg_log('oe::load_file(' + filename + ')', 'ERROR: (' + repr(e) + ')')
 
 def get_config_ini(var, def_no_value=""):
-    found = def_no_value
-    with xbmcvfs.configini() as config:
-        found = config.get(var, def_no_value)
-    return found
+    return xbmcvfs.configini().get(var, def_no_value)
 
 def set_config_ini(var, val="\'\'"):
-    with xbmcvfs.configini() as config:
-        config.set(var, val)
+    xbmcvfs.configini().set(var, val)
 
 def set_dtbxml_default(node=''):
     if node == '':
