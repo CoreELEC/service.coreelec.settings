@@ -340,6 +340,15 @@ class hardware:
                             'action': 'set_value_xml',
                             'type': 'multivalue',
                             },
+                        'cec': {
+                            'order': 17,
+                            'name': 32542,
+                            'InfoText': 797,
+                            'value': '',
+                            'xml_node': 'cec',
+                            'action': 'set_value_xml',
+                            'type': 'multivalue',
+                            },
                         },
                     },
                 'display': {
@@ -604,6 +613,10 @@ class hardware:
             self.fill_values_by_xml(self.struct['dtb_settings']['settings']['smartchip'])
             self.fill_values_by_xml(self.struct['dtb_settings']['settings']['motorcomm'])
             self.fill_values_by_xml(self.struct['dtb_settings']['settings']['wol'])
+            self.fill_values_by_xml(self.struct['dtb_settings']['settings']['cec'])
+
+            if self.get_SoC_id() >= 0x3E:
+                self.struct['dtb_settings']['settings']['cec']['hidden'] = 'true'
 
             # check if Smartchip device is found
             if os.path.exists('/sys/bus/sdio/devices'):

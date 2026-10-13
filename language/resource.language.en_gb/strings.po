@@ -368,6 +368,10 @@ msgctxt "#796"
 msgid "Select your current timezone."
 msgstr ""
 
+msgctxt "#797"
+msgid "Choose between CEC-A or CEC-B framework"
+msgstr ""
+
 msgctxt "#900"
 msgid "Configure eMMC speed mode"
 msgstr ""
@@ -1402,6 +1406,10 @@ msgstr ""
 
 msgctxt "#32541"
 msgid "GPU governor"
+msgstr ""
+
+msgctxt "#32542"
+msgid "CEC Framework"
 msgstr ""
 
 msgctxt "#33510"
