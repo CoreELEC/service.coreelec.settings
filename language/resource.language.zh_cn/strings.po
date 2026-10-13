@@ -384,6 +384,10 @@ msgctxt "#796"
 msgid "Select your current timezone."
 msgstr "选择当前时区。"
 
+msgctxt "#797"
+msgid "Choose between CEC-A or CEC-B framework"
+msgstr "选择 CEC-A 或 CEC-B 框架"
+
 msgctxt "#900"
 msgid "Configure eMMC speed mode"
 msgstr "配置 eMMC 存储的速度模式"
@@ -1426,6 +1430,10 @@ msgstr "使用已导出的 EDID"
 msgctxt "#32541"
 msgid "GPU governor"
 msgstr "GPU 调控器"
+
+msgctxt "#32542"
+msgid "CEC Framework"
+msgstr "CEC 框架"
 
 msgctxt "#33510"
 msgid "Warning!"
