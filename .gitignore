@@ -8,3 +8,6 @@ build/
 # backup files
 *.orig
 
+# validation report
+service.coreelec.settings_report.txt
+
