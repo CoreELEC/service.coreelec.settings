@@ -17,6 +17,8 @@ class hardware:
     ENABLED = False
     KERNEL_CMD = None
     check_for_reboot = False
+    fan_zone = None
+    fan_cdev = None
     menu = {'8': {
         'name': 32004,
         'menuLoader': 'load_menu',
@@ -136,7 +138,7 @@ class hardware:
                             'order': 1,
                             'name': 32510,
                             'InfoText': 781,
-                            'value': 'off',
+                            'value': 'auto',
                             'action': 'initialize_fan',
                             'type': 'multivalue',
                             'values': ['off', 'auto', 'manual'],
@@ -581,15 +583,41 @@ class hardware:
         try:
             self.oe.dbg_log('hardware::load_values', 'enter_function', 0)
 
-            if not os.path.exists('/sys/class/fan'):
+            # only a zone of its own lets the fan leave step_wise without the cpu cooling
+            self.fan_zone = None
+            self.fan_cdev = None
+            try:
+                for zone in glob.glob('/sys/class/thermal/thermal_zone*'):
+                    with open(zone + '/type') as f:
+                        if f.read().strip() != 'fan_thermal':
+                            continue
+                    for cdev in glob.glob(zone + '/cdev[0-9]*'):
+                        if not os.path.isdir(cdev):
+                            continue
+                        with open(cdev + '/type') as f:
+                            if f.read().strip() in ['khadas-mcu-fan', 'pwm-fan']:
+                                self.fan_zone = zone
+                                self.fan_cdev = os.path.realpath(cdev)
+
+                if self.fan_cdev is None:
+                    self.struct['fan']['hidden'] = 'true'
+                else:
+                    if 'hidden' in self.struct['fan']:
+                        del self.struct['fan']['hidden']
+                    with open(self.fan_cdev + '/max_state') as f:
+                        max_state = int(f.read())
+                    self.struct['fan']['settings']['fan_level']['values'] = [str(i) for i in range(max_state + 1)]
+                    value = self.oe.read_setting('hardware', 'fan_mode')
+                    if not value is None:
+                        self.struct['fan']['settings']['fan_mode']['value'] = value
+                    value = self.oe.read_setting('hardware', 'fan_level')
+                    if not value is None:
+                        self.struct['fan']['settings']['fan_level']['value'] = str(min(int(value), max_state))
+            except (OSError, ValueError) as e:
+                self.oe.dbg_log('hardware::load_values', 'fan: (' + repr(e) + ')', 4)
+                self.fan_zone = None
+                self.fan_cdev = None
                 self.struct['fan']['hidden'] = 'true'
-            else:
-                value = self.oe.read_setting('hardware', 'fan_mode')
-                if not value is None:
-                    self.struct['fan']['settings']['fan_mode']['value'] = value
-                value = self.oe.read_setting('hardware', 'fan_level')
-                if not value is None:
-                    self.struct['fan']['settings']['fan_level']['value'] = value
 
             if not os.path.exists('/run/use-meson-remote'):
                 self.struct['dtb_settings']['settings']['remote_type']['hidden'] = 'true'
@@ -794,26 +822,19 @@ class hardware:
             self.oe.set_busy(1)
             if not listItem == None:
                 self.set_value(listItem)
-            if os.access('/sys/class/fan/enable', os.W_OK) and os.access('/sys/class/fan/mode', os.W_OK):
-                if self.struct['fan']['settings']['fan_mode']['value'] == 'off':
-                    fan_enable = open('/sys/class/fan/enable', 'w')
-                    fan_enable.write('0')
-                    fan_enable.close()
-                if self.struct['fan']['settings']['fan_mode']['value'] == 'manual':
-                    fan_enable = open('/sys/class/fan/enable', 'w')
-                    fan_enable.write('1')
-                    fan_enable.close()
-                    fan_mode_ctl = open('/sys/class/fan/mode', 'w')
-                    fan_mode_ctl.write('0')
-                    fan_mode_ctl.close()
-                    self.set_fan_level()
+            if not self.fan_zone is None:
+                fan_policy = open(self.fan_zone + '/policy', 'w')
                 if self.struct['fan']['settings']['fan_mode']['value'] == 'auto':
-                    fan_enable = open('/sys/class/fan/enable', 'w')
-                    fan_enable.write('1')
-                    fan_enable.close()
-                    fan_mode_ctl = open('/sys/class/fan/mode', 'w')
-                    fan_mode_ctl.write('1')
-                    fan_mode_ctl.close()
+                    fan_policy.write('step_wise')
+                else:
+                    fan_policy.write('user_space')
+                fan_policy.close()
+                if self.struct['fan']['settings']['fan_mode']['value'] == 'off':
+                    fan_state = open(self.fan_cdev + '/cur_state', 'w')
+                    fan_state.write('0')
+                    fan_state.close()
+                if self.struct['fan']['settings']['fan_mode']['value'] == 'manual':
+                    self.set_fan_level()
             self.oe.set_busy(0)
             self.oe.dbg_log('hardware::initialize_fan', 'exit_function', 0)
         except Exception as e:
@@ -826,11 +847,11 @@ class hardware:
             self.oe.set_busy(1)
             if not listItem == None:
                 self.set_value(listItem)
-            if os.access('/sys/class/fan/level', os.W_OK):
+            if not self.fan_cdev is None and self.struct['fan']['settings']['fan_mode']['value'] == 'manual':
                 if not self.struct['fan']['settings']['fan_level']['value'] is None and not self.struct['fan']['settings']['fan_level']['value'] == '':
-                    fan_level_ctl = open('/sys/class/fan/level', 'w')
-                    fan_level_ctl.write(self.struct['fan']['settings']['fan_level']['value'])
-                    fan_level_ctl.close()
+                    fan_state = open(self.fan_cdev + '/cur_state', 'w')
+                    fan_state.write(self.struct['fan']['settings']['fan_level']['value'])
+                    fan_state.close()
             self.oe.dbg_log('hardware::set_fan_level', 'exit_function', 0)
         except Exception as e:
             self.oe.dbg_log('hardware::set_fan_level', 'ERROR: (%s)' % repr(e), 4)
