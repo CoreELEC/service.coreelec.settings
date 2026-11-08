@@ -34,7 +34,6 @@ class connmanService(object):
         2: {'IPv4.Configuration': 'IPv4'},
         3: {'IPv6': 'IPv6'},
         4: {'IPv6.Configuration': 'IPv6'},
-        5: {'Nameservers': 'Nameservers'},
         6: {'Nameservers.Configuration': 'Nameservers'},
         7: {'Domains': 'Domains'},
         8: {'Domains.Configuration': 'Domains'},
@@ -189,21 +188,21 @@ class connmanService(object):
                     'name': 32120,
                     'value': '',
                     'type': 'ip',
-                    'action': 'set_value_checkdhcp',
+                    'action': 'set_value',
                 },
                 '1': {
                     'order': 2,
                     'name': 32121,
                     'value': '',
                     'type': 'ip',
-                    'action': 'set_value_checkdhcp',
+                    'action': 'set_value',
                 },
                 '2': {
                     'order': 3,
                     'name': 32122,
                     'value': '',
                     'type': 'ip',
-                    'action': 'set_value_checkdhcp',
+                    'action': 'set_value',
                 },
             },
         },
@@ -271,6 +270,10 @@ class connmanService(object):
         self.servicePath = servicePath
         oe.dictModules['connmanNetworkConfig'] = self
         self.service_properties = dbus_connman.service_get_properties(servicePath)
+        # struct is shared between instances: clear the nameserver fields so that
+        # values of a previously opened service do not leak into this one
+        for setting in self.struct['Nameservers']['settings'].values():
+            setting['value'] = ''
         for entry in sorted(self.datamap):
             for (key, value) in self.datamap[entry].items():
                 if self.struct[value]['type'] == 'Boolean':
