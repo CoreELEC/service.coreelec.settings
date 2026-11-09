@@ -1038,6 +1038,7 @@ class Agent(dbus_connman.Agent):
         response = {}
         input_fields = {
             'Name': 32146,
+            'Identity': 33601,
             'Passphrase': 32147,
             'Username': 32148,
             'Password': 32148,
@@ -1052,8 +1053,6 @@ class Agent(dbus_connman.Agent):
                     self.agent_abort()
         passphrase = response.get('Passphrase')
         if passphrase:
-            if 'Identity' in fields:
-                response['Identity'] = passphrase
             if 'wpspin' in fields:
                 response['wpspin'] = passphrase
         oe.input_request = False
