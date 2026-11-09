@@ -1600,3 +1600,7 @@ msgstr ""
 msgctxt "#33556"
 msgid "Custom URL is not valid, or currently inaccessible.\n\n%s"
 msgstr ""
+
+msgctxt "#33601"
+msgid "Username (identity)"
+msgstr ""
