@@ -343,8 +343,15 @@ class connmanService(object):
                 get_dict(self.struct['IPv4']['settings']))
             dbus_connman.service_set_ipv6_configuration(self.servicePath,
                 get_dict(self.struct['IPv6']['settings']))
+            nameservers = get_array(self.struct['Nameservers']['settings'])
+            old_method = self.service_properties.get('IPv4.Configuration', {}).get('Method')
+            new_method = self.struct['IPv4']['settings']['Method']['value']
+            if not nameservers and old_method == 'dhcp' and new_method == 'manual':
+                # the nameservers received via DHCP go away with the lease,
+                # keep them when switching to a manual configuration
+                nameservers = list(self.service_properties.get('Nameservers', []))
             dbus_connman.service_set_nameservers_configuration(self.servicePath,
-                get_array(self.struct['Nameservers']['settings']))
+                nameservers)
             dbus_connman.service_set_timeservers_configuration(self.servicePath,
                 get_array(self.struct['Timeservers']['settings']))
         finally:
