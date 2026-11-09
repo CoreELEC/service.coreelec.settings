@@ -13,6 +13,7 @@ import xbmcgui
 from dbussy import DBusError
 
 import dbus_connman
+import eap_8021x
 import log
 import modules
 import oe
@@ -884,6 +885,14 @@ class connman(modules.Module):
             listItem = oe.winOeMain.getControl(oe.listObject['netlist']).getSelectedItem()
         entry = listItem.getProperty('entry')
         try:
+            properties = dbus_connman.service_get_properties(entry)
+            if eap_8021x.needs_setup(properties):
+                # 802.1X networks must be provisioned by a config file;
+                # setup() also takes care of connecting
+                eap_8021x.setup(entry, properties)
+                self.connect_attempt = 0
+                self.menu_connections(None)
+                return
             dbus_connman.service_connect(entry)
             self.menu_connections(None)
         except DBusError as e:
@@ -948,6 +957,9 @@ class connman(modules.Module):
         if listItem == None:
             listItem = oe.winOeMain.getControl(oe.listObject['netlist']).getSelectedItem()
         service_path = listItem.getProperty('entry')
+        # 802.1X networks set up by this add-on are removed with their config file
+        if eap_8021x.remove_config(service_path):
+            return
         dbus_connman.service_remove(service_path)
 
     @log.log_function()
@@ -1031,6 +1043,9 @@ class Agent(dbus_connman.Agent):
 
     def report_error(self, path, error):
         oe.input_request = False
+        if eap_8021x.probing:
+            # the certificate probe fails on purpose
+            return
         ui_tools.notification(error)
 
     def request_input(self, path, fields):

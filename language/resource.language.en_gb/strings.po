@@ -1604,3 +1604,59 @@ msgstr ""
 msgctxt "#33601"
 msgid "Username (identity)"
 msgstr ""
+
+msgctxt "#33602"
+msgid "EAP method"
+msgstr ""
+
+msgctxt "#33603"
+msgid "Inner authentication"
+msgstr ""
+
+msgctxt "#33604"
+msgid "Anonymous identity (optional)"
+msgstr ""
+
+msgctxt "#33605"
+msgid "Password"
+msgstr ""
+
+msgctxt "#33606"
+msgid "Retrieving server certificate..."
+msgstr ""
+
+msgctxt "#33607"
+msgid "Could not retrieve the certificate of the authentication server."
+msgstr ""
+
+msgctxt "#33608"
+msgid "Trust this server certificate?"
+msgstr ""
+
+msgctxt "#33609"
+msgid "Subject"
+msgstr ""
+
+msgctxt "#33610"
+msgid "Alternative names"
+msgstr ""
+
+msgctxt "#33611"
+msgid "Issuer"
+msgstr ""
+
+msgctxt "#33612"
+msgid "Valid"
+msgstr ""
+
+msgctxt "#33613"
+msgid "SHA-256 fingerprint"
+msgstr ""
+
+msgctxt "#33614"
+msgid "Only accept if you recognise this certificate. From now on, only this exact certificate will be accepted for this network."
+msgstr ""
+
+msgctxt "#33615"
+msgid "Hidden 802.1X networks can not be set up here. Please create a ConnMan config file for them."
+msgstr ""
