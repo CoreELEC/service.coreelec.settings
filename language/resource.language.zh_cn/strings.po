@@ -1622,3 +1622,63 @@ msgstr "%s 重置"
 msgctxt "#33556"
 msgid "Custom URL is not valid, or currently inaccessible.\n\n%s"
 msgstr "自定义 URL 无效或当前无法访问。\n\n%s"
+
+msgctxt "#33601"
+msgid "Username (identity)"
+msgstr "用户名（身份）"
+
+msgctxt "#33602"
+msgid "EAP method"
+msgstr "EAP 方法"
+
+msgctxt "#33603"
+msgid "Inner authentication"
+msgstr "内部认证"
+
+msgctxt "#33604"
+msgid "Anonymous identity (optional)"
+msgstr "匿名身份（可选）"
+
+msgctxt "#33605"
+msgid "Password"
+msgstr "密码"
+
+msgctxt "#33606"
+msgid "Retrieving server certificate..."
+msgstr "正在获取服务器证书…"
+
+msgctxt "#33607"
+msgid "Could not retrieve the certificate of the authentication server."
+msgstr "无法获取认证服务器的证书。"
+
+msgctxt "#33608"
+msgid "Trust this server certificate?"
+msgstr "信任此服务器证书？"
+
+msgctxt "#33609"
+msgid "Subject"
+msgstr "主题"
+
+msgctxt "#33610"
+msgid "Alternative names"
+msgstr "备用名称"
+
+msgctxt "#33611"
+msgid "Issuer"
+msgstr "颁发者"
+
+msgctxt "#33612"
+msgid "Valid"
+msgstr "有效期"
+
+msgctxt "#33613"
+msgid "SHA-256 fingerprint"
+msgstr "SHA-256 指纹"
+
+msgctxt "#33614"
+msgid "Only accept if you recognise this certificate. From now on, only this exact certificate will be accepted for this network."
+msgstr "仅在确认此证书可信时才接受。此后该网络将只接受这一证书。"
+
+msgctxt "#33615"
+msgid "Hidden 802.1X networks can not be set up here. Please create a ConnMan config file for them."
+msgstr "隐藏的 802.1X 网络无法在此设置，请为其创建 ConnMan 配置文件。"
