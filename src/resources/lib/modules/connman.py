@@ -395,7 +395,6 @@ class connman(modules.Module):
 
     ENABLED = False
     CONNMAN_DAEMON = None
-    WAIT_CONF_FILE = None
     NF_CUSTOM_PATH = "/storage/.config/iptables/"
     connect_attempt = 0
     log_error = 1
@@ -535,26 +534,6 @@ class connman(modules.Module):
             'order': 6,
             'name': 32368,
             'settings': {
-                'wait_for_network': {
-                    'order': 1,
-                    'name': 32369,
-                    'value': '0',
-                    'action': 'set_network_wait',
-                    'type': 'bool',
-                    'InfoText': 736,
-                },
-                'wait_for_network_time': {
-                    'order': 2,
-                    'name': 32370,
-                    'value': '10',
-                    'action': 'set_network_wait',
-                    'type': 'num',
-                    'parent': {
-                        'entry': 'wait_for_network',
-                        'value': ['1'],
-                    },
-                    'InfoText': 737,
-                },
                 'netfilter': {
                     'order': 3,
                     'name': 32395,
@@ -593,21 +572,6 @@ class connman(modules.Module):
 
     @log.log_function()
     def load_values(self):
-        # Network Wait
-        self.struct['advanced']['settings']['wait_for_network']['value'] = '0'
-        self.struct['advanced']['settings']['wait_for_network_time']['value'] = '10'
-        if os.path.exists(self.WAIT_CONF_FILE):
-            wait_file = open(self.WAIT_CONF_FILE, 'r')
-            for line in wait_file:
-                if 'WAIT_NETWORK=' in line:
-                    if line.split('=')[-1].lower().strip().replace('"', '') == 'true':
-                        self.struct['advanced']['settings']['wait_for_network']['value'] = '1'
-                    else:
-                        self.struct['advanced']['settings']['wait_for_network']['value'] = '0'
-                if 'WAIT_NETWORK_TIME=' in line:
-                    self.struct['advanced']['settings']['wait_for_network_time']['value'] = line.split('=')[-1].lower().strip().replace('"',
-                            '')
-            wait_file.close()
         # IPTABLES
         nf_values = [oe._(32397), oe._(32398), oe._(32399)]
         nf_custom_rules = [self.NF_CUSTOM_PATH + "rules.v4" , self.NF_CUSTOM_PATH + "rules.v6"]
@@ -987,23 +951,6 @@ class connman(modules.Module):
         if hasattr(self, 'dbusConnmanManager'):
             self.dbusConnmanManager = None
             del self.dbusConnmanManager
-
-    @log.log_function()
-    def set_network_wait(self, **kwargs):
-        if 'listItem' in kwargs:
-            self.set_value(kwargs['listItem'])
-        if self.struct['advanced']['settings']['wait_for_network']['value'] == '0':
-            if os.path.exists(self.WAIT_CONF_FILE):
-                wait_conf = open(self.WAIT_CONF_FILE, 'w')
-                wait_conf.close()
-            return
-        else:
-            if not os.path.exists(os.path.dirname(self.WAIT_CONF_FILE)):
-                os.makedirs(os.path.dirname(self.WAIT_CONF_FILE))
-            wait_conf = open(self.WAIT_CONF_FILE, 'w')
-            wait_conf.write('WAIT_NETWORK="true"\n')
-            wait_conf.write(f"WAIT_NETWORK_TIME=\"{self.struct['advanced']['settings']['wait_for_network_time']['value']}\"\n")
-            wait_conf.close()
 
     def init_netfilter(self, **kwargs):
         if 'listItem' in kwargs:
