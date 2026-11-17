@@ -349,6 +349,42 @@ class hardware:
                             'action': 'set_value_xml',
                             'type': 'multivalue',
                             },
+                        'usb_keep_suspend': {
+                            'order': 18,
+                            'name': 32543,
+                            'InfoText': 917,
+                            'value': '',
+                            'xml_node': 'usb_keep_suspend',
+                            'action': 'set_value_xml',
+                            'type': 'multivalue',
+                            },
+                        'usb_keep_shutdown': {
+                            'order': 19,
+                            'name': 32544,
+                            'InfoText': 917,
+                            'value': '',
+                            'xml_node': 'usb_keep_shutdown',
+                            'action': 'set_value_xml',
+                            'type': 'multivalue',
+                            },
+                        'usb_2_keep_suspend': {
+                            'order': 20,
+                            'name': 32545,
+                            'InfoText': 917,
+                            'value': '',
+                            'xml_node': 'usb_2_keep_suspend',
+                            'action': 'set_value_xml',
+                            'type': 'multivalue',
+                            },
+                        'usb_2_keep_shutdown': {
+                            'order': 21,
+                            'name': 32546,
+                            'InfoText': 917,
+                            'value': '',
+                            'xml_node': 'usb_2_keep_shutdown',
+                            'action': 'set_value_xml',
+                            'type': 'multivalue',
+                            },
                         },
                     },
                 'display': {
@@ -614,6 +650,10 @@ class hardware:
             self.fill_values_by_xml(self.struct['dtb_settings']['settings']['motorcomm'])
             self.fill_values_by_xml(self.struct['dtb_settings']['settings']['wol'])
             self.fill_values_by_xml(self.struct['dtb_settings']['settings']['cec'])
+            self.fill_values_by_xml(self.struct['dtb_settings']['settings']['usb_keep_suspend'])
+            self.fill_values_by_xml(self.struct['dtb_settings']['settings']['usb_keep_shutdown'])
+            self.fill_values_by_xml(self.struct['dtb_settings']['settings']['usb_2_keep_suspend'])
+            self.fill_values_by_xml(self.struct['dtb_settings']['settings']['usb_2_keep_shutdown'])
 
             if self.get_SoC_id() >= 0x3E:
                 self.struct['dtb_settings']['settings']['cec']['hidden'] = 'true'
