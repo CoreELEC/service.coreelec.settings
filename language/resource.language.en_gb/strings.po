@@ -440,6 +440,10 @@ msgctxt "#916"
 msgid "Set GPU governor"
 msgstr ""
 
+msgctxt "#917"
+msgid "USB power is turned off by default during suspend and shutdown"
+msgstr ""
+
 msgctxt "#32001"
 msgid "Services"
 msgstr ""
@@ -1410,6 +1414,22 @@ msgstr ""
 
 msgctxt "#32542"
 msgid "CEC Framework"
+msgstr ""
+
+msgctxt "#32543"
+msgid "USB power during suspend"
+msgstr ""
+
+msgctxt "#32544"
+msgid "USB power following shutdown"
+msgstr ""
+
+msgctxt "#32545"
+msgid "USB power (2nd port) during suspend"
+msgstr ""
+
+msgctxt "#32546"
+msgid "USB power (2nd port) following shutdown"
 msgstr ""
 
 msgctxt "#33510"
