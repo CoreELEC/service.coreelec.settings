@@ -458,6 +458,10 @@ msgctxt "#916"
 msgid "Set GPU governor"
 msgstr "设置 GPU 调控器"
 
+msgctxt "#917"
+msgid "USB power is turned off by default during suspend and shutdown"
+msgstr "默认情况下，在挂起和关机期间关闭 USB 供电"
+
 msgctxt "#32001"
 msgid "Services"
 msgstr "服务"
@@ -1434,6 +1438,22 @@ msgstr "GPU 调控器"
 msgctxt "#32542"
 msgid "CEC Framework"
 msgstr "CEC 框架"
+
+msgctxt "#32543"
+msgid "USB power during suspend"
+msgstr "挂起期间的 USB 供电"
+
+msgctxt "#32544"
+msgid "USB power following shutdown"
+msgstr "关机后的 USB 供电"
+
+msgctxt "#32545"
+msgid "USB power (2nd port) during suspend"
+msgstr "挂起期间的 USB 供电（第二个端口）"
+
+msgctxt "#32546"
+msgid "USB power (2nd port) following shutdown"
+msgstr "关机后的 USB 供电（第二个端口）"
 
 msgctxt "#33510"
 msgid "Warning!"
